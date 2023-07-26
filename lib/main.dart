@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -16,10 +17,13 @@ void main() async {
   String info = await _prefs.then((SharedPreferences prefs) {
     return prefs.getString('info') ?? "";
   });
-  Map<String, dynamic> mp = jsonDecode(info);
-  InfoModel model = InfoModel.fromJson(mp);
-  AppSingleton.getInstance().info = model;
-  await S.load(const Locale("zh"));
+  if (info.isNotEmpty) {
+    Map<String, dynamic> mp = jsonDecode(info);
+    if (mp.isNotEmpty) {
+      InfoModel model = InfoModel.fromJson(mp);
+      AppSingleton.getInstance().info = model;
+    }
+  }
   runApp(const MyApp());
 }
 
@@ -27,6 +31,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
+    log("message `${AppSingleton.getInstance().info?.language}");
     return MaterialApp(
       title: 'PetsCare',
       localizationsDelegates: const [
