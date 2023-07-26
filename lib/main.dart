@@ -9,6 +9,7 @@ import 'generated/l10n.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await S.load(const Locale("zh"));
   runApp(const MyApp());
 }
 
@@ -24,11 +25,8 @@ class MyApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate
       ],
-      supportedLocales: const [
-         Locale('en', 'US'), // 美国英语
-         Locale('zh', 'CN'), // 中文简体
-      ],
-      locale: const Locale("zh_CN"),
+      supportedLocales: S.delegate.supportedLocales,
+      locale: const Locale("zh"),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const CustomBottomNavigationBar(),// SignInPage(),

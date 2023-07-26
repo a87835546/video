@@ -1,11 +1,14 @@
 
 import 'package:flutter/material.dart';
 
+import 'generated/l10n.dart';
+
 class AppTabBar extends StatefulWidget {
   final Function(int) click;
   final double bottom;
+  final BuildContext context;
 
-  const AppTabBar({Key? key, required this.bottom,required this.click}) : super(key: key);
+  const AppTabBar({Key? key, required this.bottom,required this.click,required this.context}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _AppTabBar();
@@ -68,10 +71,20 @@ class _AppTabBar extends State<AppTabBar> {
       size: 22,
     ),
   ];
-  final List<String> _list = ["HEALTHY", "HOME","CARE", "COMMUNITY","MINE"];
-
+  // final List<String> _list = ["HEALTHY", S.of(widget.context).home,"CARE", "COMMUNITY","MINE"];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
+    final List<String> _list = [
+      S.of(context).healthy,
+      S.of(context).home,
+      S.of(context).care,
+      S.of(context).community,
+      S.of(context).mine];
     return SizedBox(
       height: kBottomNavigationBarHeight + widget.bottom,
       child: Container(

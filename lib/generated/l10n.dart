@@ -79,6 +79,56 @@ class S {
       args: [],
     );
   }
+
+  /// `HOME`
+  String get home {
+    return Intl.message(
+      'HOME',
+      name: 'home',
+      desc: '首页',
+      args: [],
+    );
+  }
+
+  /// `HEALTHY`
+  String get healthy {
+    return Intl.message(
+      'HEALTHY',
+      name: 'healthy',
+      desc: 'bottom tab bar医院',
+      args: [],
+    );
+  }
+
+  /// `CARE`
+  String get care {
+    return Intl.message(
+      'CARE',
+      name: 'care',
+      desc: 'bottom tab bar',
+      args: [],
+    );
+  }
+
+  /// `COMMUNITY`
+  String get community {
+    return Intl.message(
+      'COMMUNITY',
+      name: 'community',
+      desc: 'bottom tab bar',
+      args: [],
+    );
+  }
+
+  /// `MINE`
+  String get mine {
+    return Intl.message(
+      'MINE',
+      name: 'mine',
+      desc: 'bottom tab bar',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -17,5 +17,35 @@
     "description": "一句问候",
     "type": "text",
     "placeholders": {}
+  },
+  "home": "首页",
+  "@home": {
+    "description": "tabbar上的描述首页",
+    "type": "text",
+    "placeholders": {}
+  },
+  "healthy": "健康",
+  "@healthy": {
+    "description": "bottom tab bar医院",
+    "type": "text",
+    "placeholders": {}
+  },
+  "care": "关心",
+  "@care": {
+    "description": "bottom tab bar",
+    "type": "text",
+    "placeholders": {}
+  },
+  "community": "社区",
+  "@community": {
+    "description": "bottom tab bar",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mine": "我的",
+  "@mine": {
+    "description": "bottom tab bar",
+    "type": "text",
+    "placeholders": {}
   }
 }

@@ -41,7 +41,7 @@ class _NavbarPageState extends State<CustomBottomNavigationBar> {
       bottomNavigationBar: MediaQuery.removePadding(
         context: context,
         removeBottom: true,
-        child: AppTabBar(bottom: MediaQuery.of(context).padding.bottom,click: (index){
+        child: AppTabBar(bottom: MediaQuery.of(context).padding.bottom,context: context,click: (index){
           setState(() {
             page = index;
           });
