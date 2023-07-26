@@ -1,0 +1,21 @@
+{
+  "@@last_modified": "2018-07-15T22:13:19.218221",
+  "title": "国际化示例App",
+  "@title": {
+    "description": "应用标题",
+    "type": "text",
+    "placeholders": {}
+  },
+  "click": "点击",
+  "@click": {
+    "description": "点击",
+    "type": "text",
+    "placeholders": {}
+  },
+  "helloFromDemo": "你好呀~",
+  "@helloFromDemo": {
+    "description": "一句问候",
+    "type": "text",
+    "placeholders": {}
+  }
+}

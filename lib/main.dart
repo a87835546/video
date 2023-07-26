@@ -1,24 +1,15 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:pets_care/tabbar.dart';
+
+import 'generated/l10n.dart';
 
 
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized();
-  runApp(EasyLocalization(
-    supportedLocales: const [
-      Locale('en', 'US'),
-      Locale('zh', 'CN'),
-      Locale('de', 'DE'),
-      Locale('ru', 'RU')
-    ],
-    path: 'resources/language/',
-    fallbackLocale: const Locale('en', 'US'),
-    child: const MyApp(),
-  ));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -26,10 +17,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'PetsCare',
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
+      title:'PetsCare',
+      localizationsDelegates: const [
+          AppLocalizationDelegate(),
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate
+      ],
+      supportedLocales: const [
+         Locale('en', 'US'), // 美国英语
+         Locale('zh', 'CN'), // 中文简体
+      ],
+      locale: const Locale("zh_CN"),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const CustomBottomNavigationBar(),// SignInPage(),
