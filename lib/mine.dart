@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pets_care/setting.dart';
+import 'package:pets_care/setting/gallery/android_settings_screen.dart';
+import 'package:pets_care/setting/gallery/cross_platform_settings_screen.dart';
+import 'package:pets_care/setting/gallery/ios_developer_screen.dart';
+import 'package:pets_care/setting/gallery/web_chrome_settings.dart';
 import 'package:pets_care/utils/navigation.dart';
 import 'package:settings_ui/settings_ui.dart';
 
@@ -55,11 +59,11 @@ class _MinePageState extends State<MinePage> {
                   description:
                       Text('UI created to show plugin\'s possibilities'),
                   onPressed: (context) {
-                    // Navigation.navigateTo(
-                    //   context: context,
-                    //   screen: CrossPlatformSettingsScreen(),
-                    //   style: NavigationRouteStyle.material,
-                    // );
+                    Navigation.navigateTo(
+                      context: context,
+                      screen: CrossPlatformSettingsScreen(),
+                      style: NavigationRouteStyle.material,
+                    );
                   },
                 ),
               ],
@@ -71,33 +75,33 @@ class _MinePageState extends State<MinePage> {
                   leading: Icon(CupertinoIcons.settings),
                   title: Text('iOS Developer Screen'),
                   onPressed: (context) {
-                    // Navigation.navigateTo(
-                    //   context: context,
-                    //   screen: IosDeveloperScreen(),
-                    //   style: NavigationRouteStyle.cupertino,
-                    // );
+                    Navigation.navigateTo(
+                      context: context,
+                      screen: IosDeveloperScreen(),
+                      style: NavigationRouteStyle.cupertino,
+                    );
                   },
                 ),
                 SettingsTile.navigation(
                   leading: Icon(Icons.settings),
                   title: Text('Android Settings Screen'),
                   onPressed: (context) {
-                    // Navigation.navigateTo(
-                    //   context: context,
-                    //   screen: AndroidSettingsScreen(),
-                    //   style: NavigationRouteStyle.material,
-                    // );
+                    Navigation.navigateTo(
+                      context: context,
+                      screen: AndroidSettingsScreen(),
+                      style: NavigationRouteStyle.material,
+                    );
                   },
                 ),
                 SettingsTile.navigation(
                   leading: Icon(Icons.web),
                   title: Text('Web Settings'),
                   onPressed: (context) {
-                    // Navigation.navigateTo(
-                    //   context: context,
-                    //   screen: WebChromeSettings(),
-                    //   style: NavigationRouteStyle.material,
-                    // );
+                    Navigation.navigateTo(
+                      context: context,
+                      screen: WebChromeSettings(),
+                      style: NavigationRouteStyle.material,
+                    );
                   },
                 ),
               ],
