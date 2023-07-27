@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'generated/l10n.dart';
 
 class CarePage extends StatefulWidget {
   const CarePage({super.key});
@@ -8,14 +9,15 @@ class CarePage extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _CarePageState();
   }
-
 }
 
-class _CarePageState extends State<CarePage>{
+class _CarePageState extends State<CarePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("care page"),),
+      appBar: AppBar(
+        title: Text(S.current.carePage),
+      ),
       body: Container(),
     );
   }

@@ -25,13 +25,13 @@ class _MinePageState extends State<MinePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("mine page"),
+        title: Text(S.current.minePage),
       ),
       body: Container(
         child: SettingsList(
           sections: [
             SettingsSection(
-              title: Text('General'),
+              title: Text(S.current.general),
               tiles: [
                 SettingsTile.navigation(
                   title: Text(S.of(context).language),

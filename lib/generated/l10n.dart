@@ -139,6 +139,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Healthy Page`
+  String get healthyPage {
+    return Intl.message(
+      'Healthy Page',
+      name: 'healthyPage',
+      desc: '宠物健康页面',
+      args: [],
+    );
+  }
+
+  /// `Community Page`
+  String get communityPage {
+    return Intl.message(
+      'Community Page',
+      name: 'communityPage',
+      desc: '宠物社交页面',
+      args: [],
+    );
+  }
+
+  /// `Care Page`
+  String get carePage {
+    return Intl.message(
+      'Care Page',
+      name: 'carePage',
+      desc: '宠物社交页面',
+      args: [],
+    );
+  }
+
+  /// `Mine Page`
+  String get minePage {
+    return Intl.message(
+      'Mine Page',
+      name: 'minePage',
+      desc: '我的页面',
+      args: [],
+    );
+  }
+
+  /// `General`
+  String get general {
+    return Intl.message(
+      'General',
+      name: 'general',
+      desc: '通用',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

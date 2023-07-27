@@ -53,5 +53,35 @@
     "description": "选择语言地方的显示",
     "type": "text",
     "placeholders": {}
+  },
+  "healthyPage": "宠物健康页面",
+  "@healthyPage": {
+    "description": "宠物健康页面",
+    "type": "text",
+    "placeholders": {}
+  },
+  "communityPage": "宠物社交",
+  "@communityPage": {
+    "description": "宠物社交页面",
+    "type": "text",
+    "placeholders": {}
+  },
+  "carePage": "宠物领养",
+  "@carePage": {
+    "description": "宠物社交页面",
+    "type": "text",
+    "placeholders": {}
+  },
+  "minePage": "我的页面",
+  "@minePage": {
+    "description": "我的页面",
+    "type": "text",
+    "placeholders": {}
+  },
+  "general": "通用",
+  "@general": {
+    "description": "通用",
+    "type": "text",
+    "placeholders": {}
   }
 }
