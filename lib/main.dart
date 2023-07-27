@@ -11,6 +11,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'app_singleton.dart';
 import 'generated/l10n.dart';
 
+GlobalKey<ChangeLocalizationsState> changeLocalizationStateKey =
+    GlobalKey<ChangeLocalizationsState>();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
@@ -27,6 +30,8 @@ void main() async {
   runApp(const MyApp());
 }
 
+var _locale = const Locale("en");
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
@@ -41,12 +46,60 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate
       ],
       supportedLocales: S.delegate.supportedLocales,
-      locale: const Locale("zh"),
+      locale: AppSingleton.getInstance().info?.locale ?? _locale,
+      localeResolutionCallback: (locale, supportedLocales) {
+        log("localeResolutionCallback --->>> `${locale}`");
+        var result = supportedLocales
+            .where((element) => element.languageCode == locale?.languageCode);
+        if (result.isNotEmpty) {
+          return locale;
+        }
+        return Locale(AppSingleton.getInstance().info?.language ?? "en");
+      },
+      localeListResolutionCallback: (locale, sup) {
+        log("localeListResolutionCallback");
+      },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const CustomBottomNavigationBar(), // SignInPage(),
+      home: ChangeLocalizations(
+        key: changeLocalizationStateKey,
+        child: const CustomBottomNavigationBar(),
+      ), // SignInPage(),
       color: Colors.redAccent,
       builder: EasyLoading.init(),
+    );
+  }
+}
+
+//自定义类 用来应用内切换
+class ChangeLocalizations extends StatefulWidget {
+  final Widget child;
+
+  const ChangeLocalizations({Key? key, required this.child}) : super(key: key);
+
+  @override
+  ChangeLocalizationsState createState() => ChangeLocalizationsState();
+}
+
+class ChangeLocalizationsState extends State<ChangeLocalizations> {
+  //初始是中文
+  Locale _locale = const Locale('zh', 'CH');
+
+  changeLocale(Locale locale) {
+    log("changed");
+    setState(() {
+      _locale = locale;
+      _locale = locale;
+      AppSingleton.getInstance().info?.locale = locale;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Localizations.override(
+      context: context,
+      locale: _locale,
+      child: widget.child,
     );
   }
 }

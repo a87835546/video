@@ -28,6 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "healthy": MessageLookupByLibrary.simpleMessage("HEALTHY"),
         "helloFromDemo": MessageLookupByLibrary.simpleMessage("hello"),
         "home": MessageLookupByLibrary.simpleMessage("HOME"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
         "mine": MessageLookupByLibrary.simpleMessage("MINE"),
         "title": MessageLookupByLibrary.simpleMessage("international app")
       };

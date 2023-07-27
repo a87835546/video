@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pets_care/setting.dart';
 import 'package:pets_care/setting/gallery/android_settings_screen.dart';
 import 'package:pets_care/setting/gallery/cross_platform_settings_screen.dart';
 import 'package:pets_care/setting/gallery/ios_developer_screen.dart';
 import 'package:pets_care/setting/gallery/web_chrome_settings.dart';
 import 'package:pets_care/utils/navigation.dart';
 import 'package:settings_ui/settings_ui.dart';
+
+import '../generated/l10n.dart';
+import 'changge_language.dart';
 
 class MinePage extends StatefulWidget {
   const MinePage({super.key});
@@ -32,20 +34,21 @@ class _MinePageState extends State<MinePage> {
               title: Text('General'),
               tiles: [
                 SettingsTile.navigation(
-                  title: Text('Language'),
+                  title: Text(S.of(context).language),
+                  value: Text('English'),
                   leading: Icon(CupertinoIcons.globe),
                   description:
                       Text('UI created to show plugin\'s possibilities'),
                   onPressed: (context) {
                     Navigation.navigateTo(
                       context: context,
-                      screen: const SettingsPage(),
+                      screen: const ChangeLanguagePage(),
                       style: NavigationRouteStyle.cupertino,
                     );
                   },
                 ),
                 SettingsTile.switchTile(
-                    leading: Icon(CupertinoIcons.globe),
+                    leading: const Icon(CupertinoIcons.globe),
                     initialValue: model,
                     onToggle: (v) {
                       setState(() {

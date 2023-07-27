@@ -47,5 +47,11 @@
     "description": "bottom tab bar",
     "type": "text",
     "placeholders": {}
+  },
+  "language": "Language",
+  "@language": {
+    "description": "选择语言地方的显示",
+    "type": "text",
+    "placeholders": {}
   }
 }
