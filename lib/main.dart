@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:pets_care/info_model.dart';
 import 'package:pets_care/tabbar.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app_singleton.dart';
@@ -27,16 +29,47 @@ void main() async {
       AppSingleton.getInstance().info = model;
     }
   }
-  runApp(const MyApp());
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ChangeLanguage()),
+      ],
+      child: const MyApp(),
+    ),
+  );
+
+  // runApp(const MyApp());
 }
 
-var _locale = const Locale("en");
+class ChangeLanguage with ChangeNotifier, DiagnosticableTreeMixin {
+  Locale _count = const Locale("en", "US");
+
+  Locale get count => _count;
+
+  void update(String l, String country) {
+    _count = Locale(l, country);
+    notifyListeners();
+    log("count --->>>> $_count");
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(ObjectFlagProperty('count', count));
+  }
+}
+
+class StringModel {}
+
+var _locale = const Locale("en", "US");
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    log("message `${AppSingleton.getInstance().info?.language}");
+    final value = context.watch<String?>();
+    log("message ${context.watch<ChangeLanguage>().count}");
     return MaterialApp(
       title: 'PetsCare',
       localizationsDelegates: const [
@@ -46,25 +79,21 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate
       ],
       supportedLocales: S.delegate.supportedLocales,
-      locale: AppSingleton.getInstance().info?.locale ?? _locale,
+      locale: context.watch<ChangeLanguage>().count,
       localeResolutionCallback: (locale, supportedLocales) {
-        log("localeResolutionCallback --->>> `${locale}`");
         var result = supportedLocales
             .where((element) => element.languageCode == locale?.languageCode);
         if (result.isNotEmpty) {
           return locale;
         }
-        return Locale(AppSingleton.getInstance().info?.language ?? "en");
+        return context.watch<ChangeLanguage>().count;
       },
       localeListResolutionCallback: (locale, sup) {
-        log("localeListResolutionCallback");
+        log("localeListResolutionCallback ${context.watch<ChangeLanguage>().count}");
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: ChangeLocalizations(
-        key: changeLocalizationStateKey,
-        child: const CustomBottomNavigationBar(),
-      ), // SignInPage(),
+      home: const CustomBottomNavigationBar(), // SignInPage(),
       color: Colors.redAccent,
       builder: EasyLoading.init(),
     );

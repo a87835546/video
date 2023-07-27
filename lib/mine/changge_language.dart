@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pets_care/app_singleton.dart';
+import 'package:provider/provider.dart';
 
 import '../generated/l10n.dart';
 import '../main.dart';
@@ -47,6 +48,7 @@ class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
                 AppSingleton.getInstance().info?.language = "en";
                 changeLocalizationStateKey.currentState
                     ?.changeLocale(const Locale('en', 'US'));
+                context.read<ChangeLanguage>().update("en", "US");
               });
             },
           ),
@@ -60,6 +62,7 @@ class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
                 AppSingleton.getInstance().info?.language = "zh";
                 changeLocalizationStateKey.currentState
                     ?.changeLocale(const Locale('zh', 'CH'));
+                context.read<ChangeLanguage>().update("zh", "CN");
               });
             },
           ),

@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,12 @@ class AppTabBar extends StatefulWidget {
   final double bottom;
   final BuildContext context;
 
-  const AppTabBar({Key? key, required this.bottom,required this.click,required this.context}) : super(key: key);
+  const AppTabBar(
+      {Key? key,
+      required this.bottom,
+      required this.click,
+      required this.context})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _AppTabBar();
@@ -18,7 +24,7 @@ class _AppTabBar extends State<AppTabBar> {
   int page = 1;
 
   final List<Icon> normalImages = const [
-     Icon(
+    Icon(
       Icons.health_and_safety,
       color: Color(0xffD4D4D4),
       size: 22,
@@ -74,9 +80,23 @@ class _AppTabBar extends State<AppTabBar> {
   // final List<String> _list = ["HEALTHY", S.of(widget.context).home,"CARE", "COMMUNITY","MINE"];
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    log("initState");
   }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    log("didChangeDependencies");
+    final List<String> _list = [
+      S.of(context).healthy,
+      S.of(context).home,
+      S.of(context).care,
+      S.of(context).community,
+      S.of(context).mine
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<String> _list = [
@@ -84,7 +104,8 @@ class _AppTabBar extends State<AppTabBar> {
       S.of(context).home,
       S.of(context).care,
       S.of(context).community,
-      S.of(context).mine];
+      S.of(context).mine
+    ];
     return SizedBox(
       height: kBottomNavigationBarHeight + widget.bottom,
       child: Container(
