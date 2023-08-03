@@ -5,13 +5,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:pets_care/info_model.dart';
-import 'package:pets_care/tabbar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:video/tabbar.dart';
 
 import 'app_singleton.dart';
 import 'generated/l10n.dart';
+import 'info_model.dart';
 
 GlobalKey<ChangeLocalizationsState> changeLocalizationStateKey =
     GlobalKey<ChangeLocalizationsState>();

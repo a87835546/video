@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pets_care/app_singleton.dart';
 import 'package:provider/provider.dart';
 
+import '../app_singleton.dart';
 import '../generated/l10n.dart';
 import '../main.dart';
 

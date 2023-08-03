@@ -40,11 +40,6 @@ class _AppTabBar extends State<AppTabBar> {
       size: 22,
     ),
     Icon(
-      Icons.safety_check,
-      color: Color(0xffD4D4D4),
-      size: 22,
-    ),
-    Icon(
       Icons.person,
       color: Color(0xffD4D4D4),
       size: 22,
@@ -63,11 +58,6 @@ class _AppTabBar extends State<AppTabBar> {
     ),
     Icon(
       Icons.message,
-      color: Color(0xff00A6BE),
-      size: 22,
-    ),
-    Icon(
-      Icons.safety_check,
       color: Color(0xff00A6BE),
       size: 22,
     ),
@@ -103,7 +93,6 @@ class _AppTabBar extends State<AppTabBar> {
       S.of(context).healthy,
       S.of(context).home,
       S.of(context).care,
-      S.of(context).community,
       S.of(context).mine
     ];
     return SizedBox(

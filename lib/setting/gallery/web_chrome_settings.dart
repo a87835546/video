@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pets_care/setting/gallery/web_chrome_addresses_settings.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:video/setting/gallery/web_chrome_addresses_settings.dart';
 
 import '../../utils/navigation.dart';
 

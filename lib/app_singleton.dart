@@ -1,4 +1,4 @@
-import 'package:pets_care/info_model.dart';
+import 'info_model.dart';
 
 class AppSingleton {
   static AppSingleton? singleton;

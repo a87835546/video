@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pets_care/setting/gallery/android_settings_screen.dart';
-import 'package:pets_care/setting/gallery/cross_platform_settings_screen.dart';
-import 'package:pets_care/setting/gallery/ios_developer_screen.dart';
-import 'package:pets_care/setting/gallery/web_chrome_settings.dart';
-import 'package:pets_care/utils/navigation.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 import '../generated/l10n.dart';
+import '../setting/gallery/android_settings_screen.dart';
+import '../setting/gallery/cross_platform_settings_screen.dart';
+import '../setting/gallery/ios_developer_screen.dart';
+import '../setting/gallery/web_chrome_settings.dart';
+import '../utils/navigation.dart';
 import 'changge_language.dart';
 
 class MinePage extends StatefulWidget {

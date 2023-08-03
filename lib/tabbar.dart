@@ -1,13 +1,12 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:pets_care/care.dart';
-import 'package:pets_care/community.dart';
-import 'package:pets_care/healthy.dart';
-import 'package:pets_care/home.dart';
-import 'package:pets_care/mine/mine.dart';
 
 import 'appbar.dart';
+import 'care.dart';
+import 'healthy.dart';
+import 'home.dart';
+import 'mine/mine.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({super.key});
@@ -40,13 +39,7 @@ class _NavbarPageState extends State<CustomBottomNavigationBar> {
           physics: const NeverScrollableScrollPhysics(),
           controller: pageController,
           onPageChanged: onPageChanged,
-          children: const [
-            HealthyPage(),
-            HomePage(),
-            CarePage(),
-            CommunityPage(),
-            MinePage()
-          ],
+          children: const [HealthyPage(), HomePage(), CarePage(), MinePage()],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
