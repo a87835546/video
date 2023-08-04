@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'appbar.dart';
 import 'care.dart';
 import 'healthy.dart';
-import 'home.dart';
+import 'home/home.dart';
 import 'mine/mine.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
