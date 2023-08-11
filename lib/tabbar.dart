@@ -1,10 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:video/menu/menu_page.dart';
+import 'package:video/search/search_page.dart';
 
 import 'appbar.dart';
-import 'care.dart';
-import 'healthy.dart';
 import 'home/home.dart';
 import 'mine/mine.dart';
 
@@ -16,9 +16,9 @@ class CustomBottomNavigationBar extends StatefulWidget {
 }
 
 class _NavbarPageState extends State<CustomBottomNavigationBar> {
-  int page = 1;
+  int page = 0;
 
-  PageController pageController = PageController(initialPage: 1);
+  PageController pageController = PageController(initialPage: 0);
   @override
   void initState() {
     super.initState();
@@ -39,7 +39,7 @@ class _NavbarPageState extends State<CustomBottomNavigationBar> {
           physics: const NeverScrollableScrollPhysics(),
           controller: pageController,
           onPageChanged: onPageChanged,
-          children: const [HealthyPage(), HomePage(), CarePage(), MinePage()],
+          children: [HomePage(), MenuPage(), SearchPage(), MinePage()],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -50,6 +50,7 @@ class _NavbarPageState extends State<CustomBottomNavigationBar> {
           bottom: MediaQuery.of(context).padding.bottom,
           context: context,
           click: (index) {
+            log("index-->>> ${index}");
             setState(() {
               page = index;
             });

@@ -189,6 +189,76 @@ class S {
       args: [],
     );
   }
+
+  /// `search Page`
+  String get searchPage {
+    return Intl.message(
+      'search Page',
+      name: 'searchPage',
+      desc: '搜索页面',
+      args: [],
+    );
+  }
+
+  /// `Menu Page`
+  String get menuPage {
+    return Intl.message(
+      'Menu Page',
+      name: 'menuPage',
+      desc: '菜单页面',
+      args: [],
+    );
+  }
+
+  /// `Movie`
+  String get movie {
+    return Intl.message(
+      'Movie',
+      name: 'movie',
+      desc: '电影',
+      args: [],
+    );
+  }
+
+  /// `Series`
+  String get series {
+    return Intl.message(
+      'Series',
+      name: 'series',
+      desc: '电视',
+      args: [],
+    );
+  }
+
+  /// `Animation`
+  String get animation {
+    return Intl.message(
+      'Animation',
+      name: 'animation',
+      desc: '动漫',
+      args: [],
+    );
+  }
+
+  /// `Variety`
+  String get variety {
+    return Intl.message(
+      'Variety',
+      name: 'variety',
+      desc: '综艺',
+      args: [],
+    );
+  }
+
+  /// `Pron`
+  String get pron {
+    return Intl.message(
+      'Pron',
+      name: 'pron',
+      desc: '午夜',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

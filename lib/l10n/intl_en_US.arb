@@ -84,5 +84,47 @@
     "description": "通用",
     "type": "text",
     "placeholders": {}
+  },
+  "searchPage": "Search",
+  "@searchPage": {
+    "description": "搜索页面",
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuPage": "Menu",
+  "@menuPage": {
+    "description": "菜单页面",
+    "type": "text",
+    "placeholders": {}
+  },
+  "movie": "Movie",
+  "@movie": {
+    "description": "电影",
+    "type": "text",
+    "placeholders": {}
+  },
+  "series": "Series",
+  "@series": {
+    "description": "电视",
+    "type": "text",
+    "placeholders": {}
+  },
+  "animation": "Animation",
+  "@animation": {
+    "description": "动漫",
+    "type": "text",
+    "placeholders": {}
+  },
+  "variety": "Variety",
+  "@variety": {
+    "description": "综艺",
+    "type": "text",
+    "placeholders": {}
+  },
+  "pron": "Pron",
+  "@pron": {
+    "description": "午夜",
+    "type": "text",
+    "placeholders": {}
   }
 }

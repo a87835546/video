@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "animation": MessageLookupByLibrary.simpleMessage("动漫"),
         "care": MessageLookupByLibrary.simpleMessage("关心"),
         "carePage": MessageLookupByLibrary.simpleMessage("宠物领养"),
         "click": MessageLookupByLibrary.simpleMessage("点击"),
@@ -33,8 +34,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "helloFromDemo": MessageLookupByLibrary.simpleMessage("你好呀~"),
         "home": MessageLookupByLibrary.simpleMessage("首页"),
         "language": MessageLookupByLibrary.simpleMessage("语言"),
+        "menuPage": MessageLookupByLibrary.simpleMessage("菜单"),
         "mine": MessageLookupByLibrary.simpleMessage("我的"),
         "minePage": MessageLookupByLibrary.simpleMessage("我的页面"),
-        "title": MessageLookupByLibrary.simpleMessage("国际化示例App")
+        "movie": MessageLookupByLibrary.simpleMessage("电影"),
+        "pron": MessageLookupByLibrary.simpleMessage("午夜"),
+        "searchPage": MessageLookupByLibrary.simpleMessage("搜索"),
+        "series": MessageLookupByLibrary.simpleMessage("电视"),
+        "title": MessageLookupByLibrary.simpleMessage("国际化示例App"),
+        "variety": MessageLookupByLibrary.simpleMessage("综艺")
       };
 }

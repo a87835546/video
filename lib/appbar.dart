@@ -21,21 +21,21 @@ class AppTabBar extends StatefulWidget {
 }
 
 class _AppTabBar extends State<AppTabBar> {
-  int page = 1;
+  int page = 0;
 
   final List<Icon> normalImages = const [
-    Icon(
-      Icons.health_and_safety,
-      color: Color(0xffD4D4D4),
-      size: 22,
-    ),
     Icon(
       Icons.home,
       color: Color(0xffD4D4D4),
       size: 22,
     ),
     Icon(
-      Icons.message,
+      Icons.menu,
+      color: Color(0xffD4D4D4),
+      size: 22,
+    ),
+    Icon(
+      Icons.search,
       color: Color(0xffD4D4D4),
       size: 22,
     ),
@@ -47,17 +47,17 @@ class _AppTabBar extends State<AppTabBar> {
   ];
   List<Icon> selectedImages = const [
     Icon(
-      Icons.health_and_safety,
-      color: Color(0xff00A6BE),
-      size: 22,
-    ),
-    Icon(
       Icons.home,
       color: Color(0xff00A6BE),
       size: 22,
     ),
     Icon(
-      Icons.message,
+      Icons.menu,
+      color: Color(0xff00A6BE),
+      size: 22,
+    ),
+    Icon(
+      Icons.search,
       color: Color(0xff00A6BE),
       size: 22,
     ),
@@ -79,10 +79,9 @@ class _AppTabBar extends State<AppTabBar> {
     super.didChangeDependencies();
     log("didChangeDependencies");
     final List<String> _list = [
-      S.of(context).healthy,
       S.of(context).home,
-      S.of(context).care,
-      S.of(context).community,
+      S.of(context).menuPage,
+      S.of(context).searchPage,
       S.of(context).mine
     ];
   }
@@ -90,9 +89,9 @@ class _AppTabBar extends State<AppTabBar> {
   @override
   Widget build(BuildContext context) {
     final List<String> _list = [
-      S.of(context).healthy,
       S.of(context).home,
-      S.of(context).care,
+      S.of(context).menuPage,
+      S.of(context).searchPage,
       S.of(context).mine
     ];
     return SizedBox(
