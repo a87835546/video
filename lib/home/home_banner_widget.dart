@@ -5,11 +5,22 @@ import 'package:banner_carousel/banner_carousel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:video/home/home_info_page.dart';
+import 'package:video/home/home_play_page.dart';
+import 'package:video/home/home_popular_star_model.dart';
 
+import '../generated/l10n.dart';
+import '../utils/navigation.dart';
+import '../widgets/home_rate_widget.dart';
 import 'home_banner_model.dart';
+import 'home_hot_banner_widget.dart';
+import 'home_list_widget.dart';
+import 'home_popular_star_widget.dart';
 
 class HomeBanner extends StatefulWidget {
-  const HomeBanner({super.key});
+  final int type;
+  const HomeBanner({super.key, required this.type});
 
   @override
   State<StatefulWidget> createState() {
@@ -18,40 +29,242 @@ class HomeBanner extends StatefulWidget {
 }
 
 class HomeBannerState extends State<HomeBanner> {
+  final RefreshController _refreshController = RefreshController(
+    initialRefresh: false,
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+    log("widget type --- >>> ${widget.type}");
+  }
+
+  void getData() {}
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.yellow,
-      child: Column(
-        children: [
-          BannerCarousel.fullScreen(
-            height: 466,
-            animation: true,
-            viewportFraction: 1,
-            showIndicator: false,
-            customizedBanners: [
-              HomeBannerItemWidget(
-                model: HomeBannerModel(),
-              ),
-              HomeBannerItemWidget(
-                model: HomeBannerModel(),
-              ),
-              HomeBannerItemWidget(
-                model: HomeBannerModel(),
-              ),
-            ],
+    return SizedBox(
+      height: MediaQuery.of(context).size.height -
+          MediaQuery.of(context).padding.top -
+          49 -
+          MediaQuery.of(context).padding.bottom,
+      child: SmartRefresher(
+        controller: _refreshController,
+        physics: const BouncingScrollPhysics(),
+        enablePullUp: true,
+        enablePullDown: true,
+        header: const WaterDropHeader(),
+        footer: const ClassicFooter(
+          loadStyle: LoadStyle.ShowWhenLoading,
+        ),
+        onRefresh: () {
+          log("refresh");
+          _refreshController.refreshCompleted();
+          getData();
+        },
+        onLoading: () {
+          log('loading more');
+          getData();
+          _refreshController.refreshCompleted();
+        },
+        child: Container(
+          color: Color(0xfff6f6f6),
+          child: SingleChildScrollView(
+            child: Column(
+              // physics: NeverScrollableScrollPhysics(),
+              children: [
+                BannerCarousel.fullScreen(
+                  height: 466,
+                  animation: true,
+                  viewportFraction: 1,
+                  showIndicator: false,
+                  customizedBanners: [
+                    HomeBannerItemWidget(
+                      play: () {
+                        Navigation.navigateTo(
+                          context: context,
+                          screen: const HomeInfoPage(),
+                          style: NavigationRouteStyle.material,
+                        );
+                      },
+                      model: HomeBannerModel(
+                          rate: 5,
+                          duration: 2019,
+                          type: 0,
+                          isFavor: false,
+                          title: "侠盗一号：星球大战故事"),
+                    ),
+                    HomeBannerItemWidget(
+                      model: HomeBannerModel(
+                          rate: 5,
+                          duration: 2019,
+                          type: 0,
+                          isFavor: false,
+                          title: ""),
+                    ),
+                    HomeBannerItemWidget(
+                      model: HomeBannerModel(
+                          rate: 5,
+                          duration: 2019,
+                          type: 0,
+                          isFavor: false,
+                          title: "侠盗一号：星球大战故事 1"),
+                    ),
+                  ],
+                ),
+                Container(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: HomeHotBannerWidget(
+                    model: HomeBannerModel(
+                        rate: 5,
+                        duration: 2019,
+                        type: 0,
+                        isFavor: false,
+                        title: "侠盗一号：星球大战故事 2",
+                        menu: S.of(context).billboard),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: HomeHotBannerWidget(
+                    model: HomeBannerModel(
+                        rate: 5,
+                        duration: 2019,
+                        type: 0,
+                        isFavor: false,
+                        menu: S.of(context).movieBillboard,
+                        title: " 侠盗一号：星球大战故事 3"),
+                    clickMore: () {
+                      log("click more");
+                    },
+                  ),
+                ),
+                HomePopularStarWidget(
+                  model: HomeBannerModel(
+                      rate: 5,
+                      duration: 2019,
+                      type: 0,
+                      isFavor: false,
+                      menu: S.of(context).popularStarBillboard),
+                  list: [
+                    HomePopularStarModel(
+                        name: "zhansan",
+                        url:
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvUvoj9OumBIY6O3dMvuPS76rpSC8OFpeG9F1hSNOT&s"),
+                    HomePopularStarModel(
+                        name: "lisi",
+                        url:
+                            "https://img.win3000.com/m00/d1/c9/6f843b5bf7f315a30aca8ba537a36c6e.jpg"),
+                    HomePopularStarModel(
+                        name: "zhaoliu",
+                        url:
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvUvoj9OumBIY6O3dMvuPS76rpSC8OFpeG9F1hSNOT&s"),
+                    HomePopularStarModel(
+                        name: "zhansan",
+                        url:
+                            "https://img.win3000.com/m00/d1/c9/6f843b5bf7f315a30aca8ba537a36c6e.jpg")
+                  ],
+                ),
+                HomeListWidget(
+                  menu: S.of(context).actionFilms,
+                  list: [
+                    HomeBannerModel(
+                      rate: 3,
+                      duration: 100,
+                      type: 0,
+                      isFavor: false,
+                      public: "2022",
+                      title: "",
+                      // url: ""
+                    ),
+                    HomeBannerModel(
+                      rate: 3.3,
+                      duration: 120,
+                      type: 0,
+                      isFavor: false,
+                      public: "2021",
+                      title: "",
+                      // url: ""
+                    ),
+                    HomeBannerModel(
+                      rate: 3.4,
+                      duration: 110,
+                      type: 0,
+                      isFavor: false,
+                      public: "2020",
+                      title: "",
+                      // url: ""
+                    ),
+                  ],
+                ),
+                HomeListWidget(
+                  menu: S.of(context).comedyFilms,
+                  list: [
+                    HomeBannerModel(
+                      rate: 3,
+                      duration: 100,
+                      type: 0,
+                      isFavor: false,
+                      public: "2022",
+                      title: "",
+                      // url: ""
+                    ),
+                    HomeBannerModel(
+                      rate: 3.3,
+                      duration: 120,
+                      type: 0,
+                      isFavor: false,
+                      public: "2021",
+                      title: "",
+                      // url: ""
+                    ),
+                    HomeBannerModel(
+                      rate: 3.4,
+                      duration: 110,
+                      type: 0,
+                      isFavor: false,
+                      public: "2020",
+                      title: "",
+                      // url: ""
+                    ),
+                  ],
+                ),
+                HomeListWidget(
+                  menu: S.of(context).otherFilms,
+                  list: [
+                    HomeBannerModel(
+                      rate: 3,
+                      duration: 100,
+                      type: 0,
+                      isFavor: false,
+                      public: "2022",
+                      title: "",
+                      // url: ""
+                    ),
+                    HomeBannerModel(
+                      rate: 3.3,
+                      duration: 120,
+                      type: 0,
+                      isFavor: false,
+                      public: "2021",
+                      title: "",
+                      // url: ""
+                    ),
+                    HomeBannerModel(
+                      rate: 3.4,
+                      duration: 110,
+                      type: 0,
+                      isFavor: false,
+                      public: "2020",
+                      title: "",
+                      // url: ""
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
-          Row(
-            children: [
-              Container(
-                child: Text("热门电影"),
-              ),
-              Container(
-                child: Text("更多"),
-              ),
-            ],
-          )
-        ],
+        ),
       ),
     );
   }
@@ -138,87 +351,11 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                   ),
                 ),
                 Container(
-                  // autogroupnyb7Dr1 (3kojGpj2nk4cwAie1yNyB7)
-                  margin: EdgeInsets.fromLTRB(
-                      25.33 * fem, 0 * fem, 0 * fem, 0 * fem),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        // movieinfo8xy (17:20426)
-                        margin: EdgeInsets.fromLTRB(
-                            0 * fem, 2 * fem, 22 * fem, 0 * fem),
-                        height: 20 * fem,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              // ratingFnh (17:20427)
-                              margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 0 * fem, 15 * fem, 0 * fem),
-                              height: double.infinity,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    // iconlyboldstaraa5 (17:20428)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 7.33 * fem, 0 * fem),
-                                    width: 13.33 * fem,
-                                    height: 12.67 * fem,
-                                    child: const Icon(
-                                      Icons.star_rate_rounded,
-                                      size: 14,
-                                      color: Color(0xffffbb38),
-                                    ),
-                                  ),
-                                  Text(
-                                      // frR (17:20429)
-                                      "${widget.model.rate ?? 8.4}",
-                                      style: GoogleFonts.zenKakuGothicNew(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400,
-                                          color: const Color(0xffffbb38),
-                                          height: 1.4)),
-                                ],
-                              ),
-                            ),
-                            Text(
-                                // durationcFs (17:20430)
-                                widget.model.public ?? '2016',
-                                style: GoogleFonts.zenKakuGothicNew(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                    color: const Color(0xff757575),
-                                    height: 1.4)),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        // ZB7 (17:20447)
-                        margin: EdgeInsets.fromLTRB(
-                            0 * fem, 0 * fem, 27 * fem, 0 * fem),
-                        child: Text('01小时54分',
-                            style: GoogleFonts.zenKakuGothicNew(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xff757575),
-                                height: 1.4)),
-                      ),
-                      Container(
-                        // HN1 (17:20448)
-                        margin: EdgeInsets.fromLTRB(
-                            0 * fem, 0 * fem, 26 * fem, 0 * fem),
-                        child: Text('动作  剧情',
-                            style: GoogleFonts.zenKakuGothicNew(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xff757575),
-                                height: 1.4)),
-                      ),
-                    ],
+                  padding: EdgeInsets.only(left: 25),
+                  child: HomeRateWidget(
+                    model: widget.model,
                   ),
-                ),
+                )
               ],
             ),
           ),
@@ -264,7 +401,7 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                                   size: 20,
                                   color: Color(0xffffffff),
                                 )),
-                            Text('立即观看',
+                            Text(S.of(context).play,
                                 style: GoogleFonts.inter(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
@@ -282,7 +419,6 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                 ),
                 GestureDetector(
                   child: ClipRect(
-                    // navigationiosbuttonsecondaryla (17:20420)
                     child: BackdropFilter(
                       filter: ImageFilter.blur(
                         sigmaX: 8 * fem,
@@ -304,11 +440,10 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                           width: double.infinity,
                           height: double.infinity,
                           child: Center(
-                            // iconlylightbookmarkcyw (I17:20420;15:1187)
                             child: SizedBox(
                                 width: 15.5 * fem,
                                 height: 19.22 * fem,
-                                child: Icon(
+                                child: const Icon(
                                   Icons.favorite,
                                   size: 20,
                                   color: Color(0xffC2C2C2),

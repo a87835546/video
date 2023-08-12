@@ -22,10 +22,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "actionFilms": MessageLookupByLibrary.simpleMessage("动作片"),
         "animation": MessageLookupByLibrary.simpleMessage("动漫"),
+        "billboard": MessageLookupByLibrary.simpleMessage("热门"),
         "care": MessageLookupByLibrary.simpleMessage("关心"),
         "carePage": MessageLookupByLibrary.simpleMessage("宠物领养"),
         "click": MessageLookupByLibrary.simpleMessage("点击"),
+        "comedyFilms": MessageLookupByLibrary.simpleMessage("喜剧片"),
         "community": MessageLookupByLibrary.simpleMessage("社区"),
         "communityPage": MessageLookupByLibrary.simpleMessage("宠物社交"),
         "general": MessageLookupByLibrary.simpleMessage("通用"),
@@ -37,7 +40,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "menuPage": MessageLookupByLibrary.simpleMessage("菜单"),
         "mine": MessageLookupByLibrary.simpleMessage("我的"),
         "minePage": MessageLookupByLibrary.simpleMessage("我的页面"),
+        "more": MessageLookupByLibrary.simpleMessage("查看更多"),
         "movie": MessageLookupByLibrary.simpleMessage("电影"),
+        "movieBillboard": MessageLookupByLibrary.simpleMessage("院线大片"),
+        "otherFilms": MessageLookupByLibrary.simpleMessage("其他类型"),
+        "play": MessageLookupByLibrary.simpleMessage("立即观看"),
+        "popularStarBillboard": MessageLookupByLibrary.simpleMessage("明星排行榜"),
         "pron": MessageLookupByLibrary.simpleMessage("午夜"),
         "searchPage": MessageLookupByLibrary.simpleMessage("搜索"),
         "series": MessageLookupByLibrary.simpleMessage("电视"),

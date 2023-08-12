@@ -22,10 +22,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "actionFilms": MessageLookupByLibrary.simpleMessage("Action Films"),
         "animation": MessageLookupByLibrary.simpleMessage("Animation"),
+        "billboard": MessageLookupByLibrary.simpleMessage("Billboard"),
         "care": MessageLookupByLibrary.simpleMessage("CARE"),
         "carePage": MessageLookupByLibrary.simpleMessage("Care Page"),
         "click": MessageLookupByLibrary.simpleMessage("点击"),
+        "comedyFilms": MessageLookupByLibrary.simpleMessage("Comedy Films"),
         "community": MessageLookupByLibrary.simpleMessage("COMMUNITY"),
         "communityPage": MessageLookupByLibrary.simpleMessage("Community Page"),
         "general": MessageLookupByLibrary.simpleMessage("General"),
@@ -37,7 +40,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "menuPage": MessageLookupByLibrary.simpleMessage("Menu Page"),
         "mine": MessageLookupByLibrary.simpleMessage("MINE"),
         "minePage": MessageLookupByLibrary.simpleMessage("Mine Page"),
+        "more": MessageLookupByLibrary.simpleMessage("View All"),
         "movie": MessageLookupByLibrary.simpleMessage("Movie"),
+        "movieBillboard":
+            MessageLookupByLibrary.simpleMessage("Movies Billboard"),
+        "otherFilms": MessageLookupByLibrary.simpleMessage(" Other Films"),
+        "play": MessageLookupByLibrary.simpleMessage("Play"),
+        "popularStarBillboard":
+            MessageLookupByLibrary.simpleMessage("Popular Star Billboard"),
         "pron": MessageLookupByLibrary.simpleMessage("Pron"),
         "searchPage": MessageLookupByLibrary.simpleMessage("search Page"),
         "series": MessageLookupByLibrary.simpleMessage("Series"),

@@ -259,6 +259,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Play`
+  String get play {
+    return Intl.message(
+      'Play',
+      name: 'play',
+      desc: '立即观看',
+      args: [],
+    );
+  }
+
+  /// `Billboard`
+  String get billboard {
+    return Intl.message(
+      'Billboard',
+      name: 'billboard',
+      desc: '热门',
+      args: [],
+    );
+  }
+
+  /// `View All`
+  String get more {
+    return Intl.message(
+      'View All',
+      name: 'more',
+      desc: '更多',
+      args: [],
+    );
+  }
+
+  /// `Movies Billboard`
+  String get movieBillboard {
+    return Intl.message(
+      'Movies Billboard',
+      name: 'movieBillboard',
+      desc: '院线大片',
+      args: [],
+    );
+  }
+
+  /// `Action Films`
+  String get actionFilms {
+    return Intl.message(
+      'Action Films',
+      name: 'actionFilms',
+      desc: '动作片',
+      args: [],
+    );
+  }
+
+  /// `Comedy Films`
+  String get comedyFilms {
+    return Intl.message(
+      'Comedy Films',
+      name: 'comedyFilms',
+      desc: '喜剧片',
+      args: [],
+    );
+  }
+
+  /// ` Other Films`
+  String get otherFilms {
+    return Intl.message(
+      ' Other Films',
+      name: 'otherFilms',
+      desc: '其他类型',
+      args: [],
+    );
+  }
+
+  /// `Popular Star Billboard`
+  String get popularStarBillboard {
+    return Intl.message(
+      'Popular Star Billboard',
+      name: 'popularStarBillboard',
+      desc: '明星排行榜',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

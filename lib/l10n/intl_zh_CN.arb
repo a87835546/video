@@ -125,5 +125,53 @@
     "description": "午夜",
     "type": "text",
     "placeholders": {}
+  },
+  "play": "立即观看",
+  "@play": {
+    "description": "立即观看",
+    "type": "text",
+    "placeholders": {}
+  },
+  "billboard": "热门",
+  "@billboard": {
+    "description": "热门",
+    "type": "text",
+    "placeholders": {}
+  },
+  "more": "查看更多",
+  "@more": {
+    "description": "更多",
+    "type": "text",
+    "placeholders": {}
+  },
+  "movieBillboard": "院线大片",
+  "@movieBillboard": {
+    "description": "院线大片",
+    "type": "text",
+    "placeholders": {}
+  },
+  "popularStarBillboard": "明星排行榜",
+  "@popularStarBillboard": {
+    "description": "明星排行榜",
+    "type": "text",
+    "placeholders": {}
+  },
+  "actionFilms": "动作片",
+  "@actionFilms": {
+    "description": "动作片",
+    "type": "text",
+    "placeholders": {}
+  },
+  "comedyFilms": "喜剧片",
+  "@comedyFilms": {
+    "description": "喜剧片",
+    "type": "text",
+    "placeholders": {}
+  },
+  "otherFilms": "其他类型",
+  "@otherFilms": {
+    "description": "其他类型",
+    "type": "text",
+    "placeholders": {}
   }
 }

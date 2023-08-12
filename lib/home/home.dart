@@ -55,40 +55,25 @@ class _HomePageState extends State<HomePage> {
           ),
         ) // backgroundColor: Colors.redAccent,
             ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
-            VideoList(),
-            ListView(children: <Widget>[ListTile(title: Text("热销内容"))]),
-            ListView(children: <Widget>[ListTile(title: Text("热销内容"))]),
-            Center(
-              child: Text("Calls"),
+            HomeBanner(
+              type: 0,
             ),
-            Center(
-              child: Text("Settings"),
+            HomeBanner(
+              type: 1,
+            ),
+            HomeBanner(
+              type: 2,
+            ),
+            HomeBanner(
+              type: 3,
+            ),
+            HomeBanner(
+              type: 4,
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class VideoList extends StatefulWidget {
-  const VideoList({super.key});
-
-  @override
-  State<StatefulWidget> createState() {
-    return VideoListState();
-  }
-}
-
-class VideoListState extends State<VideoList> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      // color: Colors.red,
-      child: ListView(
-        children: [HomeBanner()],
       ),
     );
   }
