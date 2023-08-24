@@ -17,6 +17,8 @@ GlobalKey<ChangeLocalizationsState> changeLocalizationStateKey =
     GlobalKey<ChangeLocalizationsState>();
 
 void main() async {
+  AppSingleton.devMode = DevMode.local;
+
   WidgetsFlutterBinding.ensureInitialized();
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   String info = await _prefs.then((SharedPreferences prefs) {
