@@ -5,7 +5,7 @@ class HomeBannerModel {
   String? public;
   num rate = 0;
   num duration = 100;
-  num type = 0;
+  List<String>? type = [];
   bool isFavor = false;
 
   HomeBannerModel({
@@ -33,18 +33,29 @@ class HomeBannerModel {
   static String getDuration(num d) {
     num hour = d ~/ 60;
     num min = d % 60;
-    return "$hour小时$min分";
+    if (min > 0) {
+      return "$hour小时$min分";
+    } else {
+      return "$hour小时";
+    }
   }
 
   String newDuration() {
     num hour = duration ~/ 60;
     num min = duration % 60;
-    return "$hour小时$min分";
+    if (min > 0) {
+      return "$hour小时$min分";
+    } else {
+      return "$hour小时";
+    }
   }
 
-  String newPublic() {
-    num hour = duration ~/ 60;
-    num min = duration % 60;
-    return "$hour小时$min分";
+  String newType() {
+    return "动作  剧情";
+  }
+
+  @override
+  String toString() {
+    return 'HomeBannerModel{url: $url, title: $title, menu: $menu, public: $public, rate: $rate, duration: $duration, type: $type, isFavor: $isFavor}';
   }
 }

@@ -9,8 +9,15 @@ import 'home_hot_banner_item_widget.dart';
 
 class HomeHotBannerWidget extends StatefulWidget {
   final Function? clickMore;
-  final HomeBannerModel model;
-  const HomeHotBannerWidget({super.key, this.clickMore, required this.model});
+  final String menu;
+  final Function(HomeBannerModel model, int index)? clickItem;
+  final List<HomeBannerModel> list;
+  const HomeHotBannerWidget(
+      {super.key,
+      this.clickMore,
+      required this.list,
+      this.clickItem,
+      required this.menu});
 
   @override
   State<StatefulWidget> createState() {
@@ -26,26 +33,25 @@ class _HomeHotBannerWidgetState extends State<HomeHotBannerWidget> {
       child: Column(
         children: [
           HomeBannerTopView(
-            model: widget.model,
+            menu: widget.menu,
             clickMore: widget.clickMore,
           ),
           BannerCarousel.fullScreen(
-            height: 220,
-            animation: true,
-            viewportFraction: 1,
-            showIndicator: false,
-            customizedBanners: [
-              HomeHotBannerItemWidget(
-                model: widget.model,
-              ),
-              HomeHotBannerItemWidget(
-                model: widget.model,
-              ),
-              HomeHotBannerItemWidget(
-                model: widget.model,
-              ),
-            ],
-          ),
+              height: 220,
+              animation: true,
+              viewportFraction: 1,
+              showIndicator: false,
+              customizedBanners: widget.list.map((e) {
+                int index = widget.list.indexOf(e);
+                return HomeHotBannerItemWidget(
+                  model: e,
+                  click: () {
+                    if (widget.clickItem != null) {
+                      widget.clickItem!(e, index);
+                    }
+                  },
+                );
+              }).toList()),
         ],
       ),
     );
@@ -53,10 +59,10 @@ class _HomeHotBannerWidgetState extends State<HomeHotBannerWidget> {
 }
 
 class HomeBannerTopView extends StatelessWidget {
-  final HomeBannerModel model;
+  final String menu;
   final Function? clickMore;
 
-  const HomeBannerTopView({super.key, required this.model, this.clickMore});
+  const HomeBannerTopView({super.key, required this.menu, this.clickMore});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -64,7 +70,7 @@ class HomeBannerTopView extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(model.menu ?? "", style: Fonts.title()),
+          Text(menu ?? "", style: Fonts.title()),
           GestureDetector(
             child: Text(
               S.of(context).more,

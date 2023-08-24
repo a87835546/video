@@ -29,12 +29,7 @@ class _HomeListWidgetState extends State<HomeListWidget> {
           Container(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: HomeBannerTopView(
-              model: HomeBannerModel(
-                  rate: 0,
-                  duration: 0,
-                  type: 0,
-                  isFavor: false,
-                  menu: widget.menu ?? S.of(context).actionFilms),
+              menu: widget.menu,
               clickMore: () {
                 log("click action films view more");
               },

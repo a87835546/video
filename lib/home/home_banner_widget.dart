@@ -68,82 +68,142 @@ class HomeBannerState extends State<HomeBanner> {
           _refreshController.refreshCompleted();
         },
         child: Container(
-          color: Color(0xfff6f6f6),
+          color: const Color(0xfff6f6f6),
           child: SingleChildScrollView(
             child: Column(
               // physics: NeverScrollableScrollPhysics(),
               children: [
                 BannerCarousel.fullScreen(
-                  height: 466,
-                  animation: true,
-                  viewportFraction: 1,
-                  showIndicator: false,
-                  customizedBanners: [
-                    HomeBannerItemWidget(
-                      play: () {
-                        Navigation.navigateTo(
-                          context: context,
-                          screen: const HomeInfoPage(),
-                          style: NavigationRouteStyle.material,
-                        );
-                      },
-                      model: HomeBannerModel(
+                    height: 466,
+                    animation: true,
+                    viewportFraction: 1,
+                    showIndicator: false,
+                    customizedBanners: [
+                      HomeBannerModel(
                           rate: 5,
-                          duration: 2019,
-                          type: 0,
+                          public: "2021",
+                          duration: 122,
+                          type: ["0"],
                           isFavor: false,
                           title: "侠盗一号：星球大战故事"),
-                    ),
-                    HomeBannerItemWidget(
-                      model: HomeBannerModel(
+                      HomeBannerModel(
                           rate: 5,
-                          duration: 2019,
-                          type: 0,
+                          public: "2023",
+                          duration: 120,
+                          type: ["0"],
                           isFavor: false,
-                          title: ""),
-                    ),
-                    HomeBannerItemWidget(
-                      model: HomeBannerModel(
-                          rate: 5,
-                          duration: 2019,
-                          type: 0,
-                          isFavor: false,
-                          title: "侠盗一号：星球大战故事 1"),
-                    ),
-                  ],
-                ),
+                          title: "侠盗一号：星球大战故事 1",
+                          url:
+                              "https://static.runoob.com/images/demo/demo2.jpg"),
+                      HomeBannerModel(
+                          rate: 5.66,
+                          public: "2020",
+                          duration: 140,
+                          type: ["0"],
+                          isFavor: true,
+                          title: "侠盗一号：星球大战故事 2",
+                          url:
+                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFwIT3_0Yf1FiaMhAfqffasuNXUqh3UXCutPhKog5jEQ&s"),
+                    ].map((e) {
+                      return HomeBannerItemWidget(
+                          model: e,
+                          play: () {
+                            Navigation.navigateTo(
+                              context: context,
+                              screen: const HomePlayPage(),
+                              style: NavigationRouteStyle.material,
+                            );
+                          });
+                    }).toList()),
                 Container(
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: HomeHotBannerWidget(
-                    model: HomeBannerModel(
-                        rate: 5,
-                        duration: 2019,
-                        type: 0,
-                        isFavor: false,
-                        title: "侠盗一号：星球大战故事 2",
-                        menu: S.of(context).billboard),
+                    clickMore: () {
+                      log("click more ${S.of(context).billboard}");
+                    },
+                    clickItem: (data, index) {
+                      log("click index:$index  item:$data");
+                      Navigation.navigateTo(
+                        context: context,
+                        screen: const HomeInfoPage(),
+                        style: NavigationRouteStyle.material,
+                      );
+                    },
+                    menu: S.of(context).billboard,
+                    list: [
+                      HomeBannerModel(
+                          rate: 5,
+                          duration: 2019,
+                          type: ["0"],
+                          isFavor: false,
+                          title: "侠盗一号：星球大战故事 2-1",
+                          url:
+                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_haYcSoRDlLtQIf4gDtz3gPkD2LhDacqPFM6YBEBr&s"),
+                      HomeBannerModel(
+                          rate: 5,
+                          duration: 2019,
+                          type: ["0"],
+                          isFavor: false,
+                          title: "侠盗一号：星球大战故事 2-2",
+                          url:
+                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkR5t_k4752DIskLyM3TK1FWhKr1Miy8Lf9743ZY7F&s"),
+                      HomeBannerModel(
+                          rate: 5,
+                          duration: 2019,
+                          type: ["0"],
+                          isFavor: false,
+                          title: "侠盗一号：星球大战故事 2-3",
+                          url:
+                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFwIT3_0Yf1FiaMhAfqffasuNXUqh3UXCutPhKog5jEQ&s"),
+                    ],
                   ),
                 ),
                 Container(
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: HomeHotBannerWidget(
-                    model: HomeBannerModel(
-                        rate: 5,
-                        duration: 2019,
-                        type: 0,
-                        isFavor: false,
-                        menu: S.of(context).movieBillboard,
-                        title: " 侠盗一号：星球大战故事 3"),
+                    menu: S.of(context).movieBillboard,
+                    list: [
+                      HomeBannerModel(
+                          rate: 5.9,
+                          duration: 2019,
+                          type: ["0"],
+                          isFavor: false,
+                          title: " 侠盗一号：星球大战故事 3-1"),
+                      HomeBannerModel(
+                          rate: 5.7,
+                          duration: 180,
+                          public: "2019",
+                          type: ["0"],
+                          isFavor: false,
+                          title: " 侠盗一号：星球大战故事 3-2"),
+                      HomeBannerModel(
+                          rate: 5,
+                          public: "2019",
+                          duration: 130,
+                          type: ["0"],
+                          isFavor: false,
+                          title: " 侠盗一号：星球大战故事 3-3"),
+                      HomeBannerModel(
+                          rate: 4,
+                          duration: 2021,
+                          public: "2019",
+                          type: ["0"],
+                          isFavor: false,
+                          title: " 侠盗一号：星球大战故事 3-4"),
+                    ],
                     clickMore: () {
                       log("click more");
                     },
                   ),
                 ),
                 HomePopularStarWidget(
+                  click: (val) {
+                    log("value --->> ${val.toString()}");
+                  },
                   model: HomeBannerModel(
                       rate: 5,
                       duration: 2019,
-                      type: 0,
+                      type: ["0"],
                       isFavor: false,
                       menu: S.of(context).popularStarBillboard),
                   list: [
@@ -171,7 +231,7 @@ class HomeBannerState extends State<HomeBanner> {
                     HomeBannerModel(
                       rate: 3,
                       duration: 100,
-                      type: 0,
+                      type: ["0"],
                       isFavor: false,
                       public: "2022",
                       title: "",
@@ -180,7 +240,7 @@ class HomeBannerState extends State<HomeBanner> {
                     HomeBannerModel(
                       rate: 3.3,
                       duration: 120,
-                      type: 0,
+                      type: ["0"],
                       isFavor: false,
                       public: "2021",
                       title: "",
@@ -189,7 +249,7 @@ class HomeBannerState extends State<HomeBanner> {
                     HomeBannerModel(
                       rate: 3.4,
                       duration: 110,
-                      type: 0,
+                      type: ["0"],
                       isFavor: false,
                       public: "2020",
                       title: "",
@@ -203,7 +263,7 @@ class HomeBannerState extends State<HomeBanner> {
                     HomeBannerModel(
                       rate: 3,
                       duration: 100,
-                      type: 0,
+                      type: ["0"],
                       isFavor: false,
                       public: "2022",
                       title: "",
@@ -212,7 +272,7 @@ class HomeBannerState extends State<HomeBanner> {
                     HomeBannerModel(
                       rate: 3.3,
                       duration: 120,
-                      type: 0,
+                      type: ["0"],
                       isFavor: false,
                       public: "2021",
                       title: "",
@@ -221,7 +281,7 @@ class HomeBannerState extends State<HomeBanner> {
                     HomeBannerModel(
                       rate: 3.4,
                       duration: 110,
-                      type: 0,
+                      type: ["0"],
                       isFavor: false,
                       public: "2020",
                       title: "",
@@ -235,7 +295,7 @@ class HomeBannerState extends State<HomeBanner> {
                     HomeBannerModel(
                       rate: 3,
                       duration: 100,
-                      type: 0,
+                      type: ["0"],
                       isFavor: false,
                       public: "2022",
                       title: "",
@@ -244,7 +304,7 @@ class HomeBannerState extends State<HomeBanner> {
                     HomeBannerModel(
                       rate: 3.3,
                       duration: 120,
-                      type: 0,
+                      type: ["0"],
                       isFavor: false,
                       public: "2021",
                       title: "",
@@ -253,7 +313,7 @@ class HomeBannerState extends State<HomeBanner> {
                     HomeBannerModel(
                       rate: 3.4,
                       duration: 110,
-                      type: 0,
+                      type: ["0"],
                       isFavor: false,
                       public: "2020",
                       title: "",

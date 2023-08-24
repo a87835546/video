@@ -7,8 +7,9 @@ import '../../utils/video_payer_utils.dart';
 
 // ignore: must_be_immutable
 class VideoPlayerTop extends StatefulWidget {
-  VideoPlayerTop({Key? key}) : super(key: key);
+  VideoPlayerTop({Key? key, this.clickBack}) : super(key: key);
   late Function(bool) opacityCallback;
+  Function? clickBack;
   @override
   _VideoPlayerTopState createState() => _VideoPlayerTopState();
 }
@@ -62,8 +63,18 @@ class _VideoPlayerTopState extends State<VideoPlayerTop> {
                           color: Colors.white,
                         ),
                       )
-                    : const SizedBox(
-                        width: 15,
+                    : IconButton(
+                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          if (widget.clickBack != null) {
+                            widget.clickBack!();
+                          }
+                        }, // 切换竖屏
+                        icon: const Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.white,
+                        ),
                       ),
                 const Text(
                   "这个是视频的标题",

@@ -7,4 +7,9 @@ class HomePopularStarModel {
     this.name,
     this.id,
   });
+
+  @override
+  String toString() {
+    return 'HomePopularStarModel{id: $id, name: $name, url: $url}';
+  }
 }

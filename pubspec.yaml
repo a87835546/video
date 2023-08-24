@@ -49,7 +49,7 @@ dependencies:
   pull_to_refresh: ^2.0.0
 
   # 播放器
-  video_player: ^2.2.11
+  video_player: ^2.7.0
   # 屏幕旋转
   auto_orientation: ^2.2.1
   # 亮度和音量调节

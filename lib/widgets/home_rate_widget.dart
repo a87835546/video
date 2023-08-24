@@ -38,7 +38,6 @@ class _HomeRateWidgetState extends State<HomeRateWidget> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        // iconlyboldstaraa5 (17:20428)
                         margin: EdgeInsets.fromLTRB(
                             0 * fem, 0 * fem, 7.33 * fem, 0 * fem),
                         width: 13.33 * fem,
@@ -49,7 +48,7 @@ class _HomeRateWidgetState extends State<HomeRateWidget> {
                           color: Color(0xffffbb38),
                         ),
                       ),
-                      Text("${widget.model.rate ?? 8.4}",
+                      Text("${widget.model.rate}",
                           style: GoogleFonts.zenKakuGothicNew(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
@@ -69,11 +68,11 @@ class _HomeRateWidgetState extends State<HomeRateWidget> {
           ),
           Container(
             margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 27 * fem, 2 * fem),
-            child: Text(HomeBannerModel.getDuration(widget.model.duration),
+            child: Text(widget.model.newDuration(),
                 style: GoogleFonts.zenKakuGothicNew(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color: Color(0xff757575),
+                    color: const Color(0xff757575),
                     height: 1.4)),
           ),
           Visibility(

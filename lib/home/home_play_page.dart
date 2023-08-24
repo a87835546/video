@@ -1,12 +1,8 @@
-import 'dart:ui';
+import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:video/home/home_banner_model.dart';
-import 'package:video/widgets/home_rate_widget.dart';
-
-import '../utils/fonts.dart';
-import '../utils/video_payer_utils.dart';
+import 'package:video_player/video_player.dart';
 
 class HomePlayPage extends StatefulWidget {
   const HomePlayPage({super.key});
@@ -18,74 +14,73 @@ class HomePlayPage extends StatefulWidget {
 }
 
 class _HomePlayPageState extends State<HomePlayPage> {
-  Widget? _playerUI;
+  late VideoPlayerController _controller;
+  late Future<void> _initializeVideoPlayerFuture;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    // 播放视频
-    VideoPlayerUtils.playerHandle("https://youtu.be/YxY3RzkzSLU");
-    // 播放新视频，初始化监听
-    VideoPlayerUtils.initializedListener(
-        key: this,
-        listener: (initialize, widget) {
-          if (initialize) {
-            _playerUI = widget;
-            if (!mounted) return;
-            setState(() {});
-          }
-        });
+    _controller = VideoPlayerController.networkUrl(
+      Uri.parse(
+        'http://adsmind.gdtimg.com/0bc3zuaaqaaaseaaupof5rsfbtodbdgqacaa.f10002.mp4?znjson.mp4',
+      ),
+    );
+
+    _initializeVideoPlayerFuture = _controller.initialize();
+    log("init state ---");
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
-    VideoPlayerUtils.removeInitializedListener(this);
     super.dispose();
+    _controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          color: Color(0xffffffff),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-                alignment: Alignment.center,
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.width * 9 / 16,
-                color: Colors.black26,
-                child: _playerUI ??
-                    const CircularProgressIndicator(
-                      strokeWidth: 3,
-                    )),
-            Container(
-              alignment: Alignment.centerLeft,
-              height: 30,
-              padding: EdgeInsets.only(left: 10, right: 10),
-              child: Text("title 1111"),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 10, right: 10),
-              child: HomeRateWidget(
-                  model: HomeBannerModel(
-                      rate: 6.6,
-                      duration: 112,
-                      type: 0,
-                      isFavor: false,
-                      title: "111")),
-            ),
-            Container(
-                padding: EdgeInsets.only(left: 10, top: 10, right: 10),
-                child: Text(
-                    '《侠盗一号》广泛获得积极的评价，包括赞赏它的演技、动作场面、配乐及暗色调，虽然有些批评是针对其性格描写，和电影中使用电脑合成图像啊哈来...',
-                    style: Fonts.sub(14, Color(0xff9e9e9e))))
-          ],
+      appBar: AppBar(
+        title: const Text('Butterfly Video'),
+      ),
+      // Use a FutureBuilder to display a loading spinner while waiting for the
+      // VideoPlayerController to finish initializing.
+      body: FutureBuilder(
+        future: _initializeVideoPlayerFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            // If the VideoPlayerController has finished initialization, use
+            // the data it provides to limit the aspect ratio of the video.
+            return AspectRatio(
+              aspectRatio: _controller.value.aspectRatio,
+              // Use the VideoPlayer widget to display the video.
+              child: VideoPlayer(_controller),
+            );
+          } else {
+            // If the VideoPlayerController is still initializing, show a
+            // loading spinner.
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Wrap the play or pause in a call to `setState`. This ensures the
+          // correct icon is shown.
+          setState(() {
+            // If the video is playing, pause it.
+            if (_controller.value.isPlaying) {
+              _controller.pause();
+            } else {
+              // If the video is paused, play it.
+              _controller.play();
+            }
+          });
+        },
+        // Display the correct icon depending on the state of the player.
+        child: Icon(
+          _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
         ),
       ),
     );

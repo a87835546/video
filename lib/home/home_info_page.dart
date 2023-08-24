@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:video/widgets/palyer/video_player_bottom.dart';
 import 'package:video/widgets/palyer/video_player_top.dart';
 
@@ -27,7 +30,8 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
     // TODO: implement initState
     super.initState();
     // 播放视频
-    VideoPlayerUtils.playerHandle("https://youtu.be/YxY3RzkzSLU");
+    VideoPlayerUtils.playerHandle(
+        "http://adsmind.gdtimg.com/0bc3zuaaqaaaseaaupof5rsfbtodbdgqacaa.f10002.mp4?znjson.mp4");
     // 播放新视频，初始化监听
     VideoPlayerUtils.initializedListener(
         key: this,
@@ -38,6 +42,17 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
             setState(() {});
           }
         });
+    _top = VideoPlayerTop(
+      clickBack: () {
+        VideoPlayerUtils.dispose();
+      },
+    );
+    _lockIcon = LockIcon(
+      lockCallback: (val) {
+        log("click lock icon value :$val");
+      },
+    );
+    _bottom = VideoPlayerBottom();
   }
 
   @override
@@ -49,38 +64,59 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-      top: !_isFullScreen,
-      bottom: !_isFullScreen,
-      left: !_isFullScreen,
-      right: !_isFullScreen,
-      child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.width * 9 / 16,
-          child: _playerUI != null
-              ? VideoPlayerGestures(
-                  appearCallback: (appear) {
-                    _top!.opacityCallback(appear);
-                    _lockIcon!.opacityCallback(appear);
-                    _bottom!.opacityCallback(appear);
-                  },
-                  children: [
-                    Center(
-                      child: _playerUI,
-                    ),
-                    _top!,
-                    _lockIcon!,
-                    _bottom!
-                  ],
-                )
-              : Container(
-                  alignment: Alignment.center,
-                  color: Colors.black26,
-                  child: const CircularProgressIndicator(
-                    strokeWidth: 3,
-                  ),
-                )),
+    return MaterialApp(
+        home: Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: null,
+      // PreferredSize(
+      //     child: Offstage(
+      //       offstage: true,
+      //       child: AppBar(
+      //         centerTitle: true,
+      //         title: Text("11"),
+      //         backgroundColor: Colors.transparent,
+      //       ),
+      //     ),
+      //     preferredSize:
+      //         Size.fromHeight(MediaQuery.of(context).size.height * 0.7),
+      //   ),
+      body: WillPopScope(
+          onWillPop: () async {
+            return false;
+          },
+          child: SafeArea(
+            top: !_isFullScreen,
+            bottom: !_isFullScreen,
+            left: !_isFullScreen,
+            right: !_isFullScreen,
+            child: Container(
+                color: Colors.redAccent,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.width * 9 / 16,
+                child: _playerUI != null
+                    ? VideoPlayerGestures(
+                        appearCallback: (appear) {
+                          _top?.opacityCallback(appear);
+                          _lockIcon?.opacityCallback(appear);
+                          _bottom?.opacityCallback(appear);
+                        },
+                        children: [
+                          Center(
+                            child: _playerUI,
+                          ),
+                          _top!,
+                          _lockIcon!,
+                          _bottom!,
+                        ],
+                      )
+                    : Container(
+                        alignment: Alignment.center,
+                        color: Colors.black26,
+                        child: const CircularProgressIndicator(
+                          strokeWidth: 3,
+                        ),
+                      )),
+          )),
     ));
   }
 }

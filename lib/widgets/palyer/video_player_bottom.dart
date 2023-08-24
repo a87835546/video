@@ -1,5 +1,7 @@
 /// Created by RongCheng on 2022/1/19.
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:video/widgets/palyer/video_player_slider.dart';
 
@@ -17,6 +19,9 @@ class _VideoPlayerBottomState extends State<VideoPlayerBottom> {
   double _opacity = TempValue.isLocked ? 0.0 : 1.0; // 不能固定值，横竖屏触发会重置
   bool get _isFullScreen =>
       MediaQuery.of(context).orientation == Orientation.landscape;
+  String time =
+      VideoPlayerUtils.formatDuration(VideoPlayerUtils.position.inSeconds);
+  Timer? timer;
 
   @override
   void initState() {
@@ -27,6 +32,21 @@ class _VideoPlayerBottomState extends State<VideoPlayerBottom> {
       if (!mounted) return;
       setState(() {});
     };
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        if (!mounted) return;
+        if (VideoPlayerUtils.position.inSeconds >=
+            VideoPlayerUtils.duration.inSeconds) return;
+        time = VideoPlayerUtils.formatDuration(
+            VideoPlayerUtils.position.inSeconds);
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    timer?.cancel();
   }
 
   @override
@@ -57,7 +77,7 @@ class _VideoPlayerBottomState extends State<VideoPlayerBottom> {
                 child: VideoPlayerSlider(),
               ),
               Text(
-                "/${VideoPlayerUtils.formatDuration(VideoPlayerUtils.duration.inSeconds)}",
+                "$time/${VideoPlayerUtils.formatDuration(VideoPlayerUtils.duration.inSeconds)}",
                 style: const TextStyle(color: Colors.white, fontSize: 15),
               ),
               const SizedBox(
