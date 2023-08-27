@@ -40,8 +40,6 @@ void main() async {
       child: const MyApp(),
     ),
   );
-
-  // runApp(const MyApp());
 }
 
 class ChangeLanguage with ChangeNotifier, DiagnosticableTreeMixin {

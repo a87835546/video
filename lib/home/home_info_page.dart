@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:video/widgets/palyer/video_player_bottom.dart';
 import 'package:video/widgets/palyer/video_player_top.dart';
 
@@ -45,6 +44,7 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
     _top = VideoPlayerTop(
       clickBack: () {
         VideoPlayerUtils.dispose();
+        Navigator.of(context).pop();
       },
     );
     _lockIcon = LockIcon(

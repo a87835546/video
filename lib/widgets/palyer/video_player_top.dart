@@ -1,5 +1,7 @@
 /// Created by RongCheng on 2022/1/19.
 
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -66,7 +68,7 @@ class _VideoPlayerTopState extends State<VideoPlayerTop> {
                     : IconButton(
                         padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                         onPressed: () {
-                          Navigator.of(context).pop();
+                          log("click back");
                           if (widget.clickBack != null) {
                             widget.clickBack!();
                           }
