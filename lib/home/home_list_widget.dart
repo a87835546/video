@@ -3,9 +3,6 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:video/home/home_banner_model.dart';
-import 'package:video/widgets/home_rate_widget.dart';
-
-import '../generated/l10n.dart';
 import '../utils/fonts.dart';
 import 'home_hot_banner_widget.dart';
 

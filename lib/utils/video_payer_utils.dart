@@ -16,7 +16,8 @@ class VideoPlayerUtils {
   static VideoPlayerState get state => _instance._state; // 当前播放状态
   static bool get isInitialized => _instance._isInitialized; // 视频是否已经完成初始化
   static Duration get duration => _instance._duration; // 视频总时长
-  static Duration get position => _instance._position; // 当前视频播放进度
+  static Duration get position =>
+      _instance._position ?? const Duration(seconds: 0); // 当前视频播放进度
   static double get aspectRatio => _instance._aspectRatio; // 视频播放比例
 
   // 播放、暂停、切换视频等播放操作
@@ -163,7 +164,7 @@ class VideoPlayerUtils {
     int sec = second % 60;
     String minString = min < 10 ? "0$min" : min.toString();
     String secString = sec < 10 ? "0$sec" : sec.toString();
-    return minString + ":" + secString;
+    return "$minString:$secString";
   }
 
   // 释放资源
@@ -197,7 +198,7 @@ class VideoPlayerUtils {
   bool _isInitialized = false;
   Duration _duration = const Duration(seconds: 0);
   int _secondPosition = 0;
-  Duration _position = const Duration(seconds: 0);
+  Duration? _position = const Duration(seconds: 0);
   double _aspectRatio = 1.0;
   bool _stopPosition = false; // 暂停进度监听，用于seekTo跳转播放缓冲时，Slider停止
 
@@ -234,9 +235,9 @@ class VideoPlayerUtils {
   // 因为播放进度可能在1秒内更新几次，取个巧，进度更新超过1秒再同步更新进度状态
   void _positionListener() {
     if (_stopPosition) return;
-    _position = _controller!.value.position;
-    int second = _controller!.value.position.inSeconds;
-    if (_controller!.value.position == _duration) {
+    _position = _controller?.value.position;
+    int second = _controller?.value.position.inSeconds ?? 0;
+    if (_controller?.value.position == _duration) {
       // 播放结束
       if (_state != VideoPlayerState.completed) {
         // 保证结束回调只会调用一次
