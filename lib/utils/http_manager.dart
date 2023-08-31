@@ -97,7 +97,6 @@ class HttpManager {
 
   static post(
       {required String url,
-      bool isMerchant = false,
       Map<String, dynamic>? headers,
       required Map<String, dynamic> params}) async {
     _config();
@@ -109,11 +108,8 @@ class HttpManager {
     log("post request headers $headers");
     CancelToken token = CancelToken();
     _tokens.add(token);
-    Response response = await _dio.post(
-        (isMerchant ? merchantUrl : baseUrl) + url,
-        data: params,
-        options: options,
-        cancelToken: token);
+    Response response = await _dio.post(baseUrl + url,
+        data: params, options: options, cancelToken: token);
 
     try {
       log("response data---->>>>>${response.data}");

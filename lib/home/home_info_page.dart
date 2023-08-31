@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:video/utils/navigator_util.dart';
 import 'package:video/widgets/palyer/video_player_bottom.dart';
 import 'package:video/widgets/palyer/video_player_top.dart';
 
@@ -45,6 +46,7 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
     _top = VideoPlayerTop(
       clickBack: () {
         VideoPlayerUtils.dispose();
+        NavigatorUtil.pop(context);
       },
     );
     _lockIcon = LockIcon(
@@ -69,17 +71,17 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
       resizeToAvoidBottomInset: false,
       appBar: null,
       // PreferredSize(
-      //     child: Offstage(
-      //       offstage: true,
-      //       child: AppBar(
-      //         centerTitle: true,
-      //         title: Text("11"),
-      //         backgroundColor: Colors.transparent,
-      //       ),
+      //   child: Offstage(
+      //     offstage: true,
+      //     child: AppBar(
+      //       centerTitle: true,
+      //       title: Text("11"),
+      //       backgroundColor: Colors.transparent,
       //     ),
-      //     preferredSize:
-      //         Size.fromHeight(MediaQuery.of(context).size.height * 0.7),
       //   ),
+      //   preferredSize:
+      //       Size.fromHeight(MediaQuery.of(context).size.height * 0.7),
+      // ),
       body: WillPopScope(
           onWillPop: () async {
             return false;

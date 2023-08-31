@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
+import 'mine/changge_language.dart';
+
 class InfoModel extends ChangeNotifier {
-  String language = "en";
+  String language = "";
   String username = "";
   String password = "";
   Locale? locale;
@@ -14,9 +16,11 @@ class InfoModel extends ChangeNotifier {
 
   factory InfoModel.fromJson(Map<String, dynamic> map) {
     return InfoModel(
-        language: map['language'] ?? "en",
+        language: map['language'] ?? "",
         password: map['password'] ?? "",
         locale: Locale(map['language'] ?? "en"),
         username: map['username'] ?? '');
   }
+  Map toJson() =>
+      {'language': language, 'password': password, 'username': username};
 }

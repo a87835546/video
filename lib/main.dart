@@ -7,6 +7,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:video/mine/changge_language.dart';
 import 'package:video/tabbar.dart';
 
 import 'app_singleton.dart';
@@ -24,12 +25,16 @@ void main() async {
   String info = await _prefs.then((SharedPreferences prefs) {
     return prefs.getString('info') ?? "";
   });
-  if (info.isNotEmpty) {
+  log("info--->>>>${info}");
+  if (info != "" && info != "null" && info.isNotEmpty) {
     Map<String, dynamic> mp = jsonDecode(info);
     if (mp.isNotEmpty) {
       InfoModel model = InfoModel.fromJson(mp);
       AppSingleton.getInstance().info = model;
     }
+  } else {
+    AppSingleton.getInstance().info =
+        InfoModel(language: "zh", username: "zhansan", password: "");
   }
 
   runApp(
@@ -45,33 +50,30 @@ void main() async {
 }
 
 class ChangeLanguage with ChangeNotifier, DiagnosticableTreeMixin {
-  Locale _count = const Locale("en", "US");
+  Locale _locale = const Locale("en", "US");
 
-  Locale get count => _count;
+  Locale get locale => _locale;
 
   void update(String l, String country) {
-    _count = Locale(l, country);
+    _locale = Locale(l, country);
     notifyListeners();
-    log("count --->>>> $_count");
+    log("count --->>>> $_locale");
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(ObjectFlagProperty('count', count));
+    properties.add(ObjectFlagProperty('count', locale));
   }
 }
 
 class StringModel {}
 
-var _locale = const Locale("en", "US");
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    final value = context.watch<String?>();
-    log("message ${context.watch<ChangeLanguage>().count}");
+    log("message ${context.watch<ChangeLanguage>().locale}");
     return MaterialApp(
       title: 'PetsCare',
       localizationsDelegates: const [
@@ -81,18 +83,22 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate
       ],
       supportedLocales: S.delegate.supportedLocales,
-      locale: context.watch<ChangeLanguage>().count,
+      locale: context.watch<ChangeLanguage>().locale,
       localeResolutionCallback: (locale, supportedLocales) {
         var result = supportedLocales
             .where((element) => element.languageCode == locale?.languageCode);
         if (result.isNotEmpty) {
+          AppSingleton.singleton?.info?.locale = locale;
           return locale;
         }
-        return context.watch<ChangeLanguage>().count;
+        AppSingleton.singleton?.info?.locale =
+            context.watch<ChangeLanguage>().locale;
+        return context.watch<ChangeLanguage>().locale;
       },
       localeListResolutionCallback: (locale, sup) {
-        log("localeListResolutionCallback ${context.watch<ChangeLanguage>().count}");
+        log("localeListResolutionCallback ${context.watch<ChangeLanguage>().locale}");
       },
+
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const CustomBottomNavigationBar(), // SignInPage(),
@@ -119,7 +125,6 @@ class ChangeLocalizationsState extends State<ChangeLocalizations> {
   changeLocale(Locale locale) {
     log("changed");
     setState(() {
-      _locale = locale;
       _locale = locale;
       AppSingleton.getInstance().info?.locale = locale;
     });
