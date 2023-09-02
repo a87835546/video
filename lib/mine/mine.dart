@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:video/mine/logout_page.dart';
 import 'package:video/mine/register_page.dart';
 
 import '../generated/l10n.dart';
@@ -10,6 +11,7 @@ import '../setting/gallery/ios_developer_screen.dart';
 import '../setting/gallery/web_chrome_settings.dart';
 import '../utils/navigation.dart';
 import 'changge_language.dart';
+import 'login_page.dart';
 
 class MinePage extends StatefulWidget {
   const MinePage({super.key});
@@ -77,6 +79,28 @@ class _MinePageState extends State<MinePage> {
                     Navigation.navigateTo(
                       context: context,
                       screen: RegisterPage(),
+                      style: NavigationRouteStyle.material,
+                    );
+                  },
+                ),
+                SettingsTile.navigation(
+                  title: Text('logout page'),
+                  leading: Icon(CupertinoIcons.wrench),
+                  onPressed: (context) {
+                    Navigation.navigateTo(
+                      context: context,
+                      screen: LogoutPage(),
+                      style: NavigationRouteStyle.material,
+                    );
+                  },
+                ),
+                SettingsTile.navigation(
+                  title: Text('Login page'),
+                  leading: Icon(CupertinoIcons.wrench),
+                  onPressed: (context) {
+                    Navigation.navigateTo(
+                      context: context,
+                      screen: LoginPage(),
                       style: NavigationRouteStyle.material,
                     );
                   },
