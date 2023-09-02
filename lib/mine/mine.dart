@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:video/mine/register_page.dart';
 
 import '../generated/l10n.dart';
 import '../setting/gallery/android_settings_screen.dart';
@@ -65,6 +66,17 @@ class _MinePageState extends State<MinePage> {
                     Navigation.navigateTo(
                       context: context,
                       screen: CrossPlatformSettingsScreen(),
+                      style: NavigationRouteStyle.material,
+                    );
+                  },
+                ),
+                SettingsTile.navigation(
+                  title: Text('register page'),
+                  leading: Icon(CupertinoIcons.wrench),
+                  onPressed: (context) {
+                    Navigation.navigateTo(
+                      context: context,
+                      screen: RegisterPage(),
                       style: NavigationRouteStyle.material,
                     );
                   },

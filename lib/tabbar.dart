@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:video/menu/menu_page.dart';
+import 'package:video/search/light_search_default_page/light_search_default_page.dart';
 import 'package:video/search/search_page.dart';
 
 import 'appbar.dart';
@@ -39,7 +40,12 @@ class _NavbarPageState extends State<CustomBottomNavigationBar> {
           physics: const NeverScrollableScrollPhysics(),
           controller: pageController,
           onPageChanged: onPageChanged,
-          children: [HomePage(), MenuPage(), SearchPage(), MinePage()],
+          children: [
+            HomePage(),
+            MenuPage(),
+            LightSearchDefaultPage(),
+            MinePage()
+          ],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

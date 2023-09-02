@@ -235,9 +235,7 @@ class _MenuPageState extends State<MenuPage> {
               ),
             ),
             Container(
-              // ctamY5 (17:20419)
               margin: EdgeInsets.fromLTRB(24 * fem, 0 * fem, 24 * fem, 0 * fem),
-              width: double.infinity,
               height: 48 * fem,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4 * fem),
@@ -293,43 +291,14 @@ class _MenuPageState extends State<MenuPage> {
                     ),
                   ),
                   GestureDetector(
-                    child: ClipRect(
-                      // navigationiosbuttonsecondaryla (17:20420)
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(
-                          sigmaX: 8 * fem,
-                          sigmaY: 8 * fem,
-                        ),
-                        child: Container(
-                          padding: EdgeInsets.fromLTRB(
-                              12 * fem, 12 * fem, 12 * fem, 12 * fem),
-                          width: 48 * fem,
-                          height: double.infinity,
-                          decoration: BoxDecoration(
-                            color: Color(0x1effffff),
-                            borderRadius: BorderRadius.circular(4 * fem),
-                          ),
-                          child: Container(
-                            // text5j7 (I17:20420;15:1186)
-                            padding: EdgeInsets.fromLTRB(
-                                4.3 * fem, 2.78 * fem, 4.21 * fem, 2 * fem),
-                            width: double.infinity,
-                            height: double.infinity,
-                            child: Center(
-                              // iconlylightbookmarkcyw (I17:20420;15:1187)
-                              child: SizedBox(
-                                  width: 15.5 * fem,
-                                  height: 19.22 * fem,
-                                  child: Icon(
-                                    Icons.favorite,
-                                    size: 20,
-                                    color: Color(0xffC2C2C2),
-                                  )),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: SizedBox(
+                        width: 15.5 * fem,
+                        height: 19.22 * fem,
+                        child: const Icon(
+                          Icons.favorite,
+                          size: 22,
+                          color: Color(0xffC2C2C2),
+                        )),
                     onTap: () {
                       if (widget.favor != null) {
                         widget.favor!();

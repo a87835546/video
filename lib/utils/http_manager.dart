@@ -30,7 +30,7 @@ class HttpManager {
 
   static String baseUrl = _debug
       ? (AppSingleton.devMode == DevMode.local
-          ? "http://127.0.0.1:8080/api/v1/"
+          ? "http://172.21.165.64:8080/api/v1/"
           : (AppSingleton.devMode == DevMode.staging
               ? "https://staging.resiklos.app/api/v1/"
               : "https://api.resiklos.app/api/v1/"))
