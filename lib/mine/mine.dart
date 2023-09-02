@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:video/home/play_info_page.dart';
 import 'package:video/mine/logout_page.dart';
 import 'package:video/mine/register_page.dart';
 
 import '../generated/l10n.dart';
+import '../home/video_info_page.dart';
 import '../setting/gallery/android_settings_screen.dart';
 import '../setting/gallery/cross_platform_settings_screen.dart';
 import '../setting/gallery/ios_developer_screen.dart';
@@ -101,6 +103,28 @@ class _MinePageState extends State<MinePage> {
                     Navigation.navigateTo(
                       context: context,
                       screen: LoginPage(),
+                      style: NavigationRouteStyle.material,
+                    );
+                  },
+                ),
+                SettingsTile.navigation(
+                  title: Text('Player info page'),
+                  leading: Icon(CupertinoIcons.wrench),
+                  onPressed: (context) {
+                    Navigation.navigateTo(
+                      context: context,
+                      screen: PlayerInfoPage(),
+                      style: NavigationRouteStyle.material,
+                    );
+                  },
+                ),
+                SettingsTile.navigation(
+                  title: Text('Video info page'),
+                  leading: Icon(CupertinoIcons.wrench),
+                  onPressed: (context) {
+                    Navigation.navigateTo(
+                      context: context,
+                      screen: VideoInfoPage(),
                       style: NavigationRouteStyle.material,
                     );
                   },

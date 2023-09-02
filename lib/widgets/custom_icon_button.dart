@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:video/core/app_export.dart';
 
 class CustomIconButton extends StatelessWidget {
-  CustomIconButton({
+  const CustomIconButton({
     Key? key,
     this.alignment,
     this.margin,
@@ -12,9 +12,7 @@ class CustomIconButton extends StatelessWidget {
     this.decoration,
     this.child,
     this.onTap,
-  }) : super(
-          key: key,
-        );
+  }) : super(key: key);
 
   final Alignment? alignment;
 
@@ -36,9 +34,7 @@ class CustomIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return alignment != null
         ? Align(
-            alignment: alignment ?? Alignment.center,
-            child: iconButtonWidget,
-          )
+            alignment: alignment ?? Alignment.center, child: iconButtonWidget)
         : iconButtonWidget;
   }
 
@@ -90,8 +86,8 @@ extension IconButtonStyleHelper on CustomIconButton {
       BoxDecoration(
         borderRadius: BorderRadius.circular(getHorizontalSize(12.00)),
         gradient: LinearGradient(
-          begin: Alignment(0.5, 0),
-          end: Alignment(0.5, 1),
+          begin: const Alignment(0.5, 0),
+          end: const Alignment(0.5, 1),
           colors: [
             appTheme.greenA200,
             theme.colorScheme.onSecondaryContainer,

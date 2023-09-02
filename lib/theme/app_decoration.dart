@@ -45,8 +45,8 @@ class AppDecoration {
           width: getHorizontalSize(1),
         ),
         gradient: LinearGradient(
-          begin: Alignment(0.5, 0),
-          end: Alignment(0.5, 1),
+          begin: const Alignment(0.5, 0),
+          end: const Alignment(0.5, 1),
           colors: [
             theme.colorScheme.onPrimaryContainer,
             theme.colorScheme.secondaryContainer,
