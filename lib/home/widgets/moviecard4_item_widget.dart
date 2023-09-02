@@ -4,10 +4,7 @@ import 'package:video/widgets/custom_icon_button.dart';
 
 // ignore: must_be_immutable
 class Moviecard4ItemWidget extends StatelessWidget {
-  const Moviecard4ItemWidget({Key? key})
-      : super(
-          key: key,
-        );
+  const Moviecard4ItemWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

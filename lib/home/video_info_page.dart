@@ -198,14 +198,16 @@ class VideoInfoPageState extends State<VideoInfoPage> {
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Expanded(
-                                        child: CustomElevatedButton(
-                                            text: "立即观看 第1集",
-                                            margin: getMargin(top: 44),
-                                            leftIcon: Container(
-                                                margin: getMargin(right: 8),
-                                                child: CustomImageView(
-                                                    svgPath: ImageConstant
-                                                        .imgPlay)))),
+                                      child: CustomElevatedButton(
+                                        text: "立即观看 第1集",
+                                        margin: getMargin(top: 44),
+                                        leftIcon: Container(
+                                          margin: getMargin(right: 8),
+                                          child: CustomImageView(
+                                              svgPath: ImageConstant.imgPlay),
+                                        ),
+                                      ),
+                                    ),
                                     CustomIconButton(
                                         height: getSize(48),
                                         width: getSize(48),
