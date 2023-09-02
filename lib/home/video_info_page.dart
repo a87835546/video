@@ -142,7 +142,7 @@ class VideoInfoPageState extends State<VideoInfoPage> {
                             crossAxisCount: 3,
                             mainAxisSpacing: getHorizontalSize(13),
                             crossAxisSpacing: getHorizontalSize(13)),
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: 6,
                         itemBuilder: (context, index) {
                           return Userprofile8ItemWidget();
@@ -173,7 +173,8 @@ class VideoInfoPageState extends State<VideoInfoPage> {
                               child: Padding(
                                 padding: getPadding(left: 23, right: 23),
                                 child: ListView.separated(
-                                    physics: NeverScrollableScrollPhysics(),
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
                                     separatorBuilder: (context, index) {
                                       return SizedBox(
@@ -181,7 +182,9 @@ class VideoInfoPageState extends State<VideoInfoPage> {
                                     },
                                     itemCount: 6,
                                     itemBuilder: (context, index) {
-                                      return Moviecard4ItemWidget();
+                                      return MovieCard4ItemWidget(
+                                        click: () {},
+                                      );
                                     }),
                               ),
                             ),

@@ -21,11 +21,10 @@ class PlayerInfoPageState extends State<PlayerInfoPage> {
     mediaQueryData = MediaQuery.of(context);
     return SafeArea(
       child: Scaffold(
-        backgroundColor: theme.colorScheme.onPrimaryContainer,
+        backgroundColor: theme.colorScheme.primary,
         body: SizedBox(
           width: double.maxFinite,
           child: SizedBox(
-            height: getVerticalSize(768),
             width: double.maxFinite,
             child: Stack(
               alignment: Alignment.center,
@@ -153,8 +152,7 @@ class PlayerInfoPageState extends State<PlayerInfoPage> {
                             margin: getMargin(top: 12),
                             padding: getPadding(
                                 left: 24, top: 16, right: 24, bottom: 16),
-                            decoration: AppDecoration
-                                .gradientOnPrimaryContainerToSecondaryContainer,
+                            decoration: AppDecoration.gradientPrimaryToGray,
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -195,7 +193,8 @@ class PlayerInfoPageState extends State<PlayerInfoPage> {
                                     padding:
                                         getPadding(left: 2, right: 2, top: 10),
                                     child: ListView.separated(
-                                        physics: NeverScrollableScrollPhysics(),
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
                                         shrinkWrap: true,
                                         separatorBuilder: (context, index) {
                                           return SizedBox(
@@ -203,7 +202,11 @@ class PlayerInfoPageState extends State<PlayerInfoPage> {
                                         },
                                         itemCount: 6,
                                         itemBuilder: (context, index) {
-                                          return Moviecard4ItemWidget();
+                                          return MovieCard4ItemWidget(
+                                            click: () {
+                                              log("click item");
+                                            },
+                                          );
                                         }),
                                   ),
                                 ),
@@ -231,7 +234,7 @@ class PlayerInfoPageState extends State<PlayerInfoPage> {
     return Align(
       alignment: Alignment.center,
       child: Container(
-        padding: getPadding(top: 34, bottom: 34),
+        padding: getPadding(top: 34, bottom: 0),
         decoration: AppDecoration.fillBlack,
         child: Column(
           mainAxisSize: MainAxisSize.min,
