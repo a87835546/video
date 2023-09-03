@@ -7,6 +7,7 @@ import 'package:video/mine/register_page.dart';
 
 import '../generated/l10n.dart';
 import '../home/video_info_page.dart';
+import '../menu/light_watchlist_one_page.dart';
 import '../setting/gallery/android_settings_screen.dart';
 import '../setting/gallery/cross_platform_settings_screen.dart';
 import '../setting/gallery/ios_developer_screen.dart';
@@ -70,7 +71,7 @@ class _MinePageState extends State<MinePage> {
                     Navigation.navigateTo(
                       context: context,
                       screen: CrossPlatformSettingsScreen(),
-                      style: NavigationRouteStyle.material,
+                      style: NavigationRouteStyle.cupertino,
                     );
                   },
                 ),
@@ -81,7 +82,7 @@ class _MinePageState extends State<MinePage> {
                     Navigation.navigateTo(
                       context: context,
                       screen: RegisterPage(),
-                      style: NavigationRouteStyle.material,
+                      style: NavigationRouteStyle.cupertino,
                     );
                   },
                 ),
@@ -92,7 +93,7 @@ class _MinePageState extends State<MinePage> {
                     Navigation.navigateTo(
                       context: context,
                       screen: LogoutPage(),
-                      style: NavigationRouteStyle.material,
+                      style: NavigationRouteStyle.cupertino,
                     );
                   },
                 ),
@@ -103,7 +104,7 @@ class _MinePageState extends State<MinePage> {
                     Navigation.navigateTo(
                       context: context,
                       screen: LoginPage(),
-                      style: NavigationRouteStyle.material,
+                      style: NavigationRouteStyle.cupertino,
                     );
                   },
                 ),
@@ -114,7 +115,7 @@ class _MinePageState extends State<MinePage> {
                     Navigation.navigateTo(
                       context: context,
                       screen: PlayerInfoPage(),
-                      style: NavigationRouteStyle.material,
+                      style: NavigationRouteStyle.cupertino,
                     );
                   },
                 ),
@@ -125,7 +126,18 @@ class _MinePageState extends State<MinePage> {
                     Navigation.navigateTo(
                       context: context,
                       screen: VideoInfoPage(),
-                      style: NavigationRouteStyle.material,
+                      style: NavigationRouteStyle.cupertino,
+                    );
+                  },
+                ),
+                SettingsTile.navigation(
+                  title: Text('Watch List page'),
+                  leading: Icon(CupertinoIcons.wrench),
+                  onPressed: (context) {
+                    Navigation.navigateTo(
+                      context: context,
+                      screen: LightWatchlistOnePage(),
+                      style: NavigationRouteStyle.cupertino,
                     );
                   },
                 ),

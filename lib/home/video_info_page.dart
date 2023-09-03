@@ -30,46 +30,50 @@ class VideoInfoPageState extends State<VideoInfoPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
-                    height: getVerticalSize(290),
-                    width: double.maxFinite,
-                    child: Stack(alignment: Alignment.center, children: [
+                  height: getVerticalSize(290),
+                  width: double.maxFinite,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
                       CustomImageView(
                           imagePath: ImageConstant.imgRectangle5407,
                           height: getVerticalSize(290),
                           width: getHorizontalSize(375),
                           alignment: Alignment.center),
                       Align(
-                          alignment: Alignment.center,
-                          child: Container(
-                              padding: getPadding(
-                                  left: 16, top: 4, right: 16, bottom: 4),
-                              decoration:
-                                  AppDecoration.gradientPrimaryToPrimary,
-                              child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    CustomIconButton(
-                                        height: getSize(40),
-                                        width: getSize(40),
-                                        margin: getMargin(top: 3),
-                                        padding: getPadding(all: 8),
-                                        decoration:
-                                            IconButtonStyleHelper.fillBlack,
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: CustomImageView(
-                                            svgPath: ImageConstant
-                                                .imgArrowleftGray800)),
-                                    Padding(
-                                        padding: getPadding(left: 8, top: 202),
-                                        child: Text("曼达洛人 第2季",
-                                            style:
-                                                theme.textTheme.headlineSmall))
-                                  ])))
-                    ])),
+                        alignment: Alignment.center,
+                        child: Container(
+                          padding: getPadding(
+                              left: 16, top: 4, right: 16, bottom: 4),
+                          decoration: AppDecoration.gradientPrimaryToPrimary,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CustomIconButton(
+                                  height: getSize(40),
+                                  width: getSize(40),
+                                  margin: getMargin(top: 3),
+                                  padding: getPadding(all: 8),
+                                  decoration: IconButtonStyleHelper.fillBlack,
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: CustomImageView(
+                                      svgPath:
+                                          ImageConstant.imgArrowleftGray800)),
+                              Padding(
+                                  padding: getPadding(left: 8, top: 202),
+                                  child: Text("曼达洛人 第2季",
+                                      style: theme.textTheme.headlineSmall))
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
                 Padding(
                     padding: getPadding(left: 24, top: 10),
                     child: Row(children: [

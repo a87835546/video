@@ -5,7 +5,11 @@ import 'package:video/widgets/app_bar/custom_app_bar.dart';
 import 'package:video/widgets/custom_icon_button.dart';
 import 'package:video/widgets/custom_text_form_field.dart';
 
+import '../utils/navigation.dart';
 import '../widgets/app_bar/appbar_image_1.dart';
+import '../widgets/custom_elevated_button.dart';
+import '../widgets/custom_outlined_button.dart';
+import 'mine_info_page.dart';
 
 // ignore_for_file: must_be_immutable
 class LogoutPage extends StatelessWidget {
@@ -124,25 +128,34 @@ class LogoutPage extends StatelessWidget {
                     padding: getPadding(
                       top: 12,
                     ),
-                    child: Row(
-                      children: [
-                        CustomImageView(
-                          svgPath: ImageConstant.imgUserLightBlueA70001,
-                          height: getSize(24),
-                          width: getSize(24),
-                        ),
-                        Padding(
-                          padding: getPadding(
-                            left: 12,
-                            top: 2,
+                    child: GestureDetector(
+                      child: Row(
+                        children: [
+                          CustomImageView(
+                            svgPath: ImageConstant.imgUserLightBlueA70001,
+                            height: getSize(24),
+                            width: getSize(24),
                           ),
-                          child: Text(
-                            "我的信息",
-                            style:
-                                CustomTextStyles.bodyMediumOnPrimaryContainer_1,
+                          Padding(
+                            padding: getPadding(
+                              left: 12,
+                              top: 2,
+                            ),
+                            child: Text(
+                              "我的信息",
+                              style: CustomTextStyles
+                                  .bodyMediumOnPrimaryContainer_1,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
+                      onTap: () {
+                        Navigation.navigateTo(
+                          context: context,
+                          screen: MineInfoPage(),
+                          style: NavigationRouteStyle.cupertino,
+                        );
+                      },
                     ),
                   ),
                   Padding(
@@ -374,15 +387,108 @@ class LogoutPage extends StatelessWidget {
                           height: getSize(24),
                           width: getSize(24),
                         ),
-                        Padding(
-                          padding: getPadding(
-                            left: 12,
+                        GestureDetector(
+                          behavior: HitTestBehavior.translucent,
+                          child: Padding(
+                            padding: getPadding(
+                              left: 12,
+                            ),
+                            child: Text(
+                              "登出",
+                              style: CustomTextStyles
+                                  .bodyMediumOnPrimaryContainer_1,
+                            ),
                           ),
-                          child: Text(
-                            "登出",
-                            style:
-                                CustomTextStyles.bodyMediumOnPrimaryContainer_1,
-                          ),
+                          onTap: () {
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Container(
+                                    decoration:
+                                        AppDecoration.fillPrimary.copyWith(
+                                      borderRadius:
+                                          BorderRadiusStyle.customBorderTL24,
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Padding(
+                                          padding: getPadding(
+                                            left: 24,
+                                            top: 38,
+                                          ),
+                                          child: Text(
+                                            "退出登录？",
+                                            style: CustomTextStyles
+                                                .headlineSmallOnPrimaryContainer,
+                                          ),
+                                        ),
+                                        Container(
+                                          width: getHorizontalSize(308),
+                                          margin: getMargin(
+                                            left: 24,
+                                            top: 11,
+                                            right: 42,
+                                          ),
+                                          child: Text(
+                                            "如果您确定退出，则必须重新登录才能继续观看电影。 请知悉！",
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: theme.textTheme.bodyMedium!
+                                                .copyWith(
+                                              height: 1.40,
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.center,
+                                          child: Padding(
+                                            padding: getPadding(
+                                              left: 24,
+                                              top: 38,
+                                              right: 24,
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                CustomOutlinedButton(
+                                                  width: getHorizontalSize(155),
+                                                  text: "登出",
+                                                  buttonTextStyle:
+                                                      CustomTextStyles
+                                                          .bodyLargeInter,
+                                                  onTap: () {},
+                                                ),
+                                                CustomElevatedButton(
+                                                  width: getHorizontalSize(155),
+                                                  text: "取消",
+                                                  margin: getMargin(
+                                                    left: 17,
+                                                  ),
+                                                  onTap: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          height: getVerticalSize(34),
+                                          width: double.maxFinite,
+                                          margin: getMargin(
+                                            top: 10,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                });
+                          },
                         ),
                       ],
                     ),
