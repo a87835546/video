@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:video/app_singleton.dart';
 
 import 'generated/l10n.dart';
 
@@ -17,12 +18,11 @@ class AppTabBar extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _AppTabBar();
+  State<StatefulWidget> createState() => AppTabBarState();
 }
 
-class _AppTabBar extends State<AppTabBar> {
+class AppTabBarState extends State<AppTabBar> {
   int page = 0;
-
   final List<Icon> normalImages = const [
     Icon(
       Icons.home,
@@ -67,27 +67,29 @@ class _AppTabBar extends State<AppTabBar> {
       size: 22,
     ),
   ];
-  // final List<String> _list = ["HEALTHY", S.of(widget.context).home,"CARE", "COMMUNITY","MINE"];
+
+  static GlobalKey appbar = GlobalKey();
+  static currentInstance() {
+    return AppTabBarState.appbar.currentContext?.findAncestorStateOfType();
+  }
+
   @override
   void initState() {
     super.initState();
     log("initState");
+    AppSingleton.index = page;
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     log("didChangeDependencies");
-    final List<String> _list = [
-      S.of(context).home,
-      S.of(context).menuPage,
-      S.of(context).searchPage,
-      S.of(context).mine
-    ];
+    AppSingleton.index = page;
   }
 
   @override
   Widget build(BuildContext context) {
+    AppSingleton.index = page;
     final List<String> _list = [
       S.of(context).home,
       S.of(context).menuPage,
@@ -95,6 +97,7 @@ class _AppTabBar extends State<AppTabBar> {
       S.of(context).mine
     ];
     return SizedBox(
+      key: appbar,
       height: kBottomNavigationBarHeight + widget.bottom,
       child: Container(
         padding: EdgeInsets.only(bottom: widget.bottom),

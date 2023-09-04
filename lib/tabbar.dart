@@ -1,12 +1,14 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:video/app_singleton.dart';
 import 'package:video/menu/menu_page.dart';
 import 'package:video/search/light_search_default_page/light_search_default_page.dart';
 import 'package:video/search/search_page.dart';
 
 import 'appbar.dart';
 import 'home/home.dart';
+import 'menu/no_watchlist_page.dart';
 import 'mine/mine.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
@@ -23,6 +25,7 @@ class _NavbarPageState extends State<CustomBottomNavigationBar> {
   @override
   void initState() {
     super.initState();
+    AppSingleton.pageController = pageController;
   }
 
   @override
@@ -33,6 +36,7 @@ class _NavbarPageState extends State<CustomBottomNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
+    AppSingleton.pageController = pageController;
     return Scaffold(
       body: Container(
         color: Colors.redAccent,
@@ -42,7 +46,7 @@ class _NavbarPageState extends State<CustomBottomNavigationBar> {
           onPageChanged: onPageChanged,
           children: [
             HomePage(),
-            MenuPage(),
+            NoWatchlistPage(),
             LightSearchDefaultPage(),
             MinePage()
           ],

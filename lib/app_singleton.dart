@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 import 'info_model.dart';
 
 enum DevMode { local, staging, product }
@@ -13,4 +15,6 @@ class AppSingleton {
 
   InfoModel? info;
   static DevMode? devMode;
+  static PageController? pageController;
+  static int index = 0;
 }
