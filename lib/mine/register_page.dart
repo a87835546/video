@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:video/core/app_export.dart';
+import 'package:video/mine/mine_request.dart';
+import 'package:video/mine/user_model.dart';
 import 'package:video/widgets/app_bar/appbar_image_1.dart';
 import 'package:video/widgets/app_bar/appbar_subtitle_1.dart';
 import 'package:video/widgets/app_bar/custom_app_bar.dart';
@@ -11,6 +13,8 @@ import 'package:video/widgets/custom_outlined_button.dart';
 import '../../widgets/custom_text_form_field.dart';
 
 class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return RegisterPageState();
@@ -18,11 +22,11 @@ class RegisterPage extends StatefulWidget {
 }
 
 class RegisterPageState extends State<RegisterPage> {
-  TextEditingController usernameoneController = TextEditingController();
+  TextEditingController usernameOneController = TextEditingController();
 
-  TextEditingController enterpasswordController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
-  TextEditingController confirmpasswordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
   String _selectedDate = '';
 
@@ -39,7 +43,7 @@ class RegisterPageState extends State<RegisterPage> {
                 svgPath: ImageConstant.imgArrowleftOnprimarycontainer,
                 margin: getMargin(left: 24, top: 14, bottom: 17),
                 onTap: () {
-                  onTapArrowleftone(context);
+                  Navigator.pop(context);
                 }),
             centerTitle: true,
             title: AppbarSubtitle1(text: "注册")),
@@ -56,7 +60,7 @@ class RegisterPageState extends State<RegisterPage> {
                       child:
                           Text("创建一个新帐号", style: theme.textTheme.titleLarge)),
                   CustomTextFormField(
-                      controller: usernameoneController,
+                      controller: usernameOneController,
                       margin: getMargin(top: 22),
                       hintText: "jane.anastas|",
                       hintStyle:
@@ -69,7 +73,7 @@ class RegisterPageState extends State<RegisterPage> {
                       prefixConstraints:
                           BoxConstraints(maxHeight: getVerticalSize(48))),
                   CustomTextFormField(
-                      controller: enterpasswordController,
+                      controller: passwordController,
                       margin: getMargin(top: 16),
                       hintText: "请输入密码",
                       hintStyle:
@@ -82,7 +86,7 @@ class RegisterPageState extends State<RegisterPage> {
                       prefixConstraints:
                           BoxConstraints(maxHeight: getVerticalSize(48))),
                   CustomTextFormField(
-                      controller: confirmpasswordController,
+                      controller: confirmPasswordController,
                       margin: getMargin(top: 16),
                       hintText: "请再次输入密码",
                       hintStyle:
@@ -141,8 +145,12 @@ class RegisterPageState extends State<RegisterPage> {
                   CustomElevatedButton(
                     text: "注册",
                     margin: getMargin(top: 16),
-                    onTap: () {
+                    onTap: () async {
                       log("register user");
+                      UserModel model = await register(
+                          usernameOneController.value.text,
+                          passwordController.value.text,
+                          _selectedDate);
                     },
                   ),
                   Padding(
@@ -204,9 +212,5 @@ class RegisterPageState extends State<RegisterPage> {
         ),
       ),
     );
-  }
-
-  onTapArrowleftone(BuildContext context) {
-    Navigator.pop(context);
   }
 }

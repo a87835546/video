@@ -1,17 +1,39 @@
 import 'dart:developer';
 
 import 'package:flutter/services.dart';
+import 'package:video/home/video_model.dart';
 
 import '../light_search_default_page/widgets/usercard_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:video/core/app_export.dart';
 import 'package:video/widgets/custom_search_view.dart';
 
-// ignore_for_file: must_be_immutable
-class LightSearchDefaultPage extends StatelessWidget {
-  LightSearchDefaultPage({Key? key}) : super(key: key);
+import '../search_request.dart';
 
+// ignore_for_file: must_be_immutable
+class LightSearchDefaultPage extends StatefulWidget {
+  const LightSearchDefaultPage({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return LightSearchDefaultState();
+  }
+}
+
+class LightSearchDefaultState extends State<LightSearchDefaultPage> {
   TextEditingController searchController = TextEditingController();
+  List<VideoModel> list = [];
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void search() async {
+    List<VideoModel> _list = await searchVideos(searchController.value.text);
+    setState(() {
+      list = _list;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +50,7 @@ class LightSearchDefaultPage extends StatelessWidget {
             if (event is RawKeyDownEvent) {
               // handle key down
               log("input value --->>> ${searchController.value.text}");
+              search();
             } else if (event is RawKeyUpEvent) {
               // handle key up
             }
@@ -66,6 +89,7 @@ class LightSearchDefaultPage extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () {
                           log("click search--->> ${searchController.value.text}");
+                          search();
                         },
                         behavior: HitTestBehavior.translucent,
                         child: CustomImageView(

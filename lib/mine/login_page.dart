@@ -2,12 +2,18 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:video/core/app_export.dart';
+import 'package:video/home/home.dart';
+import 'package:video/mine/mine_request.dart';
+import 'package:video/mine/user_model.dart';
+import 'package:video/utils/navigator_util.dart';
 import 'package:video/widgets/app_bar/appbar_image_1.dart';
 import 'package:video/widgets/app_bar/appbar_subtitle_1.dart';
 import 'package:video/widgets/app_bar/custom_app_bar.dart';
 import 'package:video/widgets/custom_elevated_button.dart';
 import 'package:video/widgets/custom_outlined_button.dart';
 import 'package:video/widgets/custom_text_form_field.dart';
+
+import '../utils/navigation.dart';
 
 // ignore_for_file: must_be_immutable
 class LoginPage extends StatelessWidget {
@@ -77,8 +83,17 @@ class LoginPage extends StatelessWidget {
               CustomElevatedButton(
                 text: "登录",
                 margin: getMargin(top: 14),
-                onTap: () {
+                onTap: () async {
                   log("login page click login");
+                  UserModel model = await login(
+                      mailController.value.text, lockController.value.text);
+                  if (model != null && context.mounted) {
+                    Navigation.navigateTo(
+                      context: context,
+                      screen: const HomePage(),
+                      style: NavigationRouteStyle.cupertino,
+                    );
+                  }
                 },
               ),
               Padding(
