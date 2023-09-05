@@ -339,6 +339,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Search`
+  String get search {
+    return Intl.message(
+      'Search',
+      name: 'search',
+      desc: '立即查找',
+      args: [],
+    );
+  }
+
+  /// `No Data`
+  String get noData {
+    return Intl.message(
+      'No Data',
+      name: 'noData',
+      desc: '没有数据',
+      args: [],
+    );
+  }
+
+  /// `Video Menu`
+  String get videoMenu {
+    return Intl.message(
+      'Video Menu',
+      name: 'videoMenu',
+      desc: '影单',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

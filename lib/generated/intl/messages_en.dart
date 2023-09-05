@@ -44,14 +44,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "movie": MessageLookupByLibrary.simpleMessage("Movie"),
         "movieBillboard":
             MessageLookupByLibrary.simpleMessage("Movies Billboard"),
+        "noData": MessageLookupByLibrary.simpleMessage("No Data"),
         "otherFilms": MessageLookupByLibrary.simpleMessage(" Other Films"),
         "play": MessageLookupByLibrary.simpleMessage("Play"),
         "popularStarBillboard":
             MessageLookupByLibrary.simpleMessage("Popular Star Billboard"),
         "pron": MessageLookupByLibrary.simpleMessage("Pron"),
+        "search": MessageLookupByLibrary.simpleMessage("Search"),
         "searchPage": MessageLookupByLibrary.simpleMessage("search Page"),
         "series": MessageLookupByLibrary.simpleMessage("Series"),
         "title": MessageLookupByLibrary.simpleMessage("国际化示例App"),
-        "variety": MessageLookupByLibrary.simpleMessage("Variety")
+        "variety": MessageLookupByLibrary.simpleMessage("Variety"),
+        "videoMenu": MessageLookupByLibrary.simpleMessage("Video Menu")
       };
 }

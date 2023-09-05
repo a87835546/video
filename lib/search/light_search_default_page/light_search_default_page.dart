@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/services.dart';
 import 'package:video/home/video_model.dart';
 
+import '../../generated/l10n.dart';
 import '../light_search_default_page/widgets/usercard_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:video/core/app_export.dart';
@@ -67,7 +68,7 @@ class LightSearchDefaultState extends State<LightSearchDefaultPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "搜索",
+                    S.of(context).search,
                     style: theme.textTheme.titleLarge,
                   ),
                   CustomSearchView(
@@ -124,7 +125,7 @@ class LightSearchDefaultState extends State<LightSearchDefaultPage> {
                                 ),
                                 decoration: AppDecoration.gradientPrimaryToGray,
                                 child: Text(
-                                  "热门搜索",
+                                  S.of(context).billboard,
                                   style: CustomTextStyles
                                       .titleMediumOnPrimaryContainer,
                                 ),
@@ -328,7 +329,7 @@ class LightSearchDefaultState extends State<LightSearchDefaultPage> {
                         top: 15,
                       ),
                       child: Text(
-                        "明星榜",
+                        S.of(context).popularStarBillboard,
                         style: CustomTextStyles.titleMediumOnPrimaryContainer,
                       ),
                     ),

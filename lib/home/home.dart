@@ -25,10 +25,46 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    Future.delayed(Duration.zero, () {
+      getData();
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     getData();
   }
 
   void getData() async {
+    if (mounted) {
+      setState(() {
+        tabs = [
+          Tab(text: S.of(context).movie),
+          Tab(text: S.of(context).series),
+          Tab(text: S.of(context).animation),
+          Tab(text: S.of(context).variety),
+          Tab(text: S.of(context).pron),
+        ];
+        views = const [
+          HomeBanner(
+            type: 0,
+          ),
+          HomeBanner(
+            type: 1,
+          ),
+          HomeBanner(
+            type: 2,
+          ),
+          HomeBanner(
+            type: 3,
+          ),
+          HomeBanner(
+            type: 4,
+          ),
+        ];
+      });
+    }
     var list = await getMenu();
     if (list.isEmpty && mounted) {
       setState(() {

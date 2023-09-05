@@ -173,5 +173,23 @@
     "description": "明星排行榜",
     "type": "text",
     "placeholders": {}
+  },
+  "search": "Search",
+  "@search": {
+    "description": "立即查找",
+    "type": "text",
+    "placeholders": {}
+  },
+  "noData": "No Data",
+  "@noData": {
+    "description": "没有数据",
+    "type": "text",
+    "placeholders": {}
+  },
+  "videoMenu": "Video Menu",
+  "@videoMenu": {
+    "description": "影单",
+    "type": "text",
+    "placeholders": {}
   }
 }

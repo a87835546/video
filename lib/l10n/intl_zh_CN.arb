@@ -173,5 +173,23 @@
     "description": "其他类型",
     "type": "text",
     "placeholders": {}
+  },
+  "search": "立即查找",
+  "@search": {
+    "description": "立即查找",
+    "type": "text",
+    "placeholders": {}
+  },
+  "noData": "没有数据",
+  "@noData": {
+    "description": "没有数据",
+    "type": "text",
+    "placeholders": {}
+  },
+  "videoMenu": "影单",
+  "@videoMenu": {
+    "description": "影单",
+    "type": "text",
+    "placeholders": {}
   }
 }

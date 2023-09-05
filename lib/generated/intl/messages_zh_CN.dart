@@ -43,13 +43,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "more": MessageLookupByLibrary.simpleMessage("查看更多"),
         "movie": MessageLookupByLibrary.simpleMessage("电影"),
         "movieBillboard": MessageLookupByLibrary.simpleMessage("院线大片"),
+        "noData": MessageLookupByLibrary.simpleMessage("没有数据"),
         "otherFilms": MessageLookupByLibrary.simpleMessage("其他类型"),
         "play": MessageLookupByLibrary.simpleMessage("立即观看"),
         "popularStarBillboard": MessageLookupByLibrary.simpleMessage("明星排行榜"),
         "pron": MessageLookupByLibrary.simpleMessage("午夜"),
+        "search": MessageLookupByLibrary.simpleMessage("立即查找"),
         "searchPage": MessageLookupByLibrary.simpleMessage("搜索"),
         "series": MessageLookupByLibrary.simpleMessage("电视"),
         "title": MessageLookupByLibrary.simpleMessage("国际化示例App"),
-        "variety": MessageLookupByLibrary.simpleMessage("综艺")
+        "variety": MessageLookupByLibrary.simpleMessage("综艺"),
+        "videoMenu": MessageLookupByLibrary.simpleMessage("影单")
       };
 }

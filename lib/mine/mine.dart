@@ -141,6 +141,17 @@ class _MinePageState extends State<MinePage> {
                     );
                   },
                 ),
+                SettingsTile.navigation(
+                  title: Text('Player info List page'),
+                  leading: Icon(CupertinoIcons.wrench),
+                  onPressed: (context) {
+                    Navigation.navigateTo(
+                      context: context,
+                      screen: PlayerInfoPage(),
+                      style: NavigationRouteStyle.cupertino,
+                    );
+                  },
+                ),
               ],
             ),
             SettingsSection(

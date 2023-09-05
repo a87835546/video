@@ -2,22 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:video/app_singleton.dart';
 import 'package:video/appbar.dart';
 import 'package:video/core/app_export.dart';
-import 'package:video/widgets/custom_bottom_bar.dart';
 import 'package:video/widgets/custom_elevated_button.dart';
 
-import '../tabbar.dart';
+import '../generated/l10n.dart';
 
-class NoWatchlistPage extends StatelessWidget {
-  NoWatchlistPage({Key? key}) : super(key: key);
+class NoWatchlistPage extends StatefulWidget {
+  const NoWatchlistPage({Key? key}) : super(key: key);
 
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+  @override
+  State<StatefulWidget> createState() {
+    return NoWatchlistPageState();
+  }
+}
 
+class NoWatchlistPageState extends State<NoWatchlistPage> {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text(S.of(context).videoMenu),
+        ),
         backgroundColor: theme.colorScheme.primary,
         body: Container(
           width: double.maxFinite,
@@ -29,7 +35,7 @@ class NoWatchlistPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "影单",
+                S.of(context).videoMenu,
                 style: theme.textTheme.titleLarge,
               ),
               Spacer(),
@@ -57,7 +63,7 @@ class NoWatchlistPage extends StatelessWidget {
                   top: 86,
                 ),
                 child: Text(
-                  "暂无影单",
+                  S.of(context).noData,
                   style: CustomTextStyles.titleMediumOnPrimaryContainer,
                 ),
               ),
@@ -78,7 +84,7 @@ class NoWatchlistPage extends StatelessWidget {
               ),
               CustomElevatedButton(
                 width: getHorizontalSize(160),
-                text: "立即查找",
+                text: S.of(context).search,
                 margin: getMargin(
                   top: 30,
                   bottom: 84,
