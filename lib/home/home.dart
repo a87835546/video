@@ -130,11 +130,11 @@ class _HomePageState extends State<HomePage> {
                 // 多个标签时滚动加载
                 isScrollable: true,
                 // 标签指示器的颜色
-                indicatorColor: Colors.red,
+                indicatorColor: Theme.of(context).primaryColor,
                 // 标签的颜色
-                labelColor: Colors.black,
+                labelColor: Theme.of(context).primaryColor,
                 // 未选中标签的颜色
-                unselectedLabelColor: Colors.white,
+                unselectedLabelColor: Theme.of(context).primaryColorDark,
                 // 指示器的大小
                 indicatorSize: TabBarIndicatorSize.label,
                 // 指示器的权重，即线条高度

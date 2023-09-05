@@ -35,6 +35,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "healthy": MessageLookupByLibrary.simpleMessage("HEALTHY"),
         "healthyPage": MessageLookupByLibrary.simpleMessage("Healthy Page"),
         "helloFromDemo": MessageLookupByLibrary.simpleMessage("hello"),
+        "history": MessageLookupByLibrary.simpleMessage("History"),
+        "historyListNoData":
+            MessageLookupByLibrary.simpleMessage("No Data Of Watch List"),
         "home": MessageLookupByLibrary.simpleMessage("HOME"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "menuPage": MessageLookupByLibrary.simpleMessage("Menu"),
@@ -54,7 +57,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "searchPage": MessageLookupByLibrary.simpleMessage("Search"),
         "series": MessageLookupByLibrary.simpleMessage("Series"),
         "title": MessageLookupByLibrary.simpleMessage("international app"),
-        "variety": MessageLookupByLibrary.simpleMessage("Variety"),
-        "videoMenu": MessageLookupByLibrary.simpleMessage("Video Menu")
+        "variety": MessageLookupByLibrary.simpleMessage("Variety")
       };
 }

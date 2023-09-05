@@ -3,17 +3,12 @@ import 'package:video/core/app_export.dart';
 import 'package:video/widgets/custom_text_form_field.dart';
 
 class LightSearchLoadingProgressErrorScreen extends StatelessWidget {
-  LightSearchLoadingProgressErrorScreen({Key? key})
-      : super(
-          key: key,
-        );
+  LightSearchLoadingProgressErrorScreen({Key? key}) : super(key: key);
 
   TextEditingController asdfghjklvalueController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    mediaQueryData = MediaQuery.of(context);
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: theme.colorScheme.primary,

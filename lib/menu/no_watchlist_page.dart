@@ -18,87 +18,79 @@ class NoWatchlistPage extends StatefulWidget {
 class NoWatchlistPageState extends State<NoWatchlistPage> {
   @override
   Widget build(BuildContext context) {
-    mediaQueryData = MediaQuery.of(context);
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(S.of(context).videoMenu),
+    return Scaffold(
+      backgroundColor: theme.colorScheme.primary,
+      body: SafeArea(
+          child: Container(
+        width: double.maxFinite,
+        padding: getPadding(
+          top: 2,
+          bottom: 14,
         ),
-        backgroundColor: theme.colorScheme.primary,
-        body: Container(
-          width: double.maxFinite,
-          padding: getPadding(
-            top: 14,
-            bottom: 14,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                S.of(context).videoMenu,
-                style: theme.textTheme.titleLarge,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(S.of(context).history),
+            Spacer(),
+            Container(
+              height: getVerticalSize(96),
+              width: getHorizontalSize(132),
+              padding: getPadding(
+                left: 47,
+                top: 24,
+                right: 47,
+                bottom: 24,
               ),
-              Spacer(),
-              Container(
-                height: getVerticalSize(96),
-                width: getHorizontalSize(132),
-                padding: getPadding(
-                  left: 47,
-                  top: 24,
-                  right: 47,
-                  bottom: 24,
-                ),
-                decoration: AppDecoration.fillGray.copyWith(
-                  borderRadius: BorderRadiusStyle.roundedBorder20,
-                ),
-                child: CustomImageView(
-                  imagePath: ImageConstant.imgBookmark46x37,
-                  height: getVerticalSize(46),
-                  width: getHorizontalSize(37),
-                  alignment: Alignment.center,
-                ),
+              decoration: AppDecoration.fillGray.copyWith(
+                borderRadius: BorderRadiusStyle.roundedBorder20,
               ),
-              Padding(
-                padding: getPadding(
-                  top: 86,
-                ),
-                child: Text(
-                  S.of(context).noData,
-                  style: CustomTextStyles.titleMediumOnPrimaryContainer,
-                ),
+              child: CustomImageView(
+                imagePath: ImageConstant.imgBookmark46x37,
+                height: getVerticalSize(46),
+                width: getHorizontalSize(37),
+                alignment: Alignment.center,
               ),
-              Container(
-                width: getHorizontalSize(248),
-                margin: getMargin(
-                  top: 6,
-                ),
-                child: Text(
-                  "在“首页”或“搜索”上查找一些电影，然后创建您的影单",
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.bodyMedium!.copyWith(
-                    height: 1.40,
-                  ),
+            ),
+            Padding(
+              padding: getPadding(
+                top: 86,
+              ),
+              child: Text(
+                S.of(context).noData,
+                style: CustomTextStyles.titleMediumOnPrimaryContainer,
+              ),
+            ),
+            Container(
+              width: getHorizontalSize(248),
+              margin: getMargin(
+                top: 6,
+              ),
+              child: Text(
+                S.of(context).historyListNoData,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                style: theme.textTheme.bodyMedium!.copyWith(
+                  height: 1.40,
                 ),
               ),
-              CustomElevatedButton(
-                width: getHorizontalSize(160),
-                text: S.of(context).search,
-                margin: getMargin(
-                  top: 30,
-                  bottom: 84,
-                ),
-                onTap: () {
-                  AppSingleton.index = 2;
-                  AppTabBarState.currentInstance().onPageChanged(2);
-                  AppSingleton.pageController?.jumpToPage(2);
-                },
+            ),
+            CustomElevatedButton(
+              width: getHorizontalSize(160),
+              text: S.of(context).search,
+              margin: getMargin(
+                top: 30,
+                bottom: 84,
               ),
-            ],
-          ),
+              onTap: () {
+                AppSingleton.index = 2;
+                AppTabBarState.currentInstance().onPageChanged(2);
+                AppSingleton.pageController?.jumpToPage(2);
+              },
+            ),
+          ],
         ),
-      ),
+      )),
     );
   }
 }

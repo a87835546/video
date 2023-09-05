@@ -187,9 +187,15 @@
     "type": "text",
     "placeholders": {}
   },
-  "videoMenu": "Video Menu",
-  "@videoMenu": {
+  "history": "History",
+  "@history": {
     "description": "影单",
+    "type": "text",
+    "placeholders": {}
+  },
+  "historyListNoData": "No Data Of Watch List",
+  "@historyListNoData": {
+    "description": "目录页没有观看数据",
     "type": "text",
     "placeholders": {}
   }

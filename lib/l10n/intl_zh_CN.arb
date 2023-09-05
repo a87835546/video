@@ -186,9 +186,15 @@
     "type": "text",
     "placeholders": {}
   },
-  "videoMenu": "影单",
-  "@videoMenu": {
+  "history": "影单",
+  "@history": {
     "description": "影单",
+    "type": "text",
+    "placeholders": {}
+  },
+  "historyListNoData": "在“首页”或“搜索”上查找一些电影，然后创建您的影单",
+  "@historyListNoData": {
+    "description": "目录页没有观看数据",
     "type": "text",
     "placeholders": {}
   }

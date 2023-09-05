@@ -23,48 +23,48 @@ class AppTabBar extends StatefulWidget {
 
 class AppTabBarState extends State<AppTabBar> {
   int page = 0;
-  final List<Icon> normalImages = const [
+  final List<Icon> normalImages = [
     Icon(
       Icons.home,
-      color: Color(0xffD4D4D4),
-      size: 22,
+      color: Colors.black,
+      size: 24,
     ),
     Icon(
       Icons.menu,
-      color: Color(0xffD4D4D4),
-      size: 22,
+      color: Colors.black,
+      size: 24,
     ),
     Icon(
       Icons.search,
-      color: Color(0xffD4D4D4),
-      size: 22,
+      color: Colors.black,
+      size: 24,
     ),
     Icon(
       Icons.person,
-      color: Color(0xffD4D4D4),
-      size: 22,
+      color: Colors.black,
+      size: 24,
     ),
   ];
   List<Icon> selectedImages = const [
     Icon(
       Icons.home,
-      color: Color(0xff00A6BE),
-      size: 22,
+      color: Color(0xff048BF8),
+      size: 24,
     ),
     Icon(
       Icons.menu,
-      color: Color(0xff00A6BE),
-      size: 22,
+      color: Color(0xff048BF8),
+      size: 24,
     ),
     Icon(
       Icons.search,
-      color: Color(0xff00A6BE),
-      size: 22,
+      color: Color(0xff048BF8),
+      size: 24,
     ),
     Icon(
       Icons.person,
-      color: Color(0xff00A6BE),
-      size: 22,
+      color: Color(0xff048BF8),
+      size: 24,
     ),
   ];
 
@@ -92,7 +92,7 @@ class AppTabBarState extends State<AppTabBar> {
     AppSingleton.index = page;
     final List<String> _list = [
       S.of(context).home,
-      S.of(context).menuPage,
+      S.of(context).history,
       S.of(context).searchPage,
       S.of(context).mine
     ];
@@ -130,7 +130,8 @@ class AppTabBarState extends State<AppTabBar> {
                           style: TextStyle(
                               color: getColor(_list.indexOf(e)),
                               fontSize: 10,
-                              fontWeight: FontWeight.bold),
+                              fontFamily: 'Zen Kaku Gothic New',
+                              fontWeight: FontWeight.w400),
                         ),
                       )
                     ],
@@ -143,7 +144,9 @@ class AppTabBarState extends State<AppTabBar> {
   }
 
   Color getColor(int value) {
-    return page == value ? const Color(0xFF00A6BE) : const Color(0xffD4D4D4);
+    return page == value
+        ? Theme.of(context).primaryColor
+        : Theme.of(context).primaryColorDark;
   }
 
   void onPageChanged(int page) {

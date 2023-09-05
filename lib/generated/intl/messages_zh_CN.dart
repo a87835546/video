@@ -35,6 +35,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "healthy": MessageLookupByLibrary.simpleMessage("健康"),
         "healthyPage": MessageLookupByLibrary.simpleMessage("宠物健康页面"),
         "helloFromDemo": MessageLookupByLibrary.simpleMessage("你好呀~"),
+        "history": MessageLookupByLibrary.simpleMessage("影单"),
+        "historyListNoData":
+            MessageLookupByLibrary.simpleMessage("在“首页”或“搜索”上查找一些电影，然后创建您的影单"),
         "home": MessageLookupByLibrary.simpleMessage("首页"),
         "language": MessageLookupByLibrary.simpleMessage("语言"),
         "menuPage": MessageLookupByLibrary.simpleMessage("菜单"),
@@ -52,7 +55,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "searchPage": MessageLookupByLibrary.simpleMessage("搜索"),
         "series": MessageLookupByLibrary.simpleMessage("电视"),
         "title": MessageLookupByLibrary.simpleMessage("国际化示例App"),
-        "variety": MessageLookupByLibrary.simpleMessage("综艺"),
-        "videoMenu": MessageLookupByLibrary.simpleMessage("影单")
+        "variety": MessageLookupByLibrary.simpleMessage("综艺")
       };
 }

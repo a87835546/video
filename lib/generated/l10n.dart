@@ -360,11 +360,21 @@ class S {
     );
   }
 
-  /// `Video Menu`
-  String get videoMenu {
+  /// `No Data Of Watch List`
+  String get historyListNoData {
     return Intl.message(
-      'Video Menu',
-      name: 'videoMenu',
+      'No Data Of Watch List',
+      name: 'historyListNoData',
+      desc: '目录页没有观看数据',
+      args: [],
+    );
+  }
+
+  /// `History`
+  String get history {
+    return Intl.message(
+      'History',
+      name: 'history',
       desc: '影单',
       args: [],
     );

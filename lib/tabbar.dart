@@ -44,7 +44,7 @@ class _NavbarPageState extends State<CustomBottomNavigationBar> {
           physics: const NeverScrollableScrollPhysics(),
           controller: pageController,
           onPageChanged: onPageChanged,
-          children: [
+          children: const [
             HomePage(),
             NoWatchlistPage(),
             LightSearchDefaultPage(),
