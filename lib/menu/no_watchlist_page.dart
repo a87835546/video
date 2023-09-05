@@ -39,7 +39,7 @@ class NoWatchlistPageState extends State<NoWatchlistPage> {
                 left: 47,
                 top: 24,
                 right: 47,
-                bottom: 24,
+                bottom: 10,
               ),
               decoration: AppDecoration.fillGray.copyWith(
                 borderRadius: BorderRadiusStyle.roundedBorder20,

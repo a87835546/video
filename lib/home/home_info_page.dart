@@ -53,8 +53,10 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
       },
     );
     _bottom = VideoPlayerBottom();
+    watch();
   }
 
+  void watch() {}
   @override
   void dispose() {
     // TODO: implement dispose

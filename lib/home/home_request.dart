@@ -29,3 +29,23 @@ Future<List<CategoryModel>> getMenu({int? id}) async {
     EasyLoading.dismiss();
   }
 }
+
+Future<bool> watch(int vid, uid) async {
+  EasyLoading.showProgress(1);
+  var result = await HttpManager.get(
+      url: "videos/click", params: {"user_id": "$uid", "video_id": "$vid"});
+  try {
+    if (result["code"] == 200) {
+      EasyLoading.dismiss();
+      return Future.value(true);
+    } else {
+      EasyLoading.showError(result["message"] ?? "Delete Account Error");
+      return Future.value(false);
+    }
+  } catch (err) {
+    log("parser delete account fail ${err.toString()}");
+    return Future.value(false);
+  } finally {
+    EasyLoading.dismiss();
+  }
+}
