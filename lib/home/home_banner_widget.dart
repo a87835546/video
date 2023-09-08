@@ -17,6 +17,7 @@ import 'home_banner_model.dart';
 import 'home_hot_banner_widget.dart';
 import 'home_list_widget.dart';
 import 'home_popular_star_widget.dart';
+import 'home_request.dart';
 
 class HomeBanner extends StatefulWidget {
   final int type;
@@ -36,11 +37,17 @@ class HomeBannerState extends State<HomeBanner> {
   @override
   void initState() {
     super.initState();
-    getData();
+    Future.delayed(Duration.zero, () {
+      getData();
+    });
     log("widget type --- >>> ${widget.type}");
   }
 
-  void getData() {}
+  void getData() async {
+    var list = await getSubMenu(widget.type);
+    log("list--->>${widget.type} 0--->>> ${list}");
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(

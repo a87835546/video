@@ -63,7 +63,7 @@ class HttpManager {
   static get(
       {required String url,
       Map<String, dynamic>? headers,
-      Map<String, String>? params}) async {
+      Map<String, dynamic>? params}) async {
     _config();
     Options options = Options(headers: headers, sendTimeout: timeout);
     options.contentType = ContentType.json.toString();
