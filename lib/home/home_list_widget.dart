@@ -10,6 +10,7 @@ import 'home_hot_banner_widget.dart';
 class HomeListWidget extends StatefulWidget {
   final String menu;
   final List<VideoModel> list;
+
   const HomeListWidget({super.key, required this.list, required this.menu});
 
   @override
@@ -40,19 +41,21 @@ class _HomeListWidgetState extends State<HomeListWidget> {
               itemCount: (widget.list.length / 2).ceil(),
               itemBuilder: (BuildContext context, int index) {
                 List<VideoModel> temp = [];
-                if (widget.list.length > 0) {
+                if (widget.list.isNotEmpty) {
                   if (widget.list.length > (index + 1) * 2) {
                     temp.add(widget.list[index]);
                     temp.add(widget.list[index + 1]);
                     log("index +1 ");
                   } else if (widget.list.length > index * 2) {
-                    // temp.add(widget.list[index + 1]);
-                    log("index  ");
+                    if (index + 1 <= widget.list.length) {
+                      temp.add(widget.list[index + 1]);
+                      log("index  ");
+                    }
                   }
                 }
 
                 return Container(
-                  height: 200,
+                  height: 210,
                   width: MediaQuery.of(context).size.width,
                   alignment: Alignment.center,
                   child: ListView.builder(
@@ -60,7 +63,7 @@ class _HomeListWidgetState extends State<HomeListWidget> {
                     itemBuilder: (BuildContext context, int index) {
                       VideoModel model = temp[index];
                       return Container(
-                        height: 190,
+                        height: 200,
                         padding: const EdgeInsets.only(left: 24, bottom: 0),
                         width: (MediaQuery.of(context).size.width - 24) / 2,
                         child: Column(
@@ -69,19 +72,24 @@ class _HomeListWidgetState extends State<HomeListWidget> {
                             Container(
                               height: 167,
                               child: Image.network(
-                                model.url.isNotEmpty
-                                    ? model.url
+                                model.themeUrl.isNotEmpty
+                                    ? model.themeUrl
                                     : "https://k.sinaimg.cn/n/sinacn10111/785/w460h325/20181210/af5d-hphsupy6595023.jpg/w700d1q75cms.jpg",
-                                fit: BoxFit.fill,
+                                fit: BoxFit.fitWidth,
+                              ),
+                            ),
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                model.title,
+                                style: Fonts.subTitle(),
                               ),
                             ),
                             Container(
                               width: double.infinity,
                               height: 20,
                               child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Container(
                                     height: double.infinity,
@@ -98,16 +106,16 @@ class _HomeListWidgetState extends State<HomeListWidget> {
                                             color: Color(0xffffbb38),
                                           ),
                                         ),
-                                        Text("${model.title ?? 8.4}",
+                                        Text("${model.rate ?? 8.4}",
                                             style: Fonts.subTitle()),
                                       ],
                                     ),
                                   ),
-                                  Container(
-                                    child: Text("${model.title}",
-                                        style: Fonts.subTitle()),
-                                  ),
-                                  Text(model.title, style: Fonts.subTitle()),
+                                  const SizedBox(width: 10),
+                                  Text("${model.years}",
+                                      style: Fonts.subTitle()),
+                                  const SizedBox(width: 10),
+                                  Text(model.types, style: Fonts.subTitle()),
                                 ],
                               ),
                             ),

@@ -78,7 +78,7 @@ class _HomeRateWidgetState extends State<HomeRateWidget> {
           visible: widget.hiddenType != true,
           child: Container(
             margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 26 * fem, 2 * fem),
-            child: Text('动作  剧情',
+            child: Text(widget.model?.types ?? '动作  剧情',
                 style: GoogleFonts.zenKakuGothicNew(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,

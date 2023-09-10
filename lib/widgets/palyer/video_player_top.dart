@@ -9,7 +9,9 @@ import '../../utils/video_payer_utils.dart';
 
 // ignore: must_be_immutable
 class VideoPlayerTop extends StatefulWidget {
-  VideoPlayerTop({Key? key, this.clickBack}) : super(key: key);
+  String title;
+  VideoPlayerTop({Key? key, this.clickBack, required this.title})
+      : super(key: key);
   late Function(bool) opacityCallback;
   Function? clickBack;
   @override
@@ -78,8 +80,8 @@ class _VideoPlayerTopState extends State<VideoPlayerTop> {
                           color: Colors.white,
                         ),
                       ),
-                const Text(
-                  "这个是视频的标题",
+                Text(
+                  widget.title,
                   style: TextStyle(color: Colors.white, fontSize: 15),
                 ),
                 const Spacer(),

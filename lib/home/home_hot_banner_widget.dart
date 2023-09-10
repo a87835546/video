@@ -13,6 +13,7 @@ class HomeHotBannerWidget extends StatefulWidget {
   final String menu;
   final Function(VideoModel model, int index)? clickItem;
   final List<VideoModel> videos;
+
   const HomeHotBannerWidget(
       {super.key,
       this.clickMore,
@@ -29,7 +30,7 @@ class HomeHotBannerWidget extends StatefulWidget {
 class _HomeHotBannerWidgetState extends State<HomeHotBannerWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 250,
       child: Column(
         children: [
@@ -64,6 +65,7 @@ class HomeBannerTopView extends StatelessWidget {
   final Function? clickMore;
 
   const HomeBannerTopView({super.key, required this.menu, this.clickMore});
+
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -7,6 +7,7 @@ import 'package:video_player/video_player.dart';
 
 class HomePlayPage extends StatefulWidget {
   VideoModel model;
+
   HomePlayPage({super.key, required this.model});
 
   @override
@@ -18,17 +19,12 @@ class HomePlayPage extends StatefulWidget {
 class _HomePlayPageState extends State<HomePlayPage> {
   late VideoPlayerController _controller;
   late Future<void> _initializeVideoPlayerFuture;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _controller = VideoPlayerController.networkUrl(
-      Uri.parse(
-        widget.model.url ??
-            'http://adsmind.gdtimg.com/0bc3zuaaqaaaseaaupof5rsfbtodbdgqacaa.f10002.mp4?znjson.mp4',
-      ),
-    );
-
+    _controller = VideoPlayerController.networkUrl(Uri.parse(widget.model.url));
     _initializeVideoPlayerFuture = _controller.initialize();
     log("init state ---");
   }
@@ -49,19 +45,18 @@ class _HomePlayPageState extends State<HomePlayPage> {
         future: _initializeVideoPlayerFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            // If the VideoPlayerController has finished initialization, use
-            // the data it provides to limit the aspect ratio of the video.
             return AspectRatio(
               aspectRatio: _controller.value.aspectRatio,
-              // Use the VideoPlayer widget to display the video.
               child: VideoPlayer(_controller),
             );
           } else {
-            // If the VideoPlayerController is still initializing, show a
-            // loading spinner.
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage(widget.model.themeUrl))),
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ));
           }
         },
       ),

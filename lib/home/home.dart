@@ -47,18 +47,9 @@ class _HomePageState extends State<HomePage> {
           Tab(text: S.of(context).pron),
         ];
         views = [
-          HomeBanner(
-            type: 1,
-            title: S.of(context).movie,
-          ),
-          HomeBanner(
-            type: 2,
-            title: S.of(context).series,
-          ),
-          HomeBanner(
-            type: 3,
-            title: S.of(context).animation,
-          ),
+          HomeBanner(type: 1, title: S.of(context).movie),
+          HomeBanner(type: 2, title: S.of(context).series),
+          HomeBanner(type: 3, title: S.of(context).animation),
           HomeBanner(type: 4, title: S.of(context).variety),
           HomeBanner(type: 5, title: S.of(context).pron),
         ];

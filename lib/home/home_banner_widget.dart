@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:video/home/home_info_page.dart';
-import 'package:video/home/home_play_page.dart';
-import 'package:video/home/home_popular_star_model.dart';
 import 'package:video/home/video_model.dart';
 
 import '../generated/l10n.dart';
@@ -24,6 +22,7 @@ import 'home_request.dart';
 class HomeBanner extends StatefulWidget {
   final int type;
   final String title;
+
   const HomeBanner({super.key, required this.type, required this.title});
 
   @override
@@ -37,13 +36,13 @@ class HomeBannerState extends State<HomeBanner> {
     initialRefresh: false,
   );
   HomeModel? model;
+
   @override
   void initState() {
     super.initState();
     Future.delayed(Duration.zero, () {
       getData();
     });
-    log("widget type --- >>> ${widget.type}");
   }
 
   void getData() async {
@@ -144,6 +143,14 @@ class HomeBannerState extends State<HomeBanner> {
                     );
                   }).toList(),
                 ),
+                HomePopularStarWidget(
+                  list: model?.videoModel.first.list ?? [],
+                  title: model?.videoModel.first.type ?? "123",
+                ),
+                HomeListWidget(
+                  list: model?.videoModel.first.list ?? [],
+                  menu: model?.videoModel.first.type ?? "123",
+                )
               ],
             ),
           ),
@@ -158,6 +165,7 @@ class HomeBannerItemWidget extends StatefulWidget {
   final Function? favor;
   final HomeBannerModel model;
   final VideoModel? videoModel;
+
   const HomeBannerItemWidget(
       {super.key,
       this.play,
@@ -173,6 +181,7 @@ class HomeBannerItemWidget extends StatefulWidget {
 
 class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
   double fem = 1;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -194,16 +203,14 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                   width: double.infinity,
                   height: 334 * fem,
                   child: Container(
-                    // bannerfPF (17:20423)
                     padding: EdgeInsets.fromLTRB(
                         26 * fem, 16 * fem, 17 * fem, 11 * fem),
                     width: double.infinity,
                     height: double.infinity,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(widget.model.videoThemeUrl ??
-                            "https://funylife.in/wp-content/uploads/2023/04/60_Cute-Girl-Pic-WWW.FUNYLIFE.IN_-1-1024x1024.jpg"),
+                        fit: BoxFit.fill,
+                        image: NetworkImage(widget.model.videoThemeUrl),
                       ),
                       gradient: const LinearGradient(
                         begin: Alignment(0, -1),
@@ -224,14 +231,13 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                           child: Container(),
                         ),
                         Container(
-                          // Jyw (17:20446)
                           margin: EdgeInsets.fromLTRB(
                               0 * fem, 0 * fem, 173 * fem, 0 * fem),
                           child: Text(widget.model.title ?? '侠盗一号：星球大战故事',
                               style: GoogleFonts.zenKakuGothicNew(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xffffffff),
+                                  color: const Color(0xffffffff),
                                   height: 1.4)),
                         ),
                       ],
@@ -239,7 +245,7 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: 25),
+                  padding: const EdgeInsets.only(left: 25),
                   child: HomeRateWidget(
                     model: widget.videoModel,
                   ),
@@ -259,11 +265,8 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
               children: [
                 GestureDetector(
                   child: Container(
-                      // cardhgd (17:20421)
                       margin: EdgeInsets.fromLTRB(
                           0 * fem, 0 * fem, 10 * fem, 0 * fem),
-                      // padding: EdgeInsets.fromLTRB(
-                      //     88.5 * fem, 12 * fem, 111.5 * fem, 12 * fem),
                       width: 269,
                       height: double.infinity,
                       decoration: BoxDecoration(
@@ -278,7 +281,6 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                                // iconlyboldplayy8M (I17:20421;15:1183)
                                 margin: EdgeInsets.fromLTRB(
                                     0 * fem, 0 * fem, 10 * fem, 0 * fem),
                                 width: 20 * fem,
@@ -292,7 +294,7 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                                 style: GoogleFonts.inter(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
-                                    color: Color(0xffffffff),
+                                    color: const Color(0xffffffff),
                                     height: 1.5)),
                           ],
                         ),
@@ -321,7 +323,6 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                           borderRadius: BorderRadius.circular(4 * fem),
                         ),
                         child: Container(
-                          // text5j7 (I17:20420;15:1186)
                           padding: EdgeInsets.fromLTRB(
                               4.3 * fem, 2.78 * fem, 4.21 * fem, 2 * fem),
                           width: double.infinity,

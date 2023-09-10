@@ -7,11 +7,13 @@ import 'package:video/widgets/palyer/video_player_bottom.dart';
 import 'package:video/widgets/palyer/video_player_top.dart';
 
 import '../utils/video_payer_utils.dart';
+import '../widgets/home_rate_widget.dart';
 import '../widgets/palyer/video_player_center.dart';
 import '../widgets/palyer/video_player_gestures.dart';
 
 class HomeInfoPage extends StatefulWidget {
   VideoModel model;
+
   HomeInfoPage({super.key, required this.model});
 
   @override
@@ -26,6 +28,7 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
   LockIcon? _lockIcon;
   VideoPlayerBottom? _bottom;
   final bool _isFullScreen = false;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -44,14 +47,14 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
             }
           });
       _top = VideoPlayerTop(
-        clickBack: () {
-          VideoPlayerUtils.dispose();
-          Navigator.of(context).pop();
-        },
-      );
+          clickBack: () {
+            VideoPlayerUtils.dispose();
+            Navigator.of(context).pop();
+          },
+          title: widget.model.title);
       _lockIcon = LockIcon(
-        lockCallback: (val) {
-          log("click lock icon value :$val");
+        lockCallback: () {
+          log("click lock icon value");
         },
       );
       _bottom = VideoPlayerBottom();
@@ -60,6 +63,7 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
   }
 
   void watch() {}
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -71,9 +75,7 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        // resizeToAvoidBottomInset: false,
         extendBodyBehindAppBar: true,
-        backgroundColor: Colors.transparent,
         appBar: null,
         body: WillPopScope(
           onWillPop: () async {
@@ -84,36 +86,45 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
             bottom: !_isFullScreen,
             left: !_isFullScreen,
             right: !_isFullScreen,
-            child: Container(
-              color: Colors.redAccent,
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width * 9 / 16,
-              child: _playerUI != null
-                  ? VideoPlayerGestures(
-                      appearCallback: (appear) {
-                        _top?.opacityCallback(appear);
-                        _lockIcon?.opacityCallback(appear);
-                        _bottom?.opacityCallback(appear);
-                      },
-                      children: [
-                        const SizedBox(
-                          height: 22,
+            child: ListView(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(widget.model.themeUrl),
+                          fit: BoxFit.fill)),
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.width * 9 / 16,
+                  child: _playerUI != null
+                      ? VideoPlayerGestures(
+                          appearCallback: (appear) {
+                            _top?.opacityCallback(appear);
+                            _lockIcon?.opacityCallback(appear);
+                            _bottom?.opacityCallback(appear);
+                          },
+                          children: [
+                            const SizedBox(height: 22),
+                            Center(child: _playerUI),
+                            _top!,
+                            _lockIcon!,
+                            _bottom!,
+                          ],
+                        )
+                      : Container(
+                          alignment: Alignment.center,
+                          color: Colors.black26,
+                          child: const CircularProgressIndicator(
+                            strokeWidth: 3,
+                          ),
                         ),
-                        Center(
-                          child: _playerUI,
-                        ),
-                        _top!,
-                        _lockIcon!,
-                        _bottom!,
-                      ],
-                    )
-                  : Container(
-                      alignment: Alignment.center,
-                      color: Colors.black26,
-                      child: const CircularProgressIndicator(
-                        strokeWidth: 3,
-                      ),
-                    ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(left: 25, top: 10),
+                  child: HomeRateWidget(
+                    model: widget.model,
+                  ),
+                )
+              ],
             ),
           ),
         ),

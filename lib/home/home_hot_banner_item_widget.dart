@@ -10,6 +10,7 @@ import 'home_banner_model.dart';
 class HomeHotBannerItemWidget extends StatefulWidget {
   final VideoModel model;
   final Function? click;
+
   const HomeHotBannerItemWidget({super.key, required this.model, this.click});
 
   @override
@@ -38,8 +39,8 @@ class _HomeHotBannerItemWidgetState extends State<HomeHotBannerItemWidget> {
               height: 160,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(widget.model.url),
+                    fit: BoxFit.fitHeight,
+                    image: NetworkImage(widget.model.themeUrl),
                   ),
                   gradient: const LinearGradient(
                     begin: Alignment(0, -1),

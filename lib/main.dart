@@ -69,10 +69,12 @@ class StringModel {}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "头条影视",
+      showSemanticsDebugger: false,
       localizationsDelegates: const [
         AppLocalizationDelegate(),
         GlobalMaterialLocalizations.delegate,
@@ -119,7 +121,8 @@ class MyApp extends StatelessWidget {
       // theme: ThemeData(
       //     primarySwatch: Colors.cyan,
       //     appBarTheme: const AppBarTheme(color: Colors.white)),
-      home: const CustomBottomNavigationBar(), // SignInPage(),
+      home: const CustomBottomNavigationBar(),
+      // SignInPage(),
       color: Colors.redAccent,
       builder: EasyLoading.init(),
     );

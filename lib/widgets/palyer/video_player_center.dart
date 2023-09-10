@@ -9,12 +9,14 @@ class LockIcon extends StatefulWidget {
   LockIcon({Key? key, required this.lockCallback}) : super(key: key);
   final Function lockCallback;
   late Function(bool) opacityCallback;
+
   @override
   _LockIconState createState() => _LockIconState();
 }
 
 class _LockIconState extends State<LockIcon> {
   double _opacity = 1.0;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -38,8 +40,8 @@ class _LockIconState extends State<LockIcon> {
           padding: EdgeInsets.zero,
           onPressed: () {
             TempValue.isLocked = !TempValue.isLocked;
-            widget.lockCallback();
             if (!mounted) return;
+            widget.lockCallback();
             setState(() {});
           },
           icon: Icon(
