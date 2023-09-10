@@ -64,22 +64,22 @@ class HomeBannerState extends State<HomeBanner> {
       child: SmartRefresher(
         controller: _refreshController,
         physics: const BouncingScrollPhysics(),
-        enablePullUp: true,
+        enablePullUp: false,
         enablePullDown: true,
         header: const WaterDropHeader(),
-        // footer: const ClassicFooter(
-        //   loadStyle: LoadStyle.ShowWhenLoading,
-        // ),
+        footer: const ClassicFooter(
+          loadStyle: LoadStyle.ShowWhenLoading,
+        ),
         onRefresh: () {
           log("refresh");
           _refreshController.refreshCompleted();
           getData();
         },
-        // onLoading: () {
-        //   log('loading more');
-        //   getData();
-        //   _refreshController.refreshCompleted();
-        // },
+        onLoading: () {
+          log('loading more');
+          getData();
+          _refreshController.refreshCompleted();
+        },
         child: Container(
           color: const Color(0xfff6f6f6),
           child: SingleChildScrollView(
@@ -99,7 +99,21 @@ class HomeBannerState extends State<HomeBanner> {
                           play: () {
                             Navigation.navigateTo(
                               context: context,
-                              screen: const HomePlayPage(),
+                              screen: HomeInfoPage(
+                                model: VideoModel(
+                                    title: e.title,
+                                    desc: "",
+                                    id: 0,
+                                    categoryId: "",
+                                    author: "",
+                                    themeUrl: e.videoThemeUrl,
+                                    types: "",
+                                    rate: "",
+                                    actor: "",
+                                    menuTitle: "",
+                                    years: 2023,
+                                    url: e.videoUrl),
+                              ),
                               style: NavigationRouteStyle.material,
                             );
                           },
@@ -119,7 +133,9 @@ class HomeBannerState extends State<HomeBanner> {
                           log("click index:$index  item:$data");
                           Navigation.navigateTo(
                             context: context,
-                            screen: const HomeInfoPage(),
+                            screen: HomeInfoPage(
+                              model: e.list[index],
+                            ),
                             style: NavigationRouteStyle.material,
                           );
                         },
@@ -129,95 +145,6 @@ class HomeBannerState extends State<HomeBanner> {
                     );
                   }).toList(),
                 ),
-                // Container(
-                //   padding: const EdgeInsets.only(left: 20, right: 20),
-                //   child: HomeHotBannerWidget(
-                //     menu: S.of(context).movieBillboard,
-                //     videos: model!.videoModel[0].list,
-                //     clickMore: () {
-                //       log("click more");
-                //     },
-                //   ),
-                // ),
-                // HomePopularStarWidget(
-                //   click: (val) {
-                //     log("value --->> ${val.toString()}");
-                //   },
-                //   model: HomeBannerModel(
-                //     title: S.of(context).popularStarBillboard, desc: '', id: 0,
-                //     menuId: 2,
-                //     videoThemeUrl: '', videoUrl: '', videoId: 0,
-                //     // url: ""
-                //   ),
-                //   list: [
-                //     HomePopularStarModel(
-                //         name: "zhansan",
-                //         url:
-                //             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvUvoj9OumBIY6O3dMvuPS76rpSC8OFpeG9F1hSNOT&s"),
-                //     HomePopularStarModel(
-                //         name: "lisi",
-                //         url:
-                //             "https://img.win3000.com/m00/d1/c9/6f843b5bf7f315a30aca8ba537a36c6e.jpg"),
-                //     HomePopularStarModel(
-                //         name: "zhaoliu",
-                //         url:
-                //             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvUvoj9OumBIY6O3dMvuPS76rpSC8OFpeG9F1hSNOT&s"),
-                //     HomePopularStarModel(
-                //         name: "zhansan",
-                //         url:
-                //             "https://img.win3000.com/m00/d1/c9/6f843b5bf7f315a30aca8ba537a36c6e.jpg")
-                //   ],
-                // ),
-                // HomeListWidget(menu: S.of(context).actionFilms, list: []),
-                // HomeListWidget(
-                //   menu: S.of(context).comedyFilms,
-                //   list: [
-                //     VideoModel(
-                //         title: "test",
-                //         desc: "test",
-                //         id: 1,
-                //         categoryId: "10",
-                //         author: "zhansan",
-                //         themeUrl: "",
-                //         types: "",
-                //         rate: "1.2",
-                //         years: 2023,
-                //         url: "",
-                //         actor: '',
-                //         menuTitle: widget.title),
-                //     VideoModel(
-                //         title: "test",
-                //         desc: "test",
-                //         id: 1,
-                //         categoryId: "10",
-                //         author: "zhansan",
-                //         themeUrl: "",
-                //         types: "",
-                //         rate: "1.2",
-                //         years: 2023,
-                //         url: "",
-                //         actor: '',
-                //         menuTitle: widget.title),
-                //   ],
-                // ),
-                // HomeListWidget(
-                //   menu: S.of(context).otherFilms,
-                //   list: [
-                //     VideoModel(
-                //         title: "test",
-                //         desc: "test",
-                //         id: 1,
-                //         categoryId: "10",
-                //         author: "zhansan",
-                //         themeUrl: "",
-                //         types: "",
-                //         rate: "1.2",
-                //         years: 2023,
-                //         url: "",
-                //         actor: '',
-                //         menuTitle: widget.title),
-                //   ],
-                // ),
               ],
             ),
           ),

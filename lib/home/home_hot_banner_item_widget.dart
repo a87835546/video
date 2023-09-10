@@ -39,8 +39,7 @@ class _HomeHotBannerItemWidgetState extends State<HomeHotBannerItemWidget> {
               decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: NetworkImage(widget.model.url ??
-                        "https://funylife.in/wp-content/uploads/2023/04/60_Cute-Girl-Pic-WWW.FUNYLIFE.IN_-1-1024x1024.jpg"),
+                    image: NetworkImage(widget.model.url),
                   ),
                   gradient: const LinearGradient(
                     begin: Alignment(0, -1),
@@ -59,7 +58,7 @@ class _HomeHotBannerItemWidgetState extends State<HomeHotBannerItemWidget> {
               height: 26,
               alignment: Alignment.centerLeft,
               child: Text(
-                widget.model.title ?? "title",
+                widget.model.title,
                 style: Fonts.title(),
               ),
             ),

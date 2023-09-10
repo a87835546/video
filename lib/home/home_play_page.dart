@@ -2,10 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:video/home/video_model.dart';
 import 'package:video_player/video_player.dart';
 
 class HomePlayPage extends StatefulWidget {
-  const HomePlayPage({super.key});
+  VideoModel model;
+  HomePlayPage({super.key, required this.model});
 
   @override
   State<StatefulWidget> createState() {
@@ -22,7 +24,8 @@ class _HomePlayPageState extends State<HomePlayPage> {
     super.initState();
     _controller = VideoPlayerController.networkUrl(
       Uri.parse(
-        'http://adsmind.gdtimg.com/0bc3zuaaqaaaseaaupof5rsfbtodbdgqacaa.f10002.mp4?znjson.mp4',
+        widget.model.url ??
+            'http://adsmind.gdtimg.com/0bc3zuaaqaaaseaaupof5rsfbtodbdgqacaa.f10002.mp4?znjson.mp4',
       ),
     );
 
@@ -40,10 +43,8 @@ class _HomePlayPageState extends State<HomePlayPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Butterfly Video'),
+        title: Text(widget.model.title),
       ),
-      // Use a FutureBuilder to display a loading spinner while waiting for the
-      // VideoPlayerController to finish initializing.
       body: FutureBuilder(
         future: _initializeVideoPlayerFuture,
         builder: (context, snapshot) {

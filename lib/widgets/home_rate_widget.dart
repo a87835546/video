@@ -48,7 +48,7 @@ class _HomeRateWidgetState extends State<HomeRateWidget> {
                         color: Color(0xffffbb38),
                       ),
                     ),
-                    Text(widget.model?.rate ?? "",
+                    Text(widget.model?.rate ?? "1.0",
                         style: GoogleFonts.zenKakuGothicNew(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,

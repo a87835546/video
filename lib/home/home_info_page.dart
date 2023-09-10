@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:video/home/video_model.dart';
 import 'package:video/widgets/palyer/video_player_bottom.dart';
 import 'package:video/widgets/palyer/video_player_top.dart';
 
@@ -10,7 +11,8 @@ import '../widgets/palyer/video_player_center.dart';
 import '../widgets/palyer/video_player_gestures.dart';
 
 class HomeInfoPage extends StatefulWidget {
-  const HomeInfoPage({super.key});
+  VideoModel model;
+  HomeInfoPage({super.key, required this.model});
 
   @override
   State<StatefulWidget> createState() {
@@ -28,32 +30,33 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // 播放视频
-    VideoPlayerUtils.playerHandle(
-        "http://adsmind.gdtimg.com/0bc3zuaaqaaaseaaupof5rsfbtodbdgqacaa.f10002.mp4?znjson.mp4");
-    // 播放新视频，初始化监听
-    VideoPlayerUtils.initializedListener(
-        key: this,
-        listener: (initialize, widget) {
-          if (initialize) {
-            _playerUI = widget;
-            if (!mounted) return;
-            setState(() {});
-          }
-        });
-    _top = VideoPlayerTop(
-      clickBack: () {
-        VideoPlayerUtils.dispose();
-        Navigator.of(context).pop();
-      },
-    );
-    _lockIcon = LockIcon(
-      lockCallback: (val) {
-        log("click lock icon value :$val");
-      },
-    );
-    _bottom = VideoPlayerBottom();
-    watch();
+    Future.delayed(Duration.zero, () {
+      // 播放视频
+      VideoPlayerUtils.playerHandle(widget.model.url);
+      // 播放新视频，初始化监听
+      VideoPlayerUtils.initializedListener(
+          key: this,
+          listener: (initialize, widget) {
+            if (initialize) {
+              _playerUI = widget;
+              if (!mounted) return;
+              setState(() {});
+            }
+          });
+      _top = VideoPlayerTop(
+        clickBack: () {
+          VideoPlayerUtils.dispose();
+          Navigator.of(context).pop();
+        },
+      );
+      _lockIcon = LockIcon(
+        lockCallback: (val) {
+          log("click lock icon value :$val");
+        },
+      );
+      _bottom = VideoPlayerBottom();
+      watch();
+    });
   }
 
   void watch() {}
@@ -67,22 +70,12 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: null,
-      // PreferredSize(
-      //     child: Offstage(
-      //       offstage: true,
-      //       child: AppBar(
-      //         centerTitle: true,
-      //         title: Text("11"),
-      //         backgroundColor: Colors.transparent,
-      //       ),
-      //     ),
-      //     preferredSize:
-      //         Size.fromHeight(MediaQuery.of(context).size.height * 0.7),
-      //   ),
-      body: WillPopScope(
+      home: Scaffold(
+        // resizeToAvoidBottomInset: false,
+        extendBodyBehindAppBar: true,
+        backgroundColor: Colors.transparent,
+        appBar: null,
+        body: WillPopScope(
           onWillPop: () async {
             return false;
           },
@@ -92,33 +85,39 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
             left: !_isFullScreen,
             right: !_isFullScreen,
             child: Container(
-                color: Colors.redAccent,
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.width * 9 / 16,
-                child: _playerUI != null
-                    ? VideoPlayerGestures(
-                        appearCallback: (appear) {
-                          _top?.opacityCallback(appear);
-                          _lockIcon?.opacityCallback(appear);
-                          _bottom?.opacityCallback(appear);
-                        },
-                        children: [
-                          Center(
-                            child: _playerUI,
-                          ),
-                          _top!,
-                          _lockIcon!,
-                          _bottom!,
-                        ],
-                      )
-                    : Container(
-                        alignment: Alignment.center,
-                        color: Colors.black26,
-                        child: const CircularProgressIndicator(
-                          strokeWidth: 3,
+              color: Colors.redAccent,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.width * 9 / 16,
+              child: _playerUI != null
+                  ? VideoPlayerGestures(
+                      appearCallback: (appear) {
+                        _top?.opacityCallback(appear);
+                        _lockIcon?.opacityCallback(appear);
+                        _bottom?.opacityCallback(appear);
+                      },
+                      children: [
+                        const SizedBox(
+                          height: 22,
                         ),
-                      )),
-          )),
-    ));
+                        Center(
+                          child: _playerUI,
+                        ),
+                        _top!,
+                        _lockIcon!,
+                        _bottom!,
+                      ],
+                    )
+                  : Container(
+                      alignment: Alignment.center,
+                      color: Colors.black26,
+                      child: const CircularProgressIndicator(
+                        strokeWidth: 3,
+                      ),
+                    ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
