@@ -9,6 +9,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:video/home/home_info_page.dart';
 import 'package:video/home/home_play_page.dart';
 import 'package:video/home/home_popular_star_model.dart';
+import 'package:video/home/video_model.dart';
 
 import '../generated/l10n.dart';
 import '../utils/navigation.dart';
@@ -16,12 +17,14 @@ import '../widgets/home_rate_widget.dart';
 import 'home_banner_model.dart';
 import 'home_hot_banner_widget.dart';
 import 'home_list_widget.dart';
+import 'home_model.dart';
 import 'home_popular_star_widget.dart';
 import 'home_request.dart';
 
 class HomeBanner extends StatefulWidget {
   final int type;
-  const HomeBanner({super.key, required this.type});
+  final String title;
+  const HomeBanner({super.key, required this.type, required this.title});
 
   @override
   State<StatefulWidget> createState() {
@@ -33,7 +36,7 @@ class HomeBannerState extends State<HomeBanner> {
   final RefreshController _refreshController = RefreshController(
     initialRefresh: false,
   );
-
+  HomeModel? model;
   @override
   void initState() {
     super.initState();
@@ -44,8 +47,11 @@ class HomeBannerState extends State<HomeBanner> {
   }
 
   void getData() async {
-    var list = await getSubMenu(widget.type);
-    log("list--->>${widget.type} 0--->>> ${list}");
+    var videos = await getVideos(widget.type);
+    log("list--->>${widget.type} --->>> $videos");
+    setState(() {
+      model = videos;
+    });
   }
 
   @override
@@ -61,58 +67,34 @@ class HomeBannerState extends State<HomeBanner> {
         enablePullUp: true,
         enablePullDown: true,
         header: const WaterDropHeader(),
-        footer: const ClassicFooter(
-          loadStyle: LoadStyle.ShowWhenLoading,
-        ),
+        // footer: const ClassicFooter(
+        //   loadStyle: LoadStyle.ShowWhenLoading,
+        // ),
         onRefresh: () {
           log("refresh");
           _refreshController.refreshCompleted();
           getData();
         },
-        onLoading: () {
-          log('loading more');
-          getData();
-          _refreshController.refreshCompleted();
-        },
+        // onLoading: () {
+        //   log('loading more');
+        //   getData();
+        //   _refreshController.refreshCompleted();
+        // },
         child: Container(
           color: const Color(0xfff6f6f6),
           child: SingleChildScrollView(
             child: Column(
               // physics: NeverScrollableScrollPhysics(),
               children: [
-                BannerCarousel.fullScreen(
-                    height: 466,
-                    animation: true,
-                    viewportFraction: 1,
-                    showIndicator: false,
-                    customizedBanners: [
-                      HomeBannerModel(
-                          rate: 5,
-                          public: "2021",
-                          duration: 122,
-                          type: ["0"],
-                          isFavor: false,
-                          title: "侠盗一号：星球大战故事"),
-                      HomeBannerModel(
-                          rate: 5,
-                          public: "2023",
-                          duration: 120,
-                          type: ["0"],
-                          isFavor: false,
-                          title: "侠盗一号：星球大战故事 1",
-                          url:
-                              "https://static.runoob.com/images/demo/demo2.jpg"),
-                      HomeBannerModel(
-                          rate: 5.66,
-                          public: "2020",
-                          duration: 140,
-                          type: ["0"],
-                          isFavor: true,
-                          title: "侠盗一号：星球大战故事 2",
-                          url:
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFwIT3_0Yf1FiaMhAfqffasuNXUqh3UXCutPhKog5jEQ&s"),
-                    ].map((e) {
-                      return HomeBannerItemWidget(
+                Visibility(
+                  visible: model != null && model!.bannerModel.isNotEmpty,
+                  child: BannerCarousel.fullScreen(
+                      height: 466,
+                      animation: true,
+                      viewportFraction: 1,
+                      showIndicator: false,
+                      customizedBanners: model?.bannerModel.map((e) {
+                        return HomeBannerItemWidget(
                           model: e,
                           play: () {
                             Navigation.navigateTo(
@@ -120,214 +102,122 @@ class HomeBannerState extends State<HomeBanner> {
                               screen: const HomePlayPage(),
                               style: NavigationRouteStyle.material,
                             );
-                          });
-                    }).toList()),
-                Container(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
-                  child: HomeHotBannerWidget(
-                    clickMore: () {
-                      log("click more ${S.of(context).billboard}");
-                    },
-                    clickItem: (data, index) {
-                      log("click index:$index  item:$data");
-                      Navigation.navigateTo(
-                        context: context,
-                        screen: const HomeInfoPage(),
-                        style: NavigationRouteStyle.material,
-                      );
-                    },
-                    menu: S.of(context).billboard,
-                    list: [
-                      HomeBannerModel(
-                          rate: 5,
-                          duration: 2019,
-                          type: ["0"],
-                          isFavor: false,
-                          title: "侠盗一号：星球大战故事 2-1",
-                          url:
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_haYcSoRDlLtQIf4gDtz3gPkD2LhDacqPFM6YBEBr&s"),
-                      HomeBannerModel(
-                          rate: 5,
-                          duration: 2019,
-                          type: ["0"],
-                          isFavor: false,
-                          title: "侠盗一号：星球大战故事 2-2",
-                          url:
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkR5t_k4752DIskLyM3TK1FWhKr1Miy8Lf9743ZY7F&s"),
-                      HomeBannerModel(
-                          rate: 5,
-                          duration: 2019,
-                          type: ["0"],
-                          isFavor: false,
-                          title: "侠盗一号：星球大战故事 2-3",
-                          url:
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFwIT3_0Yf1FiaMhAfqffasuNXUqh3UXCutPhKog5jEQ&s"),
-                    ],
-                  ),
+                          },
+                          videoModel: null,
+                        );
+                      }).toList()),
                 ),
-                Container(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
-                  child: HomeHotBannerWidget(
-                    menu: S.of(context).movieBillboard,
-                    list: [
-                      HomeBannerModel(
-                          rate: 5.9,
-                          duration: 2019,
-                          type: ["0"],
-                          isFavor: false,
-                          title: " 侠盗一号：星球大战故事 3-1"),
-                      HomeBannerModel(
-                          rate: 5.7,
-                          duration: 180,
-                          public: "2019",
-                          type: ["0"],
-                          isFavor: false,
-                          title: " 侠盗一号：星球大战故事 3-2"),
-                      HomeBannerModel(
-                          rate: 5,
-                          public: "2019",
-                          duration: 130,
-                          type: ["0"],
-                          isFavor: false,
-                          title: " 侠盗一号：星球大战故事 3-3"),
-                      HomeBannerModel(
-                          rate: 4,
-                          duration: 2021,
-                          public: "2019",
-                          type: ["0"],
-                          isFavor: false,
-                          title: " 侠盗一号：星球大战故事 3-4"),
-                    ],
-                    clickMore: () {
-                      log("click more");
-                    },
-                  ),
+                Column(
+                  children: model!.videoModel.map((e) {
+                    return Container(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: HomeHotBannerWidget(
+                        clickMore: () {
+                          log("click more ${e.type}");
+                        },
+                        clickItem: (data, index) {
+                          log("click index:$index  item:$data");
+                          Navigation.navigateTo(
+                            context: context,
+                            screen: const HomeInfoPage(),
+                            style: NavigationRouteStyle.material,
+                          );
+                        },
+                        menu: e.type,
+                        videos: e.list,
+                      ),
+                    );
+                  }).toList(),
                 ),
-                HomePopularStarWidget(
-                  click: (val) {
-                    log("value --->> ${val.toString()}");
-                  },
-                  model: HomeBannerModel(
-                      rate: 5,
-                      duration: 2019,
-                      type: ["0"],
-                      isFavor: false,
-                      menu: S.of(context).popularStarBillboard),
-                  list: [
-                    HomePopularStarModel(
-                        name: "zhansan",
-                        url:
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvUvoj9OumBIY6O3dMvuPS76rpSC8OFpeG9F1hSNOT&s"),
-                    HomePopularStarModel(
-                        name: "lisi",
-                        url:
-                            "https://img.win3000.com/m00/d1/c9/6f843b5bf7f315a30aca8ba537a36c6e.jpg"),
-                    HomePopularStarModel(
-                        name: "zhaoliu",
-                        url:
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvUvoj9OumBIY6O3dMvuPS76rpSC8OFpeG9F1hSNOT&s"),
-                    HomePopularStarModel(
-                        name: "zhansan",
-                        url:
-                            "https://img.win3000.com/m00/d1/c9/6f843b5bf7f315a30aca8ba537a36c6e.jpg")
-                  ],
-                ),
-                HomeListWidget(
-                  menu: S.of(context).actionFilms,
-                  list: [
-                    HomeBannerModel(
-                      rate: 3,
-                      duration: 100,
-                      type: ["0"],
-                      isFavor: false,
-                      public: "2022",
-                      title: "",
-                      // url: ""
-                    ),
-                    HomeBannerModel(
-                      rate: 3.3,
-                      duration: 120,
-                      type: ["0"],
-                      isFavor: false,
-                      public: "2021",
-                      title: "",
-                      // url: ""
-                    ),
-                    HomeBannerModel(
-                      rate: 3.4,
-                      duration: 110,
-                      type: ["0"],
-                      isFavor: false,
-                      public: "2020",
-                      title: "",
-                      // url: ""
-                    ),
-                  ],
-                ),
-                HomeListWidget(
-                  menu: S.of(context).comedyFilms,
-                  list: [
-                    HomeBannerModel(
-                      rate: 3,
-                      duration: 100,
-                      type: ["0"],
-                      isFavor: false,
-                      public: "2022",
-                      title: "",
-                      // url: ""
-                    ),
-                    HomeBannerModel(
-                      rate: 3.3,
-                      duration: 120,
-                      type: ["0"],
-                      isFavor: false,
-                      public: "2021",
-                      title: "",
-                      // url: ""
-                    ),
-                    HomeBannerModel(
-                      rate: 3.4,
-                      duration: 110,
-                      type: ["0"],
-                      isFavor: false,
-                      public: "2020",
-                      title: "",
-                      // url: ""
-                    ),
-                  ],
-                ),
-                HomeListWidget(
-                  menu: S.of(context).otherFilms,
-                  list: [
-                    HomeBannerModel(
-                      rate: 3,
-                      duration: 100,
-                      type: ["0"],
-                      isFavor: false,
-                      public: "2022",
-                      title: "",
-                      // url: ""
-                    ),
-                    HomeBannerModel(
-                      rate: 3.3,
-                      duration: 120,
-                      type: ["0"],
-                      isFavor: false,
-                      public: "2021",
-                      title: "",
-                      // url: ""
-                    ),
-                    HomeBannerModel(
-                      rate: 3.4,
-                      duration: 110,
-                      type: ["0"],
-                      isFavor: false,
-                      public: "2020",
-                      title: "",
-                      // url: ""
-                    ),
-                  ],
-                ),
+                // Container(
+                //   padding: const EdgeInsets.only(left: 20, right: 20),
+                //   child: HomeHotBannerWidget(
+                //     menu: S.of(context).movieBillboard,
+                //     videos: model!.videoModel[0].list,
+                //     clickMore: () {
+                //       log("click more");
+                //     },
+                //   ),
+                // ),
+                // HomePopularStarWidget(
+                //   click: (val) {
+                //     log("value --->> ${val.toString()}");
+                //   },
+                //   model: HomeBannerModel(
+                //     title: S.of(context).popularStarBillboard, desc: '', id: 0,
+                //     menuId: 2,
+                //     videoThemeUrl: '', videoUrl: '', videoId: 0,
+                //     // url: ""
+                //   ),
+                //   list: [
+                //     HomePopularStarModel(
+                //         name: "zhansan",
+                //         url:
+                //             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvUvoj9OumBIY6O3dMvuPS76rpSC8OFpeG9F1hSNOT&s"),
+                //     HomePopularStarModel(
+                //         name: "lisi",
+                //         url:
+                //             "https://img.win3000.com/m00/d1/c9/6f843b5bf7f315a30aca8ba537a36c6e.jpg"),
+                //     HomePopularStarModel(
+                //         name: "zhaoliu",
+                //         url:
+                //             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvUvoj9OumBIY6O3dMvuPS76rpSC8OFpeG9F1hSNOT&s"),
+                //     HomePopularStarModel(
+                //         name: "zhansan",
+                //         url:
+                //             "https://img.win3000.com/m00/d1/c9/6f843b5bf7f315a30aca8ba537a36c6e.jpg")
+                //   ],
+                // ),
+                // HomeListWidget(menu: S.of(context).actionFilms, list: []),
+                // HomeListWidget(
+                //   menu: S.of(context).comedyFilms,
+                //   list: [
+                //     VideoModel(
+                //         title: "test",
+                //         desc: "test",
+                //         id: 1,
+                //         categoryId: "10",
+                //         author: "zhansan",
+                //         themeUrl: "",
+                //         types: "",
+                //         rate: "1.2",
+                //         years: 2023,
+                //         url: "",
+                //         actor: '',
+                //         menuTitle: widget.title),
+                //     VideoModel(
+                //         title: "test",
+                //         desc: "test",
+                //         id: 1,
+                //         categoryId: "10",
+                //         author: "zhansan",
+                //         themeUrl: "",
+                //         types: "",
+                //         rate: "1.2",
+                //         years: 2023,
+                //         url: "",
+                //         actor: '',
+                //         menuTitle: widget.title),
+                //   ],
+                // ),
+                // HomeListWidget(
+                //   menu: S.of(context).otherFilms,
+                //   list: [
+                //     VideoModel(
+                //         title: "test",
+                //         desc: "test",
+                //         id: 1,
+                //         categoryId: "10",
+                //         author: "zhansan",
+                //         themeUrl: "",
+                //         types: "",
+                //         rate: "1.2",
+                //         years: 2023,
+                //         url: "",
+                //         actor: '',
+                //         menuTitle: widget.title),
+                //   ],
+                // ),
               ],
             ),
           ),
@@ -341,8 +231,13 @@ class HomeBannerItemWidget extends StatefulWidget {
   final Function? play;
   final Function? favor;
   final HomeBannerModel model;
+  final VideoModel? videoModel;
   const HomeBannerItemWidget(
-      {super.key, this.play, this.favor, required this.model});
+      {super.key,
+      this.play,
+      this.favor,
+      required this.model,
+      required this.videoModel});
 
   @override
   State<StatefulWidget> createState() {
@@ -381,7 +276,7 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage(widget.model.url ??
+                        image: NetworkImage(widget.model.videoThemeUrl ??
                             "https://funylife.in/wp-content/uploads/2023/04/60_Cute-Girl-Pic-WWW.FUNYLIFE.IN_-1-1024x1024.jpg"),
                       ),
                       gradient: const LinearGradient(
@@ -420,14 +315,13 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                 Container(
                   padding: EdgeInsets.only(left: 25),
                   child: HomeRateWidget(
-                    model: widget.model,
+                    model: widget.videoModel,
                   ),
                 )
               ],
             ),
           ),
           Container(
-            // ctamY5 (17:20419)
             margin: EdgeInsets.fromLTRB(24 * fem, 0 * fem, 24 * fem, 0 * fem),
             width: double.infinity,
             height: 48 * fem,

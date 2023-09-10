@@ -46,22 +46,21 @@ class _HomePageState extends State<HomePage> {
           Tab(text: S.of(context).variety),
           Tab(text: S.of(context).pron),
         ];
-        views = const [
-          HomeBanner(
-            type: 0,
-          ),
+        views = [
           HomeBanner(
             type: 1,
+            title: S.of(context).movie,
           ),
           HomeBanner(
             type: 2,
+            title: S.of(context).series,
           ),
           HomeBanner(
             type: 3,
+            title: S.of(context).animation,
           ),
-          HomeBanner(
-            type: 4,
-          ),
+          HomeBanner(type: 4, title: S.of(context).variety),
+          HomeBanner(type: 5, title: S.of(context).pron),
         ];
       });
     }
@@ -75,34 +74,25 @@ class _HomePageState extends State<HomePage> {
           Tab(text: S.of(context).variety),
           Tab(text: S.of(context).pron),
         ];
-        views = const [
-          HomeBanner(
-            type: 0,
-          ),
-          HomeBanner(
-            type: 1,
-          ),
-          HomeBanner(
-            type: 2,
-          ),
-          HomeBanner(
-            type: 3,
-          ),
-          HomeBanner(
-            type: 4,
-          ),
+        views = [
+          HomeBanner(type: 1, title: S.of(context).movie),
+          HomeBanner(type: 2, title: S.of(context).series),
+          HomeBanner(type: 3, title: S.of(context).animation),
+          HomeBanner(type: 4, title: S.of(context).variety),
+          HomeBanner(type: 5, title: S.of(context).pron),
         ];
       });
     } else {
       List<Tab> temp = [];
       List<HomeBanner> temp1 = [];
       for (var element in list) {
+        log("element -->> $element");
         temp.add(Tab(
-          text: AppSingleton.singleton?.info?.locale == const Locale("en", "US")
-              ? element.title_en
-              : element.title,
-        ));
-        temp1.add(HomeBanner(type: element.index));
+            text:
+                AppSingleton.singleton?.info?.locale == const Locale("en", "US")
+                    ? element.title_en
+                    : element.title));
+        temp1.add(HomeBanner(type: element.id, title: element.title));
       }
       setState(() {
         tabs = temp;

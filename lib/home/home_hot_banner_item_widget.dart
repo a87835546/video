@@ -1,13 +1,14 @@
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
+import 'package:video/home/video_model.dart';
 import 'package:video/widgets/home_rate_widget.dart';
 
 import '../utils/fonts.dart';
 import 'home_banner_model.dart';
 
 class HomeHotBannerItemWidget extends StatefulWidget {
-  final HomeBannerModel model;
+  final VideoModel model;
   final Function? click;
   const HomeHotBannerItemWidget({super.key, required this.model, this.click});
 

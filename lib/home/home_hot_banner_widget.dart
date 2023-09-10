@@ -1,6 +1,7 @@
 import 'package:banner_carousel/banner_carousel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:video/home/video_model.dart';
 
 import '../generated/l10n.dart';
 import '../utils/fonts.dart';
@@ -10,12 +11,12 @@ import 'home_hot_banner_item_widget.dart';
 class HomeHotBannerWidget extends StatefulWidget {
   final Function? clickMore;
   final String menu;
-  final Function(HomeBannerModel model, int index)? clickItem;
-  final List<HomeBannerModel> list;
+  final Function(VideoModel model, int index)? clickItem;
+  final List<VideoModel> videos;
   const HomeHotBannerWidget(
       {super.key,
       this.clickMore,
-      required this.list,
+      required this.videos,
       this.clickItem,
       required this.menu});
 
@@ -41,8 +42,8 @@ class _HomeHotBannerWidgetState extends State<HomeHotBannerWidget> {
               animation: true,
               viewportFraction: 1,
               showIndicator: false,
-              customizedBanners: widget.list.map((e) {
-                int index = widget.list.indexOf(e);
+              customizedBanners: widget.videos.map((e) {
+                int index = widget.videos.indexOf(e);
                 return HomeHotBannerItemWidget(
                   model: e,
                   click: () {

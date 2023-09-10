@@ -28,7 +28,7 @@ class HomePopularStarWidgetState extends State<HomePopularStarWidget> {
         Container(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: HomeBannerTopView(
-            menu: widget.model.menu ?? "",
+            menu: "123",
             clickMore: () {
               log("click popular star view more");
             },

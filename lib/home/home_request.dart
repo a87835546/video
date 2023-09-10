@@ -1,20 +1,22 @@
 import 'dart:developer';
 
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:video/home/category_model.dart';
+import 'package:video/home/menu_model.dart';
 
 import '../utils/http_manager.dart';
+import 'home_model.dart';
 
-Future<List<CategoryModel>> getMenu() async {
+Future<List<MenuModel>> getMenu() async {
   EasyLoading.showProgress(1);
   var result = await HttpManager.get(url: "menu/list");
   try {
     if (result["code"] == 200) {
       EasyLoading.dismiss();
-      List<CategoryModel> list = [];
+      // log("menu list $result");
+      List<MenuModel> list = [];
       List<dynamic> data = result["data"];
       data.asMap().forEach((key, value) {
-        list.add(CategoryModel.fromJson(value));
+        list.add(MenuModel.fromJson(value));
       });
       return Future.value(list);
     } else {
@@ -22,32 +24,30 @@ Future<List<CategoryModel>> getMenu() async {
       return Future.value([]);
     }
   } catch (err) {
-    log("parser delete account fail ${err.toString()}");
+    log("parser get menu list fail ${err.toString()}");
     return Future.value([]);
   } finally {
     EasyLoading.dismiss();
   }
 }
 
-Future<List<CategoryModel>> getSubMenu(int id) async {
+Future<HomeModel?> getVideos(int id) async {
   EasyLoading.showProgress(1);
-  var result = await HttpManager.get(url: "menu/sub", params: {"id": id ?? 0});
+  var result =
+      await HttpManager.get(url: "videos/queryList", params: {"menu_id": id});
   try {
     if (result["code"] == 200) {
       EasyLoading.dismiss();
-      List<CategoryModel> list = [];
-      List<dynamic> data = result["data"];
-      data.asMap().forEach((key, value) {
-        list.add(CategoryModel.fromJson(value));
-      });
-      return Future.value(list);
+      Map<String, dynamic> data = result["data"];
+      HomeModel model = HomeModel.fromJson(data);
+      return Future.value(model);
     } else {
       EasyLoading.showError(result["message"] ?? "Delete Account Error");
-      return Future.value([]);
+      return Future.value(null);
     }
   } catch (err) {
-    log("parser delete account fail ${err.toString()}");
-    return Future.value([]);
+    log("parser get video list fail ${err.toString()}");
+    return Future.value(null);
   } finally {
     EasyLoading.dismiss();
   }
@@ -66,7 +66,7 @@ Future<bool> watch(int vid, uid) async {
       return Future.value(false);
     }
   } catch (err) {
-    log("parser delete account fail ${err.toString()}");
+    log("parser update  watch  video id fail ${err.toString()}");
     return Future.value(false);
   } finally {
     EasyLoading.dismiss();
