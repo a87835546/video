@@ -71,9 +71,8 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    log("message ${context.watch<ChangeLanguage>().locale}");
     return MaterialApp(
-      title: 'PetsCare',
+      title: "头条影视",
       localizationsDelegates: const [
         AppLocalizationDelegate(),
         GlobalMaterialLocalizations.delegate,

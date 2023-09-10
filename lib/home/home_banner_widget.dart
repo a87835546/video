@@ -86,41 +86,40 @@ class HomeBannerState extends State<HomeBanner> {
             child: Column(
               // physics: NeverScrollableScrollPhysics(),
               children: [
-                Visibility(
-                  visible: model != null && model!.bannerModel.isNotEmpty,
-                  child: BannerCarousel.fullScreen(
-                      height: 466,
-                      animation: true,
-                      viewportFraction: 1,
-                      showIndicator: false,
-                      customizedBanners: model?.bannerModel.map((e) {
-                        return HomeBannerItemWidget(
-                          model: e,
-                          play: () {
-                            Navigation.navigateTo(
-                              context: context,
-                              screen: HomeInfoPage(
-                                model: VideoModel(
-                                    title: e.title,
-                                    desc: "",
-                                    id: 0,
-                                    categoryId: "",
-                                    author: "",
-                                    themeUrl: e.videoThemeUrl,
-                                    types: "",
-                                    rate: "",
-                                    actor: "",
-                                    menuTitle: "",
-                                    years: 2023,
-                                    url: e.videoUrl),
-                              ),
-                              style: NavigationRouteStyle.material,
-                            );
-                          },
-                          videoModel: null,
-                        );
-                      }).toList()),
-                ),
+                model != null && model!.bannerModel.isNotEmpty
+                    ? BannerCarousel.fullScreen(
+                        height: 466,
+                        animation: true,
+                        viewportFraction: 1,
+                        showIndicator: false,
+                        customizedBanners: model?.bannerModel.map((e) {
+                          return HomeBannerItemWidget(
+                            model: e,
+                            play: () {
+                              Navigation.navigateTo(
+                                context: context,
+                                screen: HomeInfoPage(
+                                  model: VideoModel(
+                                      title: e.title,
+                                      desc: "",
+                                      id: 0,
+                                      categoryId: "",
+                                      author: "",
+                                      themeUrl: e.videoThemeUrl,
+                                      types: "",
+                                      rate: "",
+                                      actor: "",
+                                      menuTitle: "",
+                                      years: 2023,
+                                      url: e.videoUrl),
+                                ),
+                                style: NavigationRouteStyle.material,
+                              );
+                            },
+                            videoModel: null,
+                          );
+                        }).toList())
+                    : const SizedBox(height: 10),
                 Column(
                   children: model!.videoModel.map((e) {
                     return Container(

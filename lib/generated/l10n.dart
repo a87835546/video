@@ -379,6 +379,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Headline Film`
+  String get appName {
+    return Intl.message(
+      'Headline Film',
+      name: 'appName',
+      desc: '头条影视',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

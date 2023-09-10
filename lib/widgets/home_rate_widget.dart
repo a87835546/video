@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:video/home/video_model.dart';
 
-import '../home/home_banner_model.dart';
+import '../home/video_model.dart';
 
 class HomeRateWidget extends StatefulWidget {
   final VideoModel? model;

@@ -197,5 +197,11 @@
     "description": "影单",
     "type": "text",
     "placeholders": {}
+  },
+  "appName": "Headline Film",
+  "@appName": {
+    "description": "头条影视",
+    "type": "text",
+    "placeholders": {}
   }
 }

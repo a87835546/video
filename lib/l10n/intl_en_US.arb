@@ -198,5 +198,12 @@
     "description": "目录页没有观看数据",
     "type": "text",
     "placeholders": {}
+  },
+  "appName": "Headline Film",
+  "@appName": {
+    "description": "头条影视",
+    "type": "text",
+    "placeholders": {}
   }
+
 }
