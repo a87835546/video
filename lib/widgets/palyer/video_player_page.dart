@@ -35,7 +35,9 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
         key: this,
         listener: (initialize, widget) {
           if (initialize) {
-            _top ??= VideoPlayerTop();
+            _top ??= VideoPlayerTop(
+              title: '',
+            );
             _lockIcon ??= LockIcon(
               lockCallback: () {
                 _top!.opacityCallback(!TempValue.isLocked);

@@ -90,7 +90,13 @@ class HomeBannerState extends State<HomeBanner> {
                         height: 466,
                         animation: true,
                         viewportFraction: 1,
-                        showIndicator: false,
+                        // showIndicator: true,
+                        indicatorBottom: true,
+                        customizedIndicators: const IndicatorModel.animation(
+                            width: 20,
+                            height: 5,
+                            spaceBetween: 2,
+                            widthAnimation: 50),
                         customizedBanners: model?.bannerModel.map((e) {
                           return HomeBannerItemWidget(
                             model: e,
