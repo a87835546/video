@@ -186,9 +186,7 @@ class VideoInfoPageState extends State<VideoInfoPage> {
                                     },
                                     itemCount: 6,
                                     itemBuilder: (context, index) {
-                                      return MovieCard4ItemWidget(
-                                        click: () {},
-                                      );
+                                      return Container();
                                     }),
                               ),
                             ),

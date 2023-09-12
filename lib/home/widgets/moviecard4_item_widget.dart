@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:video/core/app_export.dart';
+import 'package:video/home/video_model.dart';
 import 'package:video/widgets/custom_icon_button.dart';
 
 // ignore: must_be_immutable
 class MovieCard4ItemWidget extends StatelessWidget {
   final Function? click;
-  const MovieCard4ItemWidget({Key? key, this.click}) : super(key: key);
+  final VideoModel model;
+  const MovieCard4ItemWidget({Key? key, this.click, required this.model})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +52,7 @@ class MovieCard4ItemWidget extends StatelessWidget {
                 bottom: 49,
               ),
               child: Text(
-                "12312312dsas",
+                model.title ?? "12312312dsas",
                 style: theme.textTheme.bodyLarge,
               ),
             ),

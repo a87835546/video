@@ -1,6 +1,11 @@
 class HomeBannerModel {
   String title = "";
   String desc = "";
+  String actor = "";
+  String types = "";
+  String rate = "";
+  num years = 2023;
+  String menuTitle = "";
   int id;
   String videoUrl = "";
   String videoThemeUrl = "";
@@ -16,7 +21,7 @@ class HomeBannerModel {
       required this.videoId});
 
   factory HomeBannerModel.fromJson(Map<String, dynamic> map) {
-    return HomeBannerModel(
+    HomeBannerModel model = HomeBannerModel(
         title: map['title'] ?? "",
         desc: map['desc'] ?? "",
         id: map['id'],
@@ -24,6 +29,12 @@ class HomeBannerModel {
         videoId: map['video_id'],
         videoThemeUrl: map["video_theme_url"],
         videoUrl: map["video_url"]);
+    model.actor = map["actor"];
+    model.years = map["years"];
+    model.rate = map["rate"];
+    model.types = map["types"];
+    model.menuTitle = map["menu_title"];
+    return model;
   }
 
   @override

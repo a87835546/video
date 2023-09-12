@@ -1,8 +1,11 @@
 import 'dart:developer';
 
+import 'package:video/home/video_urls_model.dart';
+
 class VideoModel {
   num id = 0;
   String url = "";
+  List<VideoUrlsModel> urls = [];
   String title = "";
   String menuTitle = "";
   String desc = "";
@@ -29,7 +32,14 @@ class VideoModel {
       required this.url});
 
   factory VideoModel.fromJson(Map<String, dynamic> map) {
-    return VideoModel(
+    List<VideoUrlsModel> temp = [];
+    if (map["urls"] != null) {
+      List<dynamic> list = map["urls"];
+      for (int i = 0; i < list.length; i++) {
+        temp.add(VideoUrlsModel.fromJson(list[i]));
+      }
+    }
+    VideoModel model = VideoModel(
         title: map['title'] ?? "",
         id: map['id'],
         desc: map['desc'] ?? "",
@@ -42,11 +52,13 @@ class VideoModel {
         themeUrl: map['theme_url'] ?? "",
         types: map['types'] ?? "",
         url: map['url']);
+    model.urls = temp;
+    return model;
   }
 
   @override
   String toString() {
-    return 'VideoModel{id: $id, url: $url, title: $title, desc: $desc, categoryId: $categoryId, author: $author, themeUrl: $themeUrl, types: $types, rate: $rate, years: $years}';
+    return 'VideoModel{id: $id, url: $url, urls: $urls, title: $title, menuTitle: $menuTitle, desc: $desc, categoryId: $categoryId, author: $author, actor: $actor, themeUrl: $themeUrl, types: $types, rate: $rate, years: $years}';
   }
 }
 

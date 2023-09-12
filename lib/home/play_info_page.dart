@@ -202,11 +202,7 @@ class PlayerInfoPageState extends State<PlayerInfoPage> {
                                         },
                                         itemCount: 6,
                                         itemBuilder: (context, index) {
-                                          return MovieCard4ItemWidget(
-                                            click: () {
-                                              log("click item");
-                                            },
-                                          );
+                                          return Container();
                                         }),
                                   ),
                                 ),
