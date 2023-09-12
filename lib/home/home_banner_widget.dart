@@ -127,36 +127,46 @@ class HomeBannerState extends State<HomeBanner> {
                     : const SizedBox(height: 10),
                 Column(
                   children: model!.videoModel.map((e) {
-                    return Container(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: HomeHotBannerWidget(
-                        clickMore: () {
-                          log("click more ${e.type}");
-                        },
-                        clickItem: (data, index) {
-                          log("click index:$index  item:$data");
-                          Navigation.navigateTo(
-                            context: context,
-                            screen: HomeInfoPage(
-                              model: e.list[index],
-                            ),
-                            style: NavigationRouteStyle.material,
-                          );
-                        },
-                        menu: e.type,
-                        videos: e.list,
-                      ),
-                    );
+                    return e.type == "测试分类"
+                        ? HomeListWidget(
+                            list: e.list,
+                            menu: e.type,
+                            click: (element) {
+                              Navigation.navigateTo(
+                                context: context,
+                                screen: HomeInfoPage(
+                                  model: element,
+                                ),
+                                style: NavigationRouteStyle.material,
+                              );
+                            },
+                            clickMore: () {},
+                          )
+                        : Container(
+                            padding: const EdgeInsets.only(left: 20, right: 20),
+                            child: HomeHotBannerWidget(
+                              clickMore: () {
+                                log("click more ${e.type}");
+                              },
+                              clickItem: (data, index) {
+                                log("click index:$index  item:$data");
+                                Navigation.navigateTo(
+                                  context: context,
+                                  screen: HomeInfoPage(
+                                    model: e.list[index],
+                                  ),
+                                  style: NavigationRouteStyle.material,
+                                );
+                              },
+                              menu: e.type,
+                              videos: e.list,
+                            ));
                   }).toList(),
                 ),
                 HomePopularStarWidget(
                   list: model?.videoModel.first.list ?? [],
                   title: model?.videoModel.first.type ?? "123",
                 ),
-                HomeListWidget(
-                  list: model?.videoModel.first.list ?? [],
-                  menu: model?.videoModel.first.type ?? "123",
-                )
               ],
             ),
           ),
@@ -215,9 +225,9 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                     height: double.infinity,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: NetworkImage(widget.model.videoThemeUrl),
-                      ),
+                          fit: BoxFit.fill,
+                          image: NetworkImage(widget.model.videoThemeUrl),
+                          onError: (val, val2) {}),
                       gradient: const LinearGradient(
                         begin: Alignment(0, -1),
                         end: Alignment(0, 1),

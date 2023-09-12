@@ -5,7 +5,6 @@ import 'package:video/home/video_model.dart';
 
 import '../generated/l10n.dart';
 import '../utils/fonts.dart';
-import 'home_banner_model.dart';
 import 'home_hot_banner_item_widget.dart';
 
 class HomeHotBannerWidget extends StatefulWidget {
