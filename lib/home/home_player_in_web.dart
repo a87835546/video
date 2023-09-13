@@ -209,12 +209,14 @@ class HomePlayerInWebState extends State<HomePlayerInWeb> {
             ),
           ),
           VideoInfoDescWidget(
-              show: show,
-              clickMore: (val) {
-                setState(() {
-                  show = val;
-                });
-              }),
+            show: show,
+            clickMore: (val) {
+              setState(() {
+                show = val;
+              });
+            },
+            desc: widget.model.desc,
+          ),
           Container(
             margin: getMargin(top: 12),
             padding: getPadding(left: 24, top: 16, right: 24, bottom: 16),

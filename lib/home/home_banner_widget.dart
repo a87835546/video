@@ -161,10 +161,6 @@ class HomeBannerState extends State<HomeBanner> {
                   list: model?.videoModel.first.list ?? [],
                   title: model?.videoModel.first.type ?? "123",
                 ),
-                HomeListWidget(
-                  list: model?.videoModel.first.list ?? [],
-                  menu: model?.videoModel.first.type ?? "123",
-                )
               ],
             ),
           ),
