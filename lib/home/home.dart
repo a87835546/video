@@ -1,13 +1,11 @@
 import 'dart:developer';
 
-import 'package:banner_carousel/banner_carousel.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:video/home/home_request.dart';
 
 import '../app_singleton.dart';
 import '../generated/l10n.dart';
-import '../main.dart';
+import '../utils/platform_utils.dart';
 import 'home_banner_widget.dart';
 
 class HomePage extends StatefulWidget {

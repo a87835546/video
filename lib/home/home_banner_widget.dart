@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:video/home/home_info_page.dart';
+import 'package:video/home/home_player_in_web.dart';
 import 'package:video/home/video_model.dart';
 
 import '../generated/l10n.dart';
@@ -135,9 +136,16 @@ class HomeBannerState extends State<HomeBanner> {
                         },
                         clickItem: (data, index) {
                           log("click index:$index  item:$data");
+                          // Navigation.navigateTo(
+                          //   context: context,
+                          //   screen: HomeInfoPage(
+                          //     model: e.list[index],
+                          //   ),
+                          //   style: NavigationRouteStyle.material,
+                          // );
                           Navigation.navigateTo(
                             context: context,
-                            screen: HomeInfoPage(
+                            screen: HomePlayerInWeb(
                               model: e.list[index],
                             ),
                             style: NavigationRouteStyle.material,

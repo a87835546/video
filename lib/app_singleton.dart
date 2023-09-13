@@ -15,6 +15,7 @@ class AppSingleton {
 
   InfoModel? info;
   static DevMode? devMode;
+  static bool? isWeb;
   static PageController? pageController;
   static int index = 0;
 }

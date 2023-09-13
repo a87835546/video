@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video/mine/changge_language.dart';
 import 'package:video/tabbar.dart';
+import 'package:video/utils/platform_utils.dart';
 
 import 'app_singleton.dart';
 import 'generated/l10n.dart';
@@ -36,6 +37,7 @@ void main() async {
     AppSingleton.getInstance().info =
         InfoModel(language: "zh", username: "zhansan", password: "");
   }
+  AppSingleton.isWeb = PlatformUtils.isWeb;
 
   runApp(
     MultiProvider(

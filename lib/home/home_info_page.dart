@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:video/app_singleton.dart';
 import 'package:video/home/video_model.dart';
 import 'package:video/home/widgets/moviecard4_item_widget.dart';
 import 'package:video/home/widgets/video_info_desc_widget.dart';

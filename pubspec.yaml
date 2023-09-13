@@ -35,6 +35,7 @@ dependencies:
   auto_orientation: ^2.2.1
   # 亮度和音量调节
   brightness_volume: ^1.0.3
+  chewie: ^1.7.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -6,6 +6,7 @@ import 'package:video/mine/logout_page.dart';
 import 'package:video/mine/register_page.dart';
 
 import '../generated/l10n.dart';
+import '../home/home_player_in_web.dart';
 import '../home/video_info_page.dart';
 import '../menu/light_watchlist_one_page.dart';
 import '../setting/gallery/android_settings_screen.dart';
@@ -141,17 +142,19 @@ class _MinePageState extends State<MinePage> {
                     );
                   },
                 ),
-                SettingsTile.navigation(
-                  title: Text('Player info List page'),
-                  leading: Icon(CupertinoIcons.wrench),
-                  onPressed: (context) {
-                    Navigation.navigateTo(
-                      context: context,
-                      screen: PlayerInfoPage(),
-                      style: NavigationRouteStyle.cupertino,
-                    );
-                  },
-                ),
+                // SettingsTile.navigation(
+                //   title: Text('web Player info List page'),
+                //   leading: Icon(CupertinoIcons.wrench),
+                //   onPressed: (context) {
+                //     Navigation.navigateTo(
+                //       context: context,
+                //       screen: HomePlayerInWeb(
+                //          model: null,
+                //       ),
+                //       style: NavigationRouteStyle.cupertino,
+                //     );
+                //   },
+                // ),
               ],
             ),
             SettingsSection(
