@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:video/home/home_banner_model.dart';
 import 'package:video/home/video_model.dart';
 import '../utils/fonts.dart';
 import 'home_hot_banner_widget.dart';
@@ -10,16 +9,23 @@ import 'home_hot_banner_widget.dart';
 class HomeListWidget extends StatefulWidget {
   final String menu;
   final List<VideoModel> list;
+  Function click;
+  Function clickMore;
 
-  const HomeListWidget({super.key, required this.list, required this.menu});
+  HomeListWidget(
+      {super.key,
+      required this.list,
+      required this.menu,
+      required this.click,
+      required this.clickMore});
 
   @override
   State<StatefulWidget> createState() {
-    return _HomeListWidgetState();
+    return HomeListWidgetState();
   }
 }
 
-class _HomeListWidgetState extends State<HomeListWidget> {
+class HomeListWidgetState extends State<HomeListWidget> {
   @override
   Widget build(BuildContext context) {
     log("length --->>>${widget.list.length}");
@@ -31,6 +37,7 @@ class _HomeListWidgetState extends State<HomeListWidget> {
             menu: widget.menu,
             clickMore: () {
               log("click action films view more");
+              widget.clickMore();
             },
           ),
         ),
@@ -62,65 +69,70 @@ class _HomeListWidgetState extends State<HomeListWidget> {
                     itemCount: temp.length,
                     itemBuilder: (BuildContext context, int index) {
                       VideoModel model = temp[index];
-                      return Container(
-                        height: 200,
-                        padding: const EdgeInsets.only(left: 24, bottom: 0),
-                        width: (MediaQuery.of(context).size.width - 24) / 2,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              height: 167,
-                              child: Image.network(
-                                model.themeUrl.isNotEmpty
-                                    ? model.themeUrl
-                                    : "https://k.sinaimg.cn/n/sinacn10111/785/w460h325/20181210/af5d-hphsupy6595023.jpg/w700d1q75cms.jpg",
-                                fit: BoxFit.fitWidth,
+                      return GestureDetector(
+                        child: Container(
+                          height: 200,
+                          padding: const EdgeInsets.only(left: 24, bottom: 0),
+                          width: (MediaQuery.of(context).size.width - 24) / 2,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 167,
+                                child: Image.network(
+                                  model.themeUrl.isNotEmpty
+                                      ? model.themeUrl
+                                      : "https://k.sinaimg.cn/n/sinacn10111/785/w460h325/20181210/af5d-hphsupy6595023.jpg/w700d1q75cms.jpg",
+                                  fit: BoxFit.fitWidth,
+                                ),
                               ),
-                            ),
-                            Container(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                model.title,
-                                style: Fonts.subTitle(),
+                              Container(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  model.title,
+                                  style: Fonts.subTitle(),
+                                ),
                               ),
-                            ),
-                            Container(
-                              width: double.infinity,
-                              height: 20,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: double.infinity,
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          width: 13.33,
-                                          height: 12.67,
-                                          child: const Icon(
-                                            Icons.star_rate_rounded,
-                                            size: 13,
-                                            color: Color(0xffffbb38),
+                              Container(
+                                width: double.infinity,
+                                height: 20,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      height: double.infinity,
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            width: 13.33,
+                                            height: 12.67,
+                                            child: const Icon(
+                                              Icons.star_rate_rounded,
+                                              size: 13,
+                                              color: Color(0xffffbb38),
+                                            ),
                                           ),
-                                        ),
-                                        Text("${model.rate ?? 8.4}",
-                                            style: Fonts.subTitle()),
-                                      ],
+                                          Text("${model.rate ?? 8.4}",
+                                              style: Fonts.subTitle()),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(width: 10),
-                                  Text("${model.years}",
-                                      style: Fonts.subTitle()),
-                                  const SizedBox(width: 10),
-                                  Text(model.types, style: Fonts.subTitle()),
-                                ],
+                                    const SizedBox(width: 10),
+                                    Text("${model.years}",
+                                        style: Fonts.subTitle()),
+                                    const SizedBox(width: 10),
+                                    Text(model.types, style: Fonts.subTitle()),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
+                        onTap: () {
+                          widget.click(model);
+                        },
                       );
                     },
                     scrollDirection: Axis.horizontal,

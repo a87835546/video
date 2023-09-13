@@ -24,6 +24,7 @@ import 'home_request.dart';
 
 class HomeInfoPage extends StatefulWidget {
   VideoModel model;
+
   HomeInfoPage({super.key, required this.model});
 
   @override
@@ -159,6 +160,7 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
                       ),
                     ),
                     VideoInfoDescWidget(
+                        desc: widget.model.desc,
                         show: show,
                         clickMore: (val) {
                           setState(() {

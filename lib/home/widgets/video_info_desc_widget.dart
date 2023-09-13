@@ -6,9 +6,15 @@ import '../../core/utils/size_utils.dart';
 import '../../theme/custom_text_style.dart';
 
 class VideoInfoDescWidget extends StatefulWidget {
+  String desc;
   bool show;
   Function(bool) clickMore;
-  VideoInfoDescWidget({super.key, required this.show, required this.clickMore});
+
+  VideoInfoDescWidget(
+      {super.key,
+      required this.show,
+      required this.clickMore,
+      required this.desc});
 
   @override
   State<StatefulWidget> createState() {
@@ -28,17 +34,15 @@ class VideoInfoDescWidgetState extends State<VideoInfoDescWidget> {
           child: RichText(
               text: TextSpan(children: [
                 TextSpan(
-                    text:
-                        "A Star Wars Story itself focuses on the Rebel Alliance which recruits Jyn Erso (Felicity Jones) after the formation of the Galaxy earning his livin... ",
+                    text: widget.desc,
                     style: CustomTextStyles.bodyMediumGray400),
                 TextSpan(
-                    text: "More",
+                    text: widget.desc.length < 20 ? "" : "More",
                     style: CustomTextStyles.titleSmallLightblueA70001_1)
               ]),
               textAlign: TextAlign.left),
         ),
         onTap: () {
-          log("click more");
           widget.show = !widget.show;
           widget.clickMore(widget.show);
         },
