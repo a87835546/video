@@ -32,8 +32,10 @@ Future<List<MenuModel>> getMenu() async {
   }
 }
 
-Future<HomeModel?> getVideos(int id) async {
-  EasyLoading.showProgress(1);
+Future<HomeModel?> getVideos(int id, bool isPull) async {
+  if (isPull) {
+    EasyLoading.showProgress(1);
+  }
   var result =
       await HttpManager.get(url: "videos/queryList", params: {"menu_id": id});
   try {

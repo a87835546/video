@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage> {
   List<HomeBanner> views = [];
   @override
   void initState() {
+    log("home page initState");
     super.initState();
     Future.delayed(Duration.zero, () {
       getData();

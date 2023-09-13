@@ -37,20 +37,22 @@ class HomeBannerState extends State<HomeBanner> {
     initialRefresh: false,
   );
   HomeModel? model;
-
+  bool pull = false;
   @override
   void initState() {
     super.initState();
+    log("initState --->>> ${widget.type} ${widget.title} ${pull}");
     Future.delayed(Duration.zero, () {
       getData();
     });
   }
 
   void getData() async {
-    var videos = await getVideos(widget.type);
+    var videos = await getVideos(widget.type, pull);
     log("list--->>${widget.type} --->>> $videos");
     setState(() {
       model = videos;
+      pull = false;
     });
   }
 
@@ -72,6 +74,9 @@ class HomeBannerState extends State<HomeBanner> {
         ),
         onRefresh: () {
           log("refresh");
+          setState(() {
+            pull = true;
+          });
           _refreshController.refreshCompleted();
           getData();
         },
