@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video/home/menu_model.dart';
 import 'package:video/home/video_model.dart';
 
@@ -13,12 +15,15 @@ Future<List<MenuModel>> getMenu() async {
   try {
     if (result["code"] == 200) {
       EasyLoading.dismiss();
-      // log("menu list $result");
       List<MenuModel> list = [];
       List<dynamic> data = result["data"];
       data.asMap().forEach((key, value) {
         list.add(MenuModel.fromJson(value));
       });
+      SharedPreferences _prefs = await SharedPreferences.getInstance();
+      var val = await _prefs.setString("menu/list", jsonEncode(list));
+      log("缓存menu成功 $val");
+
       return Future.value(list);
     } else {
       EasyLoading.showError(result["message"] ?? "Delete Account Error");
@@ -43,6 +48,10 @@ Future<HomeModel?> getVideos(int id, bool isPull) async {
       EasyLoading.dismiss();
       Map<String, dynamic> data = result["data"];
       HomeModel model = HomeModel.fromJson(data);
+      SharedPreferences _prefs = await SharedPreferences.getInstance();
+      bool val = await _prefs.setString(
+          "videos/queryList?menu_id=$id", jsonEncode(data));
+      log("缓存视频页面成功 $val  menu_id $id");
       return Future.value(model);
     } else {
       EasyLoading.showError(result["message"] ?? "Delete Account Error");

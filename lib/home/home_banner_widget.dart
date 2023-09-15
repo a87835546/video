@@ -23,8 +23,9 @@ import 'home_request.dart';
 class HomeBanner extends StatefulWidget {
   final int type;
   final String title;
+  HomeModel? model;
 
-  const HomeBanner({super.key, required this.type, required this.title});
+  HomeBanner({super.key, required this.type, required this.title, this.model});
 
   @override
   State<StatefulWidget> createState() {
@@ -32,7 +33,8 @@ class HomeBanner extends StatefulWidget {
   }
 }
 
-class HomeBannerState extends State<HomeBanner> {
+class HomeBannerState extends State<HomeBanner>
+    with AutomaticKeepAliveClientMixin {
   final RefreshController _refreshController = RefreshController(
     initialRefresh: false,
   );
@@ -41,7 +43,6 @@ class HomeBannerState extends State<HomeBanner> {
   @override
   void initState() {
     super.initState();
-    log("initState --->>> ${widget.type} ${widget.title} ${pull}");
     Future.delayed(Duration.zero, () {
       getData();
     });
@@ -49,7 +50,6 @@ class HomeBannerState extends State<HomeBanner> {
 
   void getData() async {
     var videos = await getVideos(widget.type, pull);
-    log("list--->>${widget.type} --->>> $videos");
     setState(() {
       model = videos;
       pull = false;
@@ -132,7 +132,9 @@ class HomeBannerState extends State<HomeBanner> {
                         }).toList())
                     : const SizedBox(height: 10),
                 Column(
-                  children: model!.videoModel.map((e) {
+                  children:
+                      (model?.videoModel ?? widget.model?.videoModel ?? [])
+                          .map((e) {
                     return Container(
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       child: HomeHotBannerWidget(
@@ -173,6 +175,9 @@ class HomeBannerState extends State<HomeBanner> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class HomeBannerItemWidget extends StatefulWidget {

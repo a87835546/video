@@ -17,6 +17,9 @@ class MenuModel {
         desc: map['desc'] ?? "",
         id: map['id']);
   }
+  Map toJson() {
+    return {"title": title, "title_en": title_en, "desc": desc, "id": id};
+  }
 
   @override
   String toString() {

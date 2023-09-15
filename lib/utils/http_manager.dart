@@ -30,13 +30,13 @@ class HttpManager {
 
   static String baseUrl = _debug
       ? (AppSingleton.devMode == DevMode.local
-          ? "http://13.213.40.209:8080/api/v1/"
+          ? "http://46.137.238.56:8080/api/v1/"
           : (AppSingleton.devMode == DevMode.staging
               ? "https://staging.resiklos.app/api/v1/"
-              : "http://13.213.40.209:8080/api/v1/"))
+              : "http://46.137.238.56:8080/api/v1/"))
       : ((AppSingleton.devMode == DevMode.staging
           ? "https://staging.resiklos.app/api/v1/"
-          : "http://13.213.40.209:8080/api/v1/"));
+          : "http://46.137.238.56:8080/api/v1/"));
 
   static String merchantUrl = _debug
       ? "https://backend.stg.resiklos.app/"
@@ -103,7 +103,8 @@ class HttpManager {
     // String _token = AppSingleton.userInfoModel?.token ?? "";
     headers ??= {};
     // headers.putIfAbsent("token", () => _token);
-    Options options = Options(headers: headers, sendTimeout: timeout);
+    Options options = Options(
+        headers: headers, sendTimeout: timeout, extra: {"noCache": false});
     log("post request params $params");
     log("post request headers $headers");
     CancelToken token = CancelToken();
@@ -202,7 +203,7 @@ class HttpInterceptor extends Interceptor {
     }
     // log("http interceptor request  options headers: ${options.headers}");
     // log("http interceptor request  options queryParameters: ${options.queryParameters}");
-    log("http interceptor request  options path: ${options.path}");
+    // log("http interceptor request  options path: ${options.path}");
     handler.next(options);
   }
 }

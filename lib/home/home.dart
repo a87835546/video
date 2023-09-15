@@ -1,12 +1,14 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video/home/home_request.dart';
 
 import '../app_singleton.dart';
 import '../generated/l10n.dart';
-import '../utils/platform_utils.dart';
 import 'home_banner_widget.dart';
+import 'home_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,14 +19,18 @@ class HomePage extends StatefulWidget {
   }
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
   List<Tab> tabs = [];
   List<HomeBanner> views = [];
+  HomeModel? defaultModel;
+
   @override
   void initState() {
     log("home page initState");
     super.initState();
     Future.delayed(Duration.zero, () {
+      getDefaultData();
       getData();
     });
   }
@@ -33,6 +39,20 @@ class _HomePageState extends State<HomePage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     getData();
+  }
+
+  void getDefaultData() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    String? val = await _prefs.getString("videos/queryList?menu_id=1");
+    log("缓存数据--->> $val");
+    if (val != null) {
+      Map<String, dynamic> data = json.decode(val);
+      HomeModel model = HomeModel.fromJson(data);
+      setState(() {
+        defaultModel = model;
+        log("缓存数据 model--->> $model");
+      });
+    }
   }
 
   void getData() async {
@@ -82,7 +102,12 @@ class _HomePageState extends State<HomePage> {
                 AppSingleton.singleton?.info?.locale == const Locale("en", "US")
                     ? element.title_en
                     : element.title));
-        temp1.add(HomeBanner(type: element.id, title: element.title));
+        var h = HomeBanner(type: element.id, title: element.title);
+        if (h.type == 1) {
+          h = HomeBanner(
+              type: element.id, title: element.title, model: defaultModel);
+        }
+        temp1.add(h);
       }
       setState(() {
         tabs = temp;
@@ -132,4 +157,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
