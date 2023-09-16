@@ -9,7 +9,7 @@ class VideoModel {
   String title = "";
   String menuTitle = "";
   String desc = "";
-  String categoryId = "";
+  num categoryId = 0;
   String author = "";
   String actor = "";
   String themeUrl = "";

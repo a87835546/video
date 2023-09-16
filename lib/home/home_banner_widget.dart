@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:ui';
 
 import 'package:banner_carousel/banner_carousel.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -114,7 +115,7 @@ class HomeBannerState extends State<HomeBanner>
                                       title: e.title,
                                       desc: e.desc,
                                       id: 0,
-                                      categoryId: "",
+                                      categoryId: 0,
                                       author: "",
                                       themeUrl: e.videoThemeUrl,
                                       types: e.types,
@@ -229,9 +230,21 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                     height: double.infinity,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: NetworkImage(widget.model.videoThemeUrl),
-                      ),
+                          fit: BoxFit.fill,
+                          image: FadeInImage(
+                            placeholder: AssetImage("assets/error.png"),
+                            fit: BoxFit.fill,
+                            image: NetworkImage(widget.videoModel?.themeUrl ??
+                                "https://cdn.dribbble.com/users/28726/screenshots/1192614/img-placeholder.gif"),
+                            fadeInDuration: const Duration(milliseconds: 5),
+                            fadeOutDuration: const Duration(milliseconds: 5),
+                            imageErrorBuilder: (c, o, s) => Image.asset(
+                              "assets/error.png",
+                              height: 200,
+                              width: 200,
+                              fit: BoxFit.cover,
+                            ),
+                          ).image),
                       gradient: const LinearGradient(
                         begin: Alignment(0, -1),
                         end: Alignment(0, 1),
