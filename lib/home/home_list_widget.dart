@@ -78,14 +78,23 @@ class HomeListWidgetState extends State<HomeListWidget> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                height: 167,
-                                child: Image.network(
-                                  model.themeUrl.isNotEmpty
-                                      ? model.themeUrl
-                                      : "https://k.sinaimg.cn/n/sinacn10111/785/w460h325/20181210/af5d-hphsupy6595023.jpg/w700d1q75cms.jpg",
-                                  fit: BoxFit.fitWidth,
-                                ),
-                              ),
+                                  height: 167,
+                                  child: FadeInImage(
+                                    placeholder: AssetImage("assets/error.png"),
+                                    fit: BoxFit.fill,
+                                    image: NetworkImage(model.themeUrl ??
+                                        "https://cdn.dribbble.com/users/28726/screenshots/1192614/img-placeholder.gif"),
+                                    fadeInDuration:
+                                        const Duration(milliseconds: 5),
+                                    fadeOutDuration:
+                                        const Duration(milliseconds: 5),
+                                    imageErrorBuilder: (c, o, s) => Image.asset(
+                                      "assets/error.png",
+                                      height: 200,
+                                      width: 200,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )),
                               Container(
                                 alignment: Alignment.centerLeft,
                                 child: Text(

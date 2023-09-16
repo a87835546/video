@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:video/core/app_export.dart';
-import 'package:video/home/widgets/moviecard4_item_widget.dart';
 import 'package:video/widgets/custom_icon_button.dart';
 
 class PlayerInfoPage extends StatefulWidget {

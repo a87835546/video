@@ -3,8 +3,6 @@ import 'dart:developer';
 import 'dart:ui';
 
 import 'package:banner_carousel/banner_carousel.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';

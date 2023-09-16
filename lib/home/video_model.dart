@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:video/home/video_urls_model.dart';
 
 class VideoModel {

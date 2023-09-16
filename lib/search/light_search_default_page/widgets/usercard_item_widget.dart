@@ -3,10 +3,7 @@ import 'package:video/core/app_export.dart';
 
 // ignore: must_be_immutable
 class UsercardItemWidget extends StatelessWidget {
-  const UsercardItemWidget({Key? key})
-      : super(
-          key: key,
-        );
+  const UsercardItemWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

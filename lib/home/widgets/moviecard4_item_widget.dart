@@ -52,7 +52,7 @@ class MovieCard4ItemWidget extends StatelessWidget {
                 bottom: 49,
               ),
               child: Text(
-                model.title ?? "12312312dsas",
+                model.title,
                 style: theme.textTheme.bodyLarge,
               ),
             ),
