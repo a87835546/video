@@ -39,9 +39,21 @@ class _HomeHotBannerItemWidgetState extends State<HomeHotBannerItemWidget> {
               height: 160,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                    fit: BoxFit.fitHeight,
-                    image: NetworkImage(widget.model.themeUrl),
-                  ),
+                      fit: BoxFit.fill,
+                      image: FadeInImage(
+                        placeholder: AssetImage("assets/error.png"),
+                        fit: BoxFit.fill,
+                        image: NetworkImage(widget.model.themeUrl ??
+                            "https://cdn.dribbble.com/users/28726/screenshots/1192614/img-placeholder.gif"),
+                        fadeInDuration: const Duration(milliseconds: 5),
+                        fadeOutDuration: const Duration(milliseconds: 5),
+                        imageErrorBuilder: (c, o, s) => Image.asset(
+                          "assets/error.png",
+                          height: 200,
+                          width: 200,
+                          fit: BoxFit.cover,
+                        ),
+                      ).image),
                   gradient: const LinearGradient(
                     begin: Alignment(0, -1),
                     end: Alignment(0, 1),

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:ui';
 
@@ -7,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video/home/home_info_page.dart';
 import 'package:video/home/home_player_in_web.dart';
 import 'package:video/home/video_model.dart';
@@ -16,7 +18,6 @@ import '../utils/navigation.dart';
 import '../widgets/home_rate_widget.dart';
 import 'home_banner_model.dart';
 import 'home_hot_banner_widget.dart';
-import 'home_list_widget.dart';
 import 'home_model.dart';
 import 'home_popular_star_widget.dart';
 import 'home_request.dart';
@@ -39,20 +40,33 @@ class HomeBannerState extends State<HomeBanner>
   final RefreshController _refreshController = RefreshController(
     initialRefresh: false,
   );
-  HomeModel? model;
+  HomeModel? defaultModel;
   bool pull = false;
   @override
   void initState() {
     super.initState();
     Future.delayed(Duration.zero, () {
+      getDefaultData();
       getData();
     });
+  }
+
+  void getDefaultData() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    String? val = _prefs.getString("videos/queryList?menu_id=${widget.type}");
+    if (val != null) {
+      Map<String, dynamic> data = json.decode(val);
+      HomeModel mo = HomeModel.fromJson(data);
+      setState(() {
+        defaultModel = mo;
+      });
+    }
   }
 
   void getData() async {
     var videos = await getVideos(widget.type, pull);
     setState(() {
-      model = videos;
+      defaultModel = videos;
       pull = false;
     });
   }
@@ -92,7 +106,7 @@ class HomeBannerState extends State<HomeBanner>
             child: Column(
               // physics: NeverScrollableScrollPhysics(),
               children: [
-                model != null && model!.bannerModel.isNotEmpty
+                defaultModel != null && defaultModel!.bannerModel.isNotEmpty
                     ? BannerCarousel.fullScreen(
                         height: 466,
                         animation: true,
@@ -104,7 +118,7 @@ class HomeBannerState extends State<HomeBanner>
                             height: 5,
                             spaceBetween: 2,
                             widthAnimation: 50),
-                        customizedBanners: model?.bannerModel.map((e) {
+                        customizedBanners: defaultModel?.bannerModel.map((e) {
                           return HomeBannerItemWidget(
                             model: e,
                             play: () {
@@ -133,9 +147,10 @@ class HomeBannerState extends State<HomeBanner>
                         }).toList())
                     : const SizedBox(height: 10),
                 Column(
-                  children:
-                      (model?.videoModel ?? widget.model?.videoModel ?? [])
-                          .map((e) {
+                  children: (defaultModel?.videoModel ??
+                          widget.model?.videoModel ??
+                          [])
+                      .map((e) {
                     return Container(
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       child: HomeHotBannerWidget(
@@ -166,8 +181,8 @@ class HomeBannerState extends State<HomeBanner>
                   }).toList(),
                 ),
                 HomePopularStarWidget(
-                  list: model?.videoModel.first.list ?? [],
-                  title: model?.videoModel.first.type ?? "123",
+                  list: defaultModel?.videoModel.first.list ?? [],
+                  title: defaultModel?.videoModel.first.type ?? "123",
                 ),
               ],
             ),

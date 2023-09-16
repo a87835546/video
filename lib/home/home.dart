@@ -43,14 +43,12 @@ class _HomePageState extends State<HomePage>
 
   void getDefaultData() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
-    String? val = await _prefs.getString("videos/queryList?menu_id=1");
-    log("缓存数据--->> $val");
+    String? val = _prefs.getString("videos/queryList?menu_id=1");
     if (val != null) {
       Map<String, dynamic> data = json.decode(val);
       HomeModel model = HomeModel.fromJson(data);
       setState(() {
         defaultModel = model;
-        log("缓存数据 model--->> $model");
       });
     }
   }
