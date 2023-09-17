@@ -128,15 +128,15 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
                           image: DecorationImage(
                               fit: BoxFit.fill,
                               image: FadeInImage(
-                                placeholder: AssetImage("assets/error.png"),
+                                placeholder:
+                                    AssetImage(ImageConstant.imgNetworkError),
                                 fit: BoxFit.fill,
-                                image: NetworkImage(widget.model.themeUrl ??
-                                    "https://cdn.dribbble.com/users/28726/screenshots/1192614/img-placeholder.gif"),
+                                image: NetworkImage(widget.model.themeUrl),
                                 fadeInDuration: const Duration(milliseconds: 5),
                                 fadeOutDuration:
                                     const Duration(milliseconds: 5),
                                 imageErrorBuilder: (c, o, s) => Image.asset(
-                                  "assets/error.png",
+                                  ImageConstant.imgNetworkError,
                                   height: 200,
                                   width: 200,
                                   fit: BoxFit.cover,

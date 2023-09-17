@@ -33,6 +33,7 @@ class CustomImageView extends StatelessWidget {
   ///a [CustomImageView] it can be used for showing any type of images
   /// it will shows the placeholder image if image is not found on network image
   CustomImageView({
+    super.key,
     this.url,
     this.imagePath,
     this.svgPath,
@@ -52,10 +53,7 @@ class CustomImageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return alignment != null
-        ? Align(
-            alignment: alignment!,
-            child: _buildWidget(),
-          )
+        ? Align(alignment: alignment!, child: _buildWidget())
         : _buildWidget();
   }
 

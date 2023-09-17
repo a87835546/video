@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:video/home/video_model.dart';
+import '../core/utils/image_constant.dart';
 import '../utils/fonts.dart';
 import 'home_hot_banner_widget.dart';
 
@@ -80,16 +81,16 @@ class HomeListWidgetState extends State<HomeListWidget> {
                               Container(
                                   height: 167,
                                   child: FadeInImage(
-                                    placeholder: AssetImage("assets/error.png"),
+                                    placeholder: AssetImage(
+                                        ImageConstant.imgNetworkError),
                                     fit: BoxFit.fill,
-                                    image: NetworkImage(model.themeUrl ??
-                                        "https://cdn.dribbble.com/users/28726/screenshots/1192614/img-placeholder.gif"),
+                                    image: NetworkImage(model.themeUrl),
                                     fadeInDuration:
                                         const Duration(milliseconds: 5),
                                     fadeOutDuration:
                                         const Duration(milliseconds: 5),
                                     imageErrorBuilder: (c, o, s) => Image.asset(
-                                      "assets/error.png",
+                                      ImageConstant.imgNetworkError,
                                       height: 200,
                                       width: 200,
                                       fit: BoxFit.cover,

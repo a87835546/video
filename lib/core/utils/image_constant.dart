@@ -46,6 +46,7 @@ class ImageConstant {
       '$imagePath/img_162612vnqme3acl3zpecbe.png';
 
   static String imgAbp8931 = '$imagePath/img_abp8931.png';
+  static String imgNetworkError = '$imagePath/error.png';
 
   static String imgIpz9958 = '$imagePath/img_ipz9958.png';
 

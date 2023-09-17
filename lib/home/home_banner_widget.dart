@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:banner_carousel/banner_carousel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,8 +12,10 @@ import 'package:video/home/home_info_page.dart';
 import 'package:video/home/home_player_in_web.dart';
 import 'package:video/home/video_model.dart';
 
+import '../core/utils/image_constant.dart';
 import '../generated/l10n.dart';
 import '../utils/navigation.dart';
+import '../widgets/custom_image_view.dart';
 import '../widgets/home_rate_widget.dart';
 import 'home_banner_model.dart';
 import 'home_hot_banner_widget.dart';
@@ -149,21 +152,11 @@ class HomeBannerState extends State<HomeBanner>
                           widget.model?.videoModel ??
                           [])
                       .map((e) {
-                    return Container(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: HomeHotBannerWidget(
-                        clickMore: () {
-                          log("click more ${e.type}");
-                        },
-                        clickItem: (data, index) {
-                          log("click index:$index  item:$data");
-                          // Navigation.navigateTo(
-                          //   context: context,
-                          //   screen: HomeInfoPage(
-                          //     model: e.list[index],
-                          //   ),
-                          //   style: NavigationRouteStyle.material,
-                          // );
+                    if (e.type == "周星驰集选") {
+                      return HomePopularStarWidget(
+                        list: e.list,
+                        title: e.type,
+                        click: (val, index) {
                           Navigation.navigateTo(
                             context: context,
                             screen: HomePlayerInWeb(
@@ -172,15 +165,37 @@ class HomeBannerState extends State<HomeBanner>
                             style: NavigationRouteStyle.material,
                           );
                         },
-                        menu: e.type,
-                        videos: e.list,
-                      ),
-                    );
+                      );
+                    } else {
+                      return Container(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: HomeHotBannerWidget(
+                          clickMore: () {
+                            log("click more ${e.type}");
+                          },
+                          clickItem: (data, index) {
+                            log("click index:$index  item:$data");
+                            // Navigation.navigateTo(
+                            //   context: context,
+                            //   screen: HomeInfoPage(
+                            //     model: e.list[index],
+                            //   ),
+                            //   style: NavigationRouteStyle.material,
+                            // );
+                            Navigation.navigateTo(
+                              context: context,
+                              screen: HomePlayerInWeb(
+                                model: e.list[index],
+                              ),
+                              style: NavigationRouteStyle.material,
+                            );
+                          },
+                          menu: e.type,
+                          videos: e.list,
+                        ),
+                      );
+                    }
                   }).toList(),
-                ),
-                HomePopularStarWidget(
-                  list: defaultModel?.videoModel.first.list ?? [],
-                  title: defaultModel?.videoModel.first.type ?? "123",
                 ),
               ],
             ),
@@ -245,14 +260,15 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                       image: DecorationImage(
                           fit: BoxFit.fill,
                           image: FadeInImage(
-                            placeholder: AssetImage("assets/error.png"),
+                            placeholder:
+                                AssetImage(ImageConstant.imgNetworkError),
                             fit: BoxFit.fill,
                             image: NetworkImage(widget.videoModel?.themeUrl ??
-                                "https://cdn.dribbble.com/users/28726/screenshots/1192614/img-placeholder.gif"),
+                                "https://media.tenor.com/wXTO9bFFJXMAAAAC/loading-slow-internet.gif"),
                             fadeInDuration: const Duration(milliseconds: 5),
                             fadeOutDuration: const Duration(milliseconds: 5),
                             imageErrorBuilder: (c, o, s) => Image.asset(
-                              "assets/error.png",
+                              ImageConstant.imgNetworkError,
                               height: 200,
                               width: 200,
                               fit: BoxFit.cover,

@@ -3,12 +3,13 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:video/home/video_model.dart';
+import '../core/utils/image_constant.dart';
 import 'home_hot_banner_widget.dart';
 
 class HomePopularStarWidget extends StatefulWidget {
   final List<VideoModel> list;
   final String title;
-  final Function(VideoModel data)? click;
+  final Function(VideoModel data, int index)? click;
 
   const HomePopularStarWidget(
       {super.key, required this.list, required this.title, this.click});
@@ -47,7 +48,7 @@ class HomePopularStarWidgetState extends State<HomePopularStarWidget> {
                   return GestureDetector(
                     onTap: () {
                       if (widget.click != null) {
-                        widget.click!(model);
+                        widget.click!(model, index);
                       }
                     },
                     behavior: HitTestBehavior.translucent,
@@ -65,15 +66,15 @@ class HomePopularStarWidgetState extends State<HomePopularStarWidget> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(4 * fem),
                               child: FadeInImage(
-                                placeholder: AssetImage("assets/error.png"),
+                                placeholder:
+                                    AssetImage(ImageConstant.imgNetworkError),
                                 fit: BoxFit.fill,
-                                image: NetworkImage(model.themeUrl ??
-                                    "https://cdn.dribbble.com/users/28726/screenshots/1192614/img-placeholder.gif"),
+                                image: NetworkImage(model.themeUrl),
                                 fadeInDuration: const Duration(milliseconds: 5),
                                 fadeOutDuration:
                                     const Duration(milliseconds: 5),
                                 imageErrorBuilder: (c, o, s) => Image.asset(
-                                  "assets/error.png",
+                                  ImageConstant.imgNetworkError,
                                   height: 200,
                                   width: 200,
                                   fit: BoxFit.cover,
