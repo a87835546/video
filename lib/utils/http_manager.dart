@@ -30,7 +30,7 @@ class HttpManager {
 
   static String baseUrl = _debug
       ? (AppSingleton.devMode == DevMode.local
-          ? "http://46.137.238.56:8080/api/v1/"
+          ? "http://172.21.165.64:8080/api/v1/"
           : (AppSingleton.devMode == DevMode.staging
               ? "https://staging.resiklos.app/api/v1/"
               : "http://46.137.238.56:8080/api/v1/"))
@@ -203,7 +203,7 @@ class HttpInterceptor extends Interceptor {
     }
     // log("http interceptor request  options headers: ${options.headers}");
     // log("http interceptor request  options queryParameters: ${options.queryParameters}");
-    // log("http interceptor request  options path: ${options.path}");
+    log("http interceptor request  options path: ${options.path}");
     handler.next(options);
   }
 }

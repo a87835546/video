@@ -1,11 +1,11 @@
 import 'dart:developer';
 
-import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:video/home/video_model.dart';
 import 'package:video/home/widgets/moviecard4_item_widget.dart';
 import 'package:video/home/widgets/video_info_desc_widget.dart';
 import 'package:video_player/video_player.dart';
+import 'package:vimeo_video_player/vimeo_video_player.dart';
 
 import '../core/utils/image_constant.dart';
 import '../core/utils/size_utils.dart';
@@ -30,7 +30,7 @@ class HomePlayerInWeb extends StatefulWidget {
 class HomePlayerInWebState extends State<HomePlayerInWeb> {
   TargetPlatform? _platform;
   late VideoPlayerController _videoPlayerController1;
-  ChewieController? _chewieController;
+  // ChewieController? _chewieController;
   int? bufferDelay;
 
   @override
@@ -45,14 +45,13 @@ class HomePlayerInWebState extends State<HomePlayerInWeb> {
     await Future.wait([
       _videoPlayerController1.initialize(),
     ]);
-    _createChewieController();
     setState(() {});
   }
 
   @override
   void dispose() {
     _videoPlayerController1.dispose();
-    _chewieController?.dispose();
+    // _chewieController?.dispose();
     // TODO: implement dispose
     super.dispose();
   }
@@ -60,72 +59,6 @@ class HomePlayerInWebState extends State<HomePlayerInWeb> {
   Future<void> toggleVideo() async {
     await _videoPlayerController1.pause();
     await initializePlayer();
-  }
-
-  void _createChewieController() {
-    final subtitles = [
-      Subtitle(
-        index: 0,
-        start: Duration.zero,
-        end: const Duration(seconds: 10),
-        text: const TextSpan(
-          children: [
-            TextSpan(
-              text: 'Hello',
-              style: TextStyle(color: Colors.red, fontSize: 22),
-            ),
-            TextSpan(
-              text: ' from ',
-              style: TextStyle(color: Colors.green, fontSize: 20),
-            ),
-            TextSpan(
-              text: 'subtitles',
-              style: TextStyle(color: Colors.blue, fontSize: 18),
-            )
-          ],
-        ),
-      ),
-      Subtitle(
-        index: 0,
-        start: const Duration(seconds: 10),
-        end: const Duration(seconds: 20),
-        text: 'Whats up? :)',
-        // text: const TextSpan(
-        //   text: 'Whats up? :)',
-        //   style: TextStyle(color: Colors.amber, fontSize: 22, fontStyle: FontStyle.italic),
-        // ),
-      ),
-    ];
-
-    _chewieController = ChewieController(
-      videoPlayerController: _videoPlayerController1,
-      autoPlay: true,
-      looping: true,
-      progressIndicatorDelay:
-          bufferDelay != null ? Duration(milliseconds: bufferDelay!) : null,
-      additionalOptions: (context) {
-        return <OptionItem>[
-          OptionItem(
-            onTap: toggleVideo,
-            iconData: Icons.live_tv_sharp,
-            title: 'Toggle Video Src',
-          ),
-        ];
-      },
-      subtitle: Subtitles(subtitles),
-      subtitleBuilder: (context, dynamic subtitle) => Container(
-        padding: const EdgeInsets.all(10.0),
-        child: subtitle is InlineSpan
-            ? RichText(
-                text: subtitle,
-              )
-            : Text(
-                subtitle.toString(),
-                style: const TextStyle(color: Colors.black),
-              ),
-      ),
-      hideControlsTimer: const Duration(seconds: 1),
-    );
   }
 
   bool show = false;
@@ -161,25 +94,20 @@ class HomePlayerInWebState extends State<HomePlayerInWeb> {
         children: <Widget>[
           Expanded(
             child: Center(
-              child: _chewieController != null &&
-                      _chewieController!
-                          .videoPlayerController.value.isInitialized
-                  ? Chewie(
-                      controller: _chewieController!,
-                    )
-                  : const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircularProgressIndicator(),
-                        SizedBox(height: 20),
-                        Text('Loading'),
-                      ],
-                    ),
-            ),
+                child: VimeoVideoPlayer(
+              vimeoPlayerModel: VimeoPlayerModel(
+                  url: widget.model.url,
+                  onProgress: (v) {
+                    log("loading --->>> $v");
+                  },
+                  onFinished: () {
+                    log("finished");
+                  }),
+            )),
           ),
           TextButton(
             onPressed: () {
-              _chewieController?.enterFullScreen();
+              // _chewieController?.enterFullScreen();
             },
             child: const Text('Fullscreen'),
           ),
@@ -191,7 +119,6 @@ class HomePlayerInWebState extends State<HomePlayerInWeb> {
                     setState(() {
                       _videoPlayerController1.pause();
                       _videoPlayerController1.seekTo(Duration.zero);
-                      _createChewieController();
                     });
                   },
                   child: const Padding(

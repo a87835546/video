@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'dart:ui';
 
 import 'package:banner_carousel/banner_carousel.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,13 +15,14 @@ import 'package:video/home/video_model.dart';
 import '../core/utils/image_constant.dart';
 import '../generated/l10n.dart';
 import '../utils/navigation.dart';
-import '../widgets/custom_image_view.dart';
 import '../widgets/home_rate_widget.dart';
 import 'home_banner_model.dart';
 import 'home_hot_banner_widget.dart';
 import 'home_model.dart';
+import 'home_player_hls.dart';
 import 'home_popular_star_widget.dart';
 import 'home_request.dart';
+import 'package:universal_html/html.dart' as html;
 
 class HomeBanner extends StatefulWidget {
   final int type;
@@ -120,31 +121,31 @@ class HomeBannerState extends State<HomeBanner>
                             spaceBetween: 2,
                             widthAnimation: 50),
                         customizedBanners: defaultModel?.bannerModel.map((e) {
+                          var vm = VideoModel(
+                              title: e.title,
+                              desc: e.desc,
+                              id: 0,
+                              categoryId: 0,
+                              author: "",
+                              themeUrl: e.videoThemeUrl,
+                              types: e.types,
+                              rate: e.rate,
+                              actor: e.actor,
+                              menuTitle: widget.title,
+                              years: e.years,
+                              url: e.videoUrl);
                           return HomeBannerItemWidget(
-                            model: e,
-                            play: () {
-                              Navigation.navigateTo(
-                                context: context,
-                                screen: HomeInfoPage(
-                                  model: VideoModel(
-                                      title: e.title,
-                                      desc: e.desc,
-                                      id: 0,
-                                      categoryId: 0,
-                                      author: "",
-                                      themeUrl: e.videoThemeUrl,
-                                      types: e.types,
-                                      rate: e.rate,
-                                      actor: e.actor,
-                                      menuTitle: widget.title,
-                                      years: e.years,
-                                      url: e.videoUrl),
-                                ),
-                                style: NavigationRouteStyle.material,
-                              );
-                            },
-                            videoModel: null,
-                          );
+                              model: e,
+                              play: () {
+                                Navigation.navigateTo(
+                                  context: context,
+                                  screen: HomeInfoPage(
+                                    model: vm,
+                                  ),
+                                  style: NavigationRouteStyle.material,
+                                );
+                              },
+                              videoModel: vm);
                         }).toList())
                     : const SizedBox(height: 10),
                 Column(
@@ -174,21 +175,33 @@ class HomeBannerState extends State<HomeBanner>
                             log("click more ${e.type}");
                           },
                           clickItem: (data, index) {
-                            log("click index:$index  item:$data");
+                            log("click index:$index  item:$data  is web:$kIsWeb");
+
+                            if (kIsWeb) {
+                              Navigation.navigateTo(
+                                context: context,
+                                screen: VideoApp(
+                                  model: e.list[index],
+                                ),
+                                style: NavigationRouteStyle.material,
+                              );
+                            } else {
+                              Navigation.navigateTo(
+                                context: context,
+                                screen: HomeInfoPage(
+                                  model: e.list[index],
+                                ),
+                                style: NavigationRouteStyle.material,
+                              );
+                            }
+
                             // Navigation.navigateTo(
                             //   context: context,
-                            //   screen: HomeInfoPage(
+                            //   screen: HomePlayerInWeb(
                             //     model: e.list[index],
                             //   ),
                             //   style: NavigationRouteStyle.material,
                             // );
-                            Navigation.navigateTo(
-                              context: context,
-                              screen: HomePlayerInWeb(
-                                model: e.list[index],
-                              ),
-                              style: NavigationRouteStyle.material,
-                            );
                           },
                           menu: e.type,
                           videos: e.list,
@@ -263,8 +276,7 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                             placeholder:
                                 AssetImage(ImageConstant.imgNetworkError),
                             fit: BoxFit.fill,
-                            image: NetworkImage(widget.videoModel?.themeUrl ??
-                                "https://media.tenor.com/wXTO9bFFJXMAAAAC/loading-slow-internet.gif"),
+                            image: NetworkImage(widget.model.videoThemeUrl),
                             fadeInDuration: const Duration(milliseconds: 5),
                             fadeOutDuration: const Duration(milliseconds: 5),
                             imageErrorBuilder: (c, o, s) => Image.asset(
