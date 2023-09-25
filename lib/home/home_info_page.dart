@@ -307,14 +307,12 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
                       )
                     ],
                   ),
-                  Text(widget.model.title ?? "侠盗一号：星球大战故事",
+                  Text(widget.model.title,
                       style: theme.textTheme.headlineSmall),
                   Container(
                       width: getHorizontalSize(322),
                       margin: getMargin(top: 16),
-                      child: Text(
-                          widget.model.desc ??
-                              "《侠盗一号》广泛获得积极的评价，包括赞赏它的演技、动作场面、配乐及暗色调，虽然有些批评是针对其性格描写，和电影中使用电脑合成图像来显示演员相似的肖像。该片在全球获得超过10亿美元的票房，成为2016年最卖座的电影第二位，并获得奥斯卡奖的两项提名，分别是最佳混音和最佳视觉效果。",
+                      child: Text(widget.model.desc,
                           maxLines: 6,
                           overflow: TextOverflow.ellipsis,
                           style: CustomTextStyles.bodyMediumGray500

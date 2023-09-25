@@ -156,7 +156,7 @@ class HomeBannerState extends State<HomeBanner>
                     if (e.type == "周星驰集选") {
                       return HomePopularStarWidget(
                         list: e.list,
-                        title: e.type,
+                        menu: e.type,
                         click: (val, index) {
                           Navigation.navigateTo(
                             context: context,

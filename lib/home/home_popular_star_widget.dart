@@ -8,11 +8,11 @@ import 'home_hot_banner_widget.dart';
 
 class HomePopularStarWidget extends StatefulWidget {
   final List<VideoModel> list;
-  final String title;
+  final String menu;
   final Function(VideoModel data, int index)? click;
 
   const HomePopularStarWidget(
-      {super.key, required this.list, required this.title, this.click});
+      {super.key, required this.list, this.click, required this.menu});
 
   @override
   State<StatefulWidget> createState() {
@@ -30,7 +30,7 @@ class HomePopularStarWidgetState extends State<HomePopularStarWidget> {
         Container(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: HomeBannerTopView(
-            menu: "123",
+            menu: widget.menu,
             clickMore: () {
               log("click popular star view more");
             },
@@ -83,7 +83,7 @@ class HomePopularStarWidgetState extends State<HomePopularStarWidget> {
                             ),
                           ),
                           Text(
-                            model.title ?? 'Emma Watson',
+                            model.title,
                             style: GoogleFonts.zenKakuGothicNew(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
