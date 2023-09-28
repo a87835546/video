@@ -68,7 +68,7 @@ class HomePlayerInWebState extends State<HomePlayerInWeb> {
   List<VideoModel> sameList = [];
 
   void watch() async {
-    watchRequest(widget.model.id, 1);
+    watchRequest(widget.model.id);
   }
 
   void getData() async {

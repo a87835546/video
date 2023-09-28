@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "aboutUs": MessageLookupByLibrary.simpleMessage("About US"),
         "actionFilms": MessageLookupByLibrary.simpleMessage("Action Films"),
         "animation": MessageLookupByLibrary.simpleMessage("Animation"),
         "appName": MessageLookupByLibrary.simpleMessage("Headline Film"),
@@ -32,6 +33,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "comedyFilms": MessageLookupByLibrary.simpleMessage("Comedy Films"),
         "community": MessageLookupByLibrary.simpleMessage("COMMUNITY"),
         "communityPage": MessageLookupByLibrary.simpleMessage("Community Page"),
+        "contractNumber":
+            MessageLookupByLibrary.simpleMessage("Contract Number"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
         "general": MessageLookupByLibrary.simpleMessage("General"),
         "healthy": MessageLookupByLibrary.simpleMessage("HEALTHY"),
         "healthyPage": MessageLookupByLibrary.simpleMessage("Healthy Page"),
@@ -50,6 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Movies Billboard"),
         "noData": MessageLookupByLibrary.simpleMessage("No Data"),
         "otherFilms": MessageLookupByLibrary.simpleMessage(" Other Films"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
         "play": MessageLookupByLibrary.simpleMessage("Play"),
         "popularStarBillboard":
             MessageLookupByLibrary.simpleMessage("Popular Star Billboard"),
@@ -57,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "searchPage": MessageLookupByLibrary.simpleMessage("search Page"),
         "series": MessageLookupByLibrary.simpleMessage("Series"),
+        "setting": MessageLookupByLibrary.simpleMessage("Setting"),
         "title": MessageLookupByLibrary.simpleMessage("国际化示例App"),
         "variety": MessageLookupByLibrary.simpleMessage("Variety")
       };

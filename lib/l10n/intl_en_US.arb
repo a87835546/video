@@ -204,6 +204,36 @@
     "description": "头条影视",
     "type": "text",
     "placeholders": {}
+  },
+  "setting": "Setting",
+  "@setting": {
+    "description": "设置",
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Email",
+  "@email": {
+    "description": "电子邮箱",
+    "type": "text",
+    "placeholders": {}
+  },
+  "contractNumber": "Contract Number",
+  "@contractNumber": {
+    "description": "联系方式",
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutUs": "About US",
+  "@aboutUs": {
+    "description": "关于我们",
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "Password",
+  "@password": {
+    "description": "密码",
+    "type": "text",
+    "placeholders": {}
   }
 
 }

@@ -4,7 +4,7 @@ class HomeBannerModel {
   String actor = "";
   String types = "";
   String rate = "";
-  num years = 2023;
+  dynamic years = "2023";
   String menuTitle = "";
   int id;
   String videoUrl = "";
@@ -39,6 +39,6 @@ class HomeBannerModel {
 
   @override
   String toString() {
-    return 'HomeBannerModel{title: $title, desc: $desc, id: $id, videoUrl: $videoUrl, videoThemeUrl: $videoThemeUrl, menuId: $menuId, videoId: $videoId}';
+    return 'HomeBannerModel{title: $title, desc: $desc, actor: $actor, types: $types, rate: $rate, years: $years, menuTitle: $menuTitle, id: $id, videoUrl: $videoUrl, videoThemeUrl: $videoThemeUrl, menuId: $menuId, videoId: $videoId}';
   }
 }

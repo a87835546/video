@@ -80,7 +80,7 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
   }
 
   void watch() async {
-    watchRequest(widget.model.id, 1);
+    watchRequest(widget.model.id);
   }
 
   void getData() async {

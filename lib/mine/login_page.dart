@@ -1,11 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:video/app_singleton.dart';
 import 'package:video/core/app_export.dart';
-import 'package:video/home/home.dart';
 import 'package:video/mine/mine_request.dart';
 import 'package:video/mine/user_model.dart';
-import 'package:video/utils/navigator_util.dart';
 import 'package:video/widgets/app_bar/appbar_image_1.dart';
 import 'package:video/widgets/app_bar/appbar_subtitle_1.dart';
 import 'package:video/widgets/app_bar/custom_app_bar.dart';
@@ -85,14 +84,11 @@ class LoginPage extends StatelessWidget {
                 margin: getMargin(top: 14),
                 onTap: () async {
                   log("login page click login");
-                  UserModel model = await login(
+                  UserModel? model = await login(
                       mailController.value.text, lockController.value.text);
                   if (model != null && context.mounted) {
-                    Navigation.navigateTo(
-                      context: context,
-                      screen: const HomePage(),
-                      style: NavigationRouteStyle.cupertino,
-                    );
+                    Navigator.of(context).pop();
+                    AppSingleton.pageController?.jumpToPage(0);
                   }
                 },
               ),

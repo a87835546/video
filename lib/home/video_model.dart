@@ -13,7 +13,7 @@ class VideoModel {
   String themeUrl = "";
   String types = "";
   String rate = "";
-  num years = 0;
+  dynamic years = "0";
 
   VideoModel(
       {required this.title,

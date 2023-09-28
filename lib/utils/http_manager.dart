@@ -30,13 +30,13 @@ class HttpManager {
 
   static String baseUrl = _debug
       ? (AppSingleton.devMode == DevMode.local
-          ? "http://54.179.162.190:8080/api/v1/"
+          ? "http://127.0.0.1:8080/api/v1/"
           : (AppSingleton.devMode == DevMode.staging
               ? "https://staging.resiklos.app/api/v1/"
-              : "http://46.137.238.56:8080/api/v1/"))
+              : "http://54.179.162.190:8080/api/v1/"))
       : ((AppSingleton.devMode == DevMode.staging
           ? "https://staging.resiklos.app/api/v1/"
-          : "http://46.137.238.56:8080/api/v1/"));
+          : "http://54.179.162.190:8080/api/v1/"));
 
   static String merchantUrl = _debug
       ? "https://backend.stg.resiklos.app/"

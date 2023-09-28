@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:video/app_singleton.dart';
 import 'package:video/home/menu_model.dart';
 import 'package:video/home/video_model.dart';
 
@@ -114,10 +115,12 @@ Future<List<VideoModel>> getVideosByName(String id) async {
   }
 }
 
-Future<bool> watchRequest(num vid, uid) async {
+Future<bool> watchRequest(num vid) async {
   EasyLoading.showProgress(1);
-  var result = await HttpManager.get(
-      url: "videos/click", params: {"user_id": "$uid", "video_id": "$vid"});
+  var result = await HttpManager.get(url: "videos/click", params: {
+    "user_id": "${AppSingleton.getInstance().userModel?.id ?? 3}",
+    "video_id": "$vid"
+  });
   try {
     if (result["code"] == 200) {
       EasyLoading.dismiss();

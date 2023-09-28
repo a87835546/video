@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "aboutUs": MessageLookupByLibrary.simpleMessage("关于我们"),
         "actionFilms": MessageLookupByLibrary.simpleMessage("动作片"),
         "animation": MessageLookupByLibrary.simpleMessage("动漫"),
         "appName": MessageLookupByLibrary.simpleMessage("Headline Film"),
@@ -32,6 +33,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "comedyFilms": MessageLookupByLibrary.simpleMessage("喜剧片"),
         "community": MessageLookupByLibrary.simpleMessage("社区"),
         "communityPage": MessageLookupByLibrary.simpleMessage("宠物社交"),
+        "contractNumber": MessageLookupByLibrary.simpleMessage("联系方式r"),
+        "email": MessageLookupByLibrary.simpleMessage("电子邮箱"),
         "general": MessageLookupByLibrary.simpleMessage("通用"),
         "healthy": MessageLookupByLibrary.simpleMessage("健康"),
         "healthyPage": MessageLookupByLibrary.simpleMessage("宠物健康页面"),
@@ -49,12 +52,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "movieBillboard": MessageLookupByLibrary.simpleMessage("院线大片"),
         "noData": MessageLookupByLibrary.simpleMessage("没有数据"),
         "otherFilms": MessageLookupByLibrary.simpleMessage("其他类型"),
+        "password": MessageLookupByLibrary.simpleMessage("密码"),
         "play": MessageLookupByLibrary.simpleMessage("立即观看"),
         "popularStarBillboard": MessageLookupByLibrary.simpleMessage("明星排行榜"),
         "pron": MessageLookupByLibrary.simpleMessage("午夜"),
         "search": MessageLookupByLibrary.simpleMessage("立即查找"),
         "searchPage": MessageLookupByLibrary.simpleMessage("搜索"),
         "series": MessageLookupByLibrary.simpleMessage("电视"),
+        "setting": MessageLookupByLibrary.simpleMessage("设置"),
         "title": MessageLookupByLibrary.simpleMessage("国际化示例App"),
         "variety": MessageLookupByLibrary.simpleMessage("综艺")
       };

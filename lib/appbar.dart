@@ -94,7 +94,7 @@ class AppTabBarState extends State<AppTabBar> {
       S.of(context).home,
       S.of(context).history,
       S.of(context).searchPage,
-      S.of(context).mine
+      S.of(context).mine,
     ];
     return SizedBox(
       key: appbar,

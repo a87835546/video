@@ -389,6 +389,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Setting`
+  String get setting {
+    return Intl.message(
+      'Setting',
+      name: 'setting',
+      desc: '设置',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '电子邮箱',
+      args: [],
+    );
+  }
+
+  /// `Contract Number`
+  String get contractNumber {
+    return Intl.message(
+      'Contract Number',
+      name: 'contractNumber',
+      desc: '联系方式',
+      args: [],
+    );
+  }
+
+  /// `About US`
+  String get aboutUs {
+    return Intl.message(
+      'About US',
+      name: 'aboutUs',
+      desc: '关于我们',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '密码',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

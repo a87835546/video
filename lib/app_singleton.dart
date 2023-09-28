@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:video/mine/user_model.dart';
 
 import 'info_model.dart';
 
@@ -14,6 +15,7 @@ class AppSingleton {
   }
 
   InfoModel? info;
+  UserModel? userModel;
   static DevMode? devMode;
   static bool? isWeb;
   static PageController? pageController;

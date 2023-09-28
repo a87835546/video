@@ -2,14 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:video/app_singleton.dart';
-import 'package:video/menu/menu_page.dart';
 import 'package:video/search/light_search_default_page/light_search_default_page.dart';
-import 'package:video/search/search_page.dart';
 
 import 'appbar.dart';
 import 'home/home.dart';
 import 'menu/no_watchlist_page.dart';
-import 'mine/mine.dart';
+import 'mine/mine_tmp.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({super.key});
@@ -48,7 +46,7 @@ class _NavbarPageState extends State<CustomBottomNavigationBar> {
             HomePage(),
             NoWatchlistPage(),
             LightSearchDefaultPage(),
-            MinePage()
+            MineTmpPage(),
           ],
         ),
       ),

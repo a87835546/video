@@ -123,8 +123,6 @@ class MineInfoPage extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar:
-            CustomBottomBar(onChanged: (BottomBarEnum type) {}),
       ),
     );
   }

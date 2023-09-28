@@ -1,11 +1,12 @@
 import 'dart:developer';
 
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:video/app_singleton.dart';
 import 'package:video/mine/user_model.dart';
 
 import '../utils/http_manager.dart';
 
-Future<UserModel> login(String username, password) async {
+Future<UserModel?> login(String username, password) async {
   EasyLoading.showProgress(1);
   var result = await HttpManager.post(
       url: "user/login", params: {"username": username, "password": password});
@@ -15,14 +16,15 @@ Future<UserModel> login(String username, password) async {
       EasyLoading.dismiss();
       Map<String, dynamic> data = result["data"];
       UserModel userModel = UserModel.fromJson(data);
+      AppSingleton.getInstance().userModel = userModel;
       return Future.value(userModel);
     } else {
       EasyLoading.showError(result["message"] ?? "Delete Account Error");
-      return Future.value();
+      return Future.value(null);
     }
   } catch (err) {
     log("parser delete account fail ${err.toString()}");
-    return Future.value();
+    return Future.value(null);
   } finally {
     EasyLoading.dismiss();
   }

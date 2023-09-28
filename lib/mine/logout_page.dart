@@ -1,10 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:video/app_singleton.dart';
 import 'package:video/core/app_export.dart';
+import 'package:video/mine/mine.dart';
 import 'package:video/widgets/app_bar/appbar_subtitle_1.dart';
 import 'package:video/widgets/app_bar/custom_app_bar.dart';
 import 'package:video/widgets/custom_icon_button.dart';
 import 'package:video/widgets/custom_text_form_field.dart';
 
+import '../generated/l10n.dart';
 import '../utils/navigation.dart';
 import '../widgets/app_bar/appbar_image_1.dart';
 import '../widgets/custom_elevated_button.dart';
@@ -13,10 +18,7 @@ import 'mine_info_page.dart';
 
 // ignore_for_file: must_be_immutable
 class LogoutPage extends StatelessWidget {
-  LogoutPage({Key? key})
-      : super(
-          key: key,
-        );
+  LogoutPage({Key? key}) : super(key: key);
 
   TextEditingController listoneController = TextEditingController();
 
@@ -34,12 +36,12 @@ class LogoutPage extends StatelessWidget {
             text: "我的账户",
           ),
           leadingWidth: getHorizontalSize(48),
-          leading: AppbarImage1(
-              svgPath: ImageConstant.imgArrowleftOnprimarycontainer,
-              margin: getMargin(left: 24, top: 14, bottom: 17),
-              onTap: () {
-                Navigator.pop(context);
-              }),
+          // leading: AppbarImage1(
+          //     svgPath: ImageConstant.imgArrowleftOnprimarycontainer,
+          //     margin: getMargin(left: 24, top: 14, bottom: 17),
+          //     onTap: () {
+          //       Navigator.pop(context);
+          //     }),
         ),
         body: SizedBox(
           width: mediaQueryData.size.width,
@@ -98,7 +100,8 @@ class LogoutPage extends StatelessWidget {
                         top: 16,
                       ),
                       child: Text(
-                        "Jane Anastasia",
+                        AppSingleton.getInstance().userModel?.username ??
+                            "Jane Anastasia",
                         style: CustomTextStyles.titleMediumOnPrimaryContainer,
                       ),
                     ),
@@ -188,7 +191,7 @@ class LogoutPage extends StatelessWidget {
                       top: 32,
                     ),
                     child: Text(
-                      "联系方式",
+                      S.of(context).contractNumber ?? "联系方式",
                       style: theme.textTheme.labelLarge,
                     ),
                   ),
@@ -214,7 +217,7 @@ class LogoutPage extends StatelessWidget {
                                 top: 2,
                               ),
                               child: Text(
-                                "电子邮件",
+                                S.of(context).email ?? "电子邮件",
                                 style: CustomTextStyles
                                     .bodyMediumOnPrimaryContainer_1,
                               ),
@@ -226,7 +229,8 @@ class LogoutPage extends StatelessWidget {
                             top: 6,
                           ),
                           child: Text(
-                            "ana*******@mail.com",
+                            AppSingleton.getInstance().userModel?.email ??
+                                "ana*******@mail.com",
                             style: CustomTextStyles.bodySmallPrimary12,
                           ),
                         ),
@@ -250,7 +254,7 @@ class LogoutPage extends StatelessWidget {
                             top: 2,
                           ),
                           child: Text(
-                            "电话号码",
+                            S.of(context).contractNumber ?? "电话号码",
                             style:
                                 CustomTextStyles.bodyMediumOnPrimaryContainer_1,
                           ),
@@ -267,54 +271,69 @@ class LogoutPage extends StatelessWidget {
                       style: theme.textTheme.labelLarge,
                     ),
                   ),
-                  Padding(
-                    padding: getPadding(
-                      top: 12,
-                    ),
-                    child: Row(
-                      children: [
-                        CustomImageView(
-                          svgPath: ImageConstant.imgLockLightBlueA70001,
-                          height: getSize(24),
-                          width: getSize(24),
-                        ),
-                        Padding(
-                          padding: getPadding(
-                            left: 12,
-                            top: 2,
+                  GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    child: Padding(
+                      padding: getPadding(
+                        top: 12,
+                      ),
+                      child: Row(
+                        children: [
+                          CustomImageView(
+                            svgPath: ImageConstant.imgLockLightBlueA70001,
+                            height: getSize(24),
+                            width: getSize(24),
                           ),
-                          child: Text(
-                            "密码",
-                            style:
-                                CustomTextStyles.bodyMediumOnPrimaryContainer_1,
+                          Padding(
+                            padding: getPadding(
+                              left: 12,
+                              top: 2,
+                            ),
+                            child: Text(
+                              S.of(context).password,
+                              style: CustomTextStyles
+                                  .bodyMediumOnPrimaryContainer_1,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
+                    onTap: () {
+                      log("password");
+                    },
                   ),
-                  Padding(
-                    padding: getPadding(
-                      top: 16,
-                    ),
-                    child: Row(
-                      children: [
-                        CustomImageView(
-                          svgPath: ImageConstant.imgSettings,
-                          height: getSize(24),
-                          width: getSize(24),
-                        ),
-                        Padding(
-                          padding: getPadding(
-                            left: 12,
-                            top: 2,
+                  GestureDetector(
+                    onTap: () {
+                      log("设置");
+                      Navigation.navigateTo(
+                        context: context,
+                        screen: MinePage(),
+                        style: NavigationRouteStyle.cupertino,
+                      );
+                    },
+                    behavior: HitTestBehavior.translucent,
+                    child: Padding(
+                      padding: getPadding(top: 16),
+                      child: Row(
+                        children: [
+                          CustomImageView(
+                            svgPath: ImageConstant.imgSettings,
+                            height: getSize(24),
+                            width: getSize(24),
                           ),
-                          child: Text(
-                            "设置",
-                            style:
-                                CustomTextStyles.bodyMediumOnPrimaryContainer_1,
+                          Padding(
+                            padding: getPadding(
+                              left: 12,
+                              top: 2,
+                            ),
+                            child: Text(
+                              S.of(context).setting,
+                              style: CustomTextStyles
+                                  .bodyMediumOnPrimaryContainer_1,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   Padding(
@@ -368,7 +387,7 @@ class LogoutPage extends StatelessWidget {
                             top: 2,
                           ),
                           child: Text(
-                            "关于我们",
+                            S.of(context).aboutUs,
                             style:
                                 CustomTextStyles.bodyMediumOnPrimaryContainer_1,
                           ),
