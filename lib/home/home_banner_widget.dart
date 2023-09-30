@@ -136,6 +136,10 @@ class HomeBannerState extends State<HomeBanner>
                               url: e.videoUrl);
                           return HomeBannerItemWidget(
                               model: e,
+                              isFavor: e.isFavorite,
+                              favor: () async {
+                                var res = await favor(e.videoId);
+                              },
                               play: () {
                                 Navigation.navigateTo(
                                   context: context,
@@ -225,6 +229,7 @@ class HomeBannerState extends State<HomeBanner>
 class HomeBannerItemWidget extends StatefulWidget {
   final Function? play;
   final Function? favor;
+  final bool isFavor;
   final HomeBannerModel model;
   final VideoModel? videoModel;
 
@@ -232,6 +237,7 @@ class HomeBannerItemWidget extends StatefulWidget {
       {super.key,
       this.play,
       this.favor,
+      required this.isFavor,
       required this.model,
       required this.videoModel});
 
@@ -243,6 +249,13 @@ class HomeBannerItemWidget extends StatefulWidget {
 
 class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
   double fem = 1;
+  bool isFavor = false;
+  @override
+  void initState() {
+    isFavor = widget.isFavor;
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -307,7 +320,7 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                         Container(
                           margin: EdgeInsets.fromLTRB(
                               0 * fem, 0 * fem, 173 * fem, 0 * fem),
-                          child: Text(widget.model.title ?? '侠盗一号：星球大战故事',
+                          child: Text(widget.model.title,
                               style: GoogleFonts.zenKakuGothicNew(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,
@@ -403,12 +416,14 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                           height: double.infinity,
                           child: Center(
                             child: SizedBox(
-                                width: 15.5 * fem,
-                                height: 19.22 * fem,
-                                child: const Icon(
+                                width: 25 * fem,
+                                height: 25 * fem,
+                                child: Icon(
                                   Icons.favorite,
                                   size: 20,
-                                  color: Color(0xffC2C2C2),
+                                  color: isFavor
+                                      ? Theme.of(context).primaryColor
+                                      : const Color(0xffC2C2C2),
                                 )),
                           ),
                         ),
@@ -416,6 +431,9 @@ class _HomeBannerItemWidgetState extends State<HomeBannerItemWidget> {
                     ),
                   ),
                   onTap: () {
+                    setState(() {
+                      isFavor = !isFavor;
+                    });
                     if (widget.favor != null) {
                       widget.favor!();
                     }

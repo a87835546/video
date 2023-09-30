@@ -22,11 +22,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "GeneralSetting":
+            MessageLookupByLibrary.simpleMessage("General Settings"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("About US"),
         "actionFilms": MessageLookupByLibrary.simpleMessage("Action Films"),
         "animation": MessageLookupByLibrary.simpleMessage("Animation"),
         "appName": MessageLookupByLibrary.simpleMessage("Headline Film"),
+        "area": MessageLookupByLibrary.simpleMessage("Area"),
         "billboard": MessageLookupByLibrary.simpleMessage("Billboard"),
+        "birthday": MessageLookupByLibrary.simpleMessage("Birthday"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "care": MessageLookupByLibrary.simpleMessage("CARE"),
         "carePage": MessageLookupByLibrary.simpleMessage("Care Page"),
         "click": MessageLookupByLibrary.simpleMessage("点击"),
@@ -36,18 +41,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "contractNumber":
             MessageLookupByLibrary.simpleMessage("Contract Number"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
+        "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "general": MessageLookupByLibrary.simpleMessage("General"),
         "healthy": MessageLookupByLibrary.simpleMessage("HEALTHY"),
         "healthyPage": MessageLookupByLibrary.simpleMessage("Healthy Page"),
         "helloFromDemo": MessageLookupByLibrary.simpleMessage("你好呀~"),
+        "help": MessageLookupByLibrary.simpleMessage("Help Or Suggestion"),
         "history": MessageLookupByLibrary.simpleMessage("History"),
         "historyListNoData":
             MessageLookupByLibrary.simpleMessage("No Data Of Watch List"),
         "home": MessageLookupByLibrary.simpleMessage("HOME"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
+        "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
+        "logout": MessageLookupByLibrary.simpleMessage("Log Out"),
+        "logoutConfirm":
+            MessageLookupByLibrary.simpleMessage("Logout Confirm ?"),
         "menuPage": MessageLookupByLibrary.simpleMessage("Menu Page"),
         "mine": MessageLookupByLibrary.simpleMessage("MINE"),
+        "mineInfo": MessageLookupByLibrary.simpleMessage("Mine Information"),
         "minePage": MessageLookupByLibrary.simpleMessage("Mine Page"),
+        "mineSubscribe": MessageLookupByLibrary.simpleMessage("Mine Subscribe"),
+        "modifyAvatar": MessageLookupByLibrary.simpleMessage("Modify Avatar"),
         "more": MessageLookupByLibrary.simpleMessage("View All"),
         "movie": MessageLookupByLibrary.simpleMessage("Movie"),
         "movieBillboard":
@@ -55,12 +70,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "noData": MessageLookupByLibrary.simpleMessage("No Data"),
         "otherFilms": MessageLookupByLibrary.simpleMessage(" Other Films"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "personalInfo":
+            MessageLookupByLibrary.simpleMessage("Personal Information"),
         "play": MessageLookupByLibrary.simpleMessage("Play"),
         "popularStarBillboard":
             MessageLookupByLibrary.simpleMessage("Popular Star Billboard"),
         "pron": MessageLookupByLibrary.simpleMessage("Pron"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "searchPage": MessageLookupByLibrary.simpleMessage("search Page"),
+        "securitySetting":
+            MessageLookupByLibrary.simpleMessage("Security Settings"),
         "series": MessageLookupByLibrary.simpleMessage("Series"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
         "title": MessageLookupByLibrary.simpleMessage("国际化示例App"),

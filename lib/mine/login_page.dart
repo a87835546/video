@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:video/app_singleton.dart';
 import 'package:video/core/app_export.dart';
 import 'package:video/mine/mine_request.dart';
@@ -12,12 +13,17 @@ import 'package:video/widgets/custom_elevated_button.dart';
 import 'package:video/widgets/custom_outlined_button.dart';
 import 'package:video/widgets/custom_text_form_field.dart';
 
-import '../utils/navigation.dart';
+import 'mine_tmp.dart';
 
 // ignore_for_file: must_be_immutable
-class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return LoginPageState();
+  }
+}
 
+class LoginPageState extends State<LoginPage> {
   TextEditingController mailController = TextEditingController();
 
   TextEditingController lockController = TextEditingController();
@@ -31,12 +37,12 @@ class LoginPage extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(
             leadingWidth: getHorizontalSize(48),
-            leading: AppbarImage1(
-                svgPath: ImageConstant.imgArrowleftOnprimarycontainer,
-                margin: getMargin(left: 24, top: 14, bottom: 17),
-                onTap: () {
-                  Navigator.pop(context);
-                }),
+            // leading: AppbarImage1(
+            //     svgPath: ImageConstant.imgArrowleftOnprimarycontainer,
+            //     margin: getMargin(left: 24, top: 14, bottom: 17),
+            //     onTap: () {
+            //       Navigator.pop(context);
+            //     }),
             centerTitle: true,
             title: AppbarSubtitle1(text: "登录")),
         body: Container(
@@ -87,8 +93,8 @@ class LoginPage extends StatelessWidget {
                   UserModel? model = await login(
                       mailController.value.text, lockController.value.text);
                   if (model != null && context.mounted) {
-                    Navigator.of(context).pop();
-                    AppSingleton.pageController?.jumpToPage(0);
+                    context.read<ReloadModel>().reload(false);
+                    AppSingleton.pageController?.jumpToPage(3);
                   }
                 },
               ),

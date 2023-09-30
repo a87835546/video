@@ -136,3 +136,25 @@ Future<bool> watchRequest(num vid) async {
     EasyLoading.dismiss();
   }
 }
+
+Future<bool> favor(num vid) async {
+  EasyLoading.showProgress(1);
+  var result = await HttpManager.post(url: "favorite/insert", params: {
+    "user_id": AppSingleton.getInstance().userModel?.id ?? 3,
+    "video_id": vid
+  });
+  try {
+    if (result["code"] == 200) {
+      EasyLoading.dismiss();
+      return Future.value(true);
+    } else {
+      EasyLoading.showError(result["message"] ?? "Delete Account Error");
+      return Future.value(false);
+    }
+  } catch (err) {
+    log("parser update  watch  video id fail ${err.toString()}");
+    return Future.value(false);
+  } finally {
+    EasyLoading.dismiss();
+  }
+}

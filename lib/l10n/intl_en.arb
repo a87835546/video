@@ -233,5 +233,96 @@
     "description": "密码",
     "type": "text",
     "placeholders": {}
+  },
+  "personalInfo": "Personal Information",
+  "@personalInfo": {
+    "description": "个人信息",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mineInfo": "Mine Information",
+  "@mineInfo": {
+    "description": "我的信息",
+    "type": "text",
+    "placeholders": {}
+  },
+
+  "mineSubscribe": "Mine Subscribe",
+  "@mineSubscribe": {
+    "description": "我的订阅",
+    "type": "text",
+    "placeholders": {}
+  },
+  "securitySetting": "Security Settings",
+  "@securitySetting": {
+    "description": "安全设置",
+    "type": "text",
+    "placeholders": {}
+  },
+  "GeneralSetting": "General Settings",
+  "@GeneralSetting": {
+    "description": "常规设置",
+    "type": "text",
+    "placeholders": {}
+  },
+  "help": "Help Or Suggestion",
+  "@help": {
+    "description": "帮助或建议",
+    "type": "text",
+    "placeholders": {}
+  },
+  "logout": "Log Out",
+  "@logout": {
+    "description": "退出登录",
+    "type": "text",
+    "placeholders": {}
+  },
+  "modifyAvatar": "Modify Avatar",
+  "@modifyAvatar": {
+    "description": "修改头像",
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastName": "Last Name",
+  "@lastName": {
+    "description": "名字",
+    "type": "text",
+    "placeholders": {}
+  },
+  "firstName": "First Name",
+  "@firstName": {
+    "description": "姓氏",
+    "type": "text",
+    "placeholders": {}
+  },
+  "birthday": "Birthday",
+  "@birthday": {
+    "description": "生日",
+    "type": "text",
+    "placeholders": {}
+  },
+  "gender": "Gender",
+  "@gender": {
+    "description": "性别",
+    "type": "text",
+    "placeholders": {}
+  },
+  "area": "Area",
+  "@area": {
+    "description": "地区",
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "取消",
+    "type": "text",
+    "placeholders": {}
+  },
+  "logoutConfirm": "Logout Confirm ?",
+  "@logoutConfirm": {
+    "description": "确定退出登录?",
+    "type": "text",
+    "placeholders": {}
   }
 }

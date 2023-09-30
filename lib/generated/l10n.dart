@@ -439,6 +439,156 @@ class S {
       args: [],
     );
   }
+
+  /// `Personal Information`
+  String get personalInfo {
+    return Intl.message(
+      'Personal Information',
+      name: 'personalInfo',
+      desc: '个人信息',
+      args: [],
+    );
+  }
+
+  /// `Mine Information`
+  String get mineInfo {
+    return Intl.message(
+      'Mine Information',
+      name: 'mineInfo',
+      desc: '我的信息',
+      args: [],
+    );
+  }
+
+  /// `Mine Subscribe`
+  String get mineSubscribe {
+    return Intl.message(
+      'Mine Subscribe',
+      name: 'mineSubscribe',
+      desc: '我的订阅',
+      args: [],
+    );
+  }
+
+  /// `Security Settings`
+  String get securitySetting {
+    return Intl.message(
+      'Security Settings',
+      name: 'securitySetting',
+      desc: '安全设置',
+      args: [],
+    );
+  }
+
+  /// `General Settings`
+  String get GeneralSetting {
+    return Intl.message(
+      'General Settings',
+      name: 'GeneralSetting',
+      desc: '常规设置',
+      args: [],
+    );
+  }
+
+  /// `Help Or Suggestion`
+  String get help {
+    return Intl.message(
+      'Help Or Suggestion',
+      name: 'help',
+      desc: '帮助或建议',
+      args: [],
+    );
+  }
+
+  /// `Log Out`
+  String get logout {
+    return Intl.message(
+      'Log Out',
+      name: 'logout',
+      desc: '退出登录',
+      args: [],
+    );
+  }
+
+  /// `Modify Avatar`
+  String get modifyAvatar {
+    return Intl.message(
+      'Modify Avatar',
+      name: 'modifyAvatar',
+      desc: '修改头像',
+      args: [],
+    );
+  }
+
+  /// `Last Name`
+  String get lastName {
+    return Intl.message(
+      'Last Name',
+      name: 'lastName',
+      desc: '名字',
+      args: [],
+    );
+  }
+
+  /// `First Name`
+  String get firstName {
+    return Intl.message(
+      'First Name',
+      name: 'firstName',
+      desc: '姓氏',
+      args: [],
+    );
+  }
+
+  /// `Birthday`
+  String get birthday {
+    return Intl.message(
+      'Birthday',
+      name: 'birthday',
+      desc: '生日',
+      args: [],
+    );
+  }
+
+  /// `Gender`
+  String get gender {
+    return Intl.message(
+      'Gender',
+      name: 'gender',
+      desc: '性别',
+      args: [],
+    );
+  }
+
+  /// `Area`
+  String get area {
+    return Intl.message(
+      'Area',
+      name: 'area',
+      desc: '地区',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '取消',
+      args: [],
+    );
+  }
+
+  /// `Logout Confirm ?`
+  String get logoutConfirm {
+    return Intl.message(
+      'Logout Confirm ?',
+      name: 'logoutConfirm',
+      desc: '确定退出登录?',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

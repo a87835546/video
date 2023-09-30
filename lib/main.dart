@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
@@ -7,13 +8,14 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:video/mine/changge_language.dart';
 import 'package:video/tabbar.dart';
 import 'package:video/utils/platform_utils.dart';
 
 import 'app_singleton.dart';
 import 'generated/l10n.dart';
 import 'info_model.dart';
+import 'mine/mine_tmp.dart';
+import 'mine/user_model.dart';
 
 GlobalKey<ChangeLocalizationsState> changeLocalizationStateKey =
     GlobalKey<ChangeLocalizationsState>();
@@ -37,12 +39,26 @@ void main() async {
     AppSingleton.getInstance().info =
         InfoModel(language: "zh", username: "zhansan", password: "");
   }
+
+  String userinfo = await _prefs.then((SharedPreferences prefs) {
+    return prefs.getString('userinfo') ?? "";
+  });
+  log("user info--->>>>${userinfo}");
+  if (userinfo != "" && userinfo != "null" && userinfo.isNotEmpty) {
+    Map<String, dynamic> mp = jsonDecode(userinfo);
+    if (mp.isNotEmpty) {
+      UserModel userModel = UserModel.fromJson(mp);
+      AppSingleton.getInstance().userModel = userModel;
+      log("user info model--->>>>${AppSingleton.getInstance().userModel}");
+    }
+  }
   AppSingleton.isWeb = PlatformUtils.isWeb;
 
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ChangeLanguage()),
+        ChangeNotifierProvider(create: (_) => ReloadModel()),
       ],
       child: const MyApp(),
     ),

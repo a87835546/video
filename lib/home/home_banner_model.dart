@@ -11,6 +11,7 @@ class HomeBannerModel {
   String videoThemeUrl = "";
   int menuId;
   int videoId;
+  bool isFavorite = false;
   HomeBannerModel(
       {required this.title,
       required this.desc,
@@ -34,6 +35,7 @@ class HomeBannerModel {
     model.rate = map["rate"];
     model.types = map["types"];
     model.menuTitle = map["menu_title"];
+    model.isFavorite = map["is_favorite"];
     return model;
   }
 

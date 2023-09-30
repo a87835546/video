@@ -233,6 +233,96 @@
     "description": "密码",
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "personalInfo": "个人信息",
+  "@personalInfo": {
+    "description": "个人信息",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mineInfo": "我的信息",
+  "@mineInfo": {
+    "description": "我的信息",
+    "type": "text",
+    "placeholders": {}
+  },
 
+  "mineSubscribe": "我的订阅",
+  "@mineSubscribe": {
+    "description": "我的订阅",
+    "type": "text",
+    "placeholders": {}
+  },
+  "securitySetting": "安全设置",
+  "@securitySetting": {
+    "description": "安全设置",
+    "type": "text",
+    "placeholders": {}
+  },
+  "GeneralSetting": "常规设置",
+  "@GeneralSetting": {
+    "description": "常规设置",
+    "type": "text",
+    "placeholders": {}
+  },
+  "help": "帮助或建议",
+  "@help": {
+    "description": "帮助或建议",
+    "type": "text",
+    "placeholders": {}
+  },
+  "logout": "退出登录",
+  "@logout": {
+    "description": "退出登录",
+    "type": "text",
+    "placeholders": {}
+  },
+  "modifyAvatar": "修改头像",
+  "@modifyAvatar": {
+    "description": "修改头像",
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastName": "L名字",
+  "@lastName": {
+    "description": "名字",
+    "type": "text",
+    "placeholders": {}
+  },
+  "firstName": "姓氏",
+  "@firstName": {
+    "description": "姓氏",
+    "type": "text",
+    "placeholders": {}
+  },
+  "birthday": "生日",
+  "@birthday": {
+    "description": "生日",
+    "type": "text",
+    "placeholders": {}
+  },
+  "gender": "性别",
+  "@gender": {
+    "description": "性别",
+    "type": "text",
+    "placeholders": {}
+  },
+  "area": "地区",
+  "@area": {
+    "description": "地区",
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "取消",
+  "@cancel": {
+    "description": "取消",
+    "type": "text",
+    "placeholders": {}
+  },
+  "logoutConfirm": "确定退出登录 ?",
+  "@logoutConfirm": {
+    "description": "确定退出登录?",
+    "type": "text",
+    "placeholders": {}
+  }
 }

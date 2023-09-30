@@ -23,7 +23,7 @@ class AppTabBar extends StatefulWidget {
 
 class AppTabBarState extends State<AppTabBar> {
   int page = 0;
-  final List<Icon> normalImages = [
+  final List<Icon> normalImages = const [
     Icon(
       Icons.home,
       color: Colors.black,

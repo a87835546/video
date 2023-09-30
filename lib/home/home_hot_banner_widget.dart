@@ -29,31 +29,34 @@ class HomeHotBannerWidget extends StatefulWidget {
 class _HomeHotBannerWidgetState extends State<HomeHotBannerWidget> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 250,
-      child: Column(
-        children: [
-          HomeBannerTopView(
-            menu: widget.menu,
-            clickMore: widget.clickMore,
-          ),
-          BannerCarousel.fullScreen(
-              height: 220,
-              animation: true,
-              viewportFraction: 1,
-              showIndicator: false,
-              customizedBanners: widget.videos.map((e) {
-                int index = widget.videos.indexOf(e);
-                return HomeHotBannerItemWidget(
-                  model: e,
-                  click: () {
-                    if (widget.clickItem != null) {
-                      widget.clickItem!(e, index);
-                    }
-                  },
-                );
-              }).toList()),
-        ],
+    return Visibility(
+      visible: widget.videos.isNotEmpty,
+      child: SizedBox(
+        height: 250,
+        child: Column(
+          children: [
+            HomeBannerTopView(
+              menu: widget.menu,
+              clickMore: widget.clickMore,
+            ),
+            BannerCarousel.fullScreen(
+                height: 220,
+                animation: true,
+                viewportFraction: 1,
+                showIndicator: false,
+                customizedBanners: widget.videos.map((e) {
+                  int index = widget.videos.indexOf(e);
+                  return HomeHotBannerItemWidget(
+                    model: e,
+                    click: () {
+                      if (widget.clickItem != null) {
+                        widget.clickItem!(e, index);
+                      }
+                    },
+                  );
+                }).toList()),
+          ],
+        ),
       ),
     );
   }

@@ -37,7 +37,7 @@ class _NavbarPageState extends State<CustomBottomNavigationBar> {
     AppSingleton.pageController = pageController;
     return Scaffold(
       body: Container(
-        color: Colors.redAccent,
+        color: Colors.white,
         child: PageView(
           physics: const NeverScrollableScrollPhysics(),
           controller: pageController,

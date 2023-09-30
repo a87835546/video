@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage>
       List<Tab> temp = [];
       List<HomeBanner> temp1 = [];
       for (var element in list) {
-        log("element -->> $element");
+        // log("element -->> $element");
         temp.add(Tab(
             text:
                 AppSingleton.singleton?.info?.locale == const Locale("en", "US")
