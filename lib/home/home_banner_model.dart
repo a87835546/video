@@ -35,7 +35,7 @@ class HomeBannerModel {
     model.rate = map["rate"];
     model.types = map["types"];
     model.menuTitle = map["menu_title"];
-    model.isFavorite = map["is_favorite"];
+    model.isFavorite = map["is_favorite"] ?? false;
     return model;
   }
 

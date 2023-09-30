@@ -19,14 +19,7 @@ class VideoModel {
       {required this.title,
       required this.desc,
       required this.id,
-      required this.categoryId,
-      required this.author,
       required this.themeUrl,
-      required this.types,
-      required this.rate,
-      required this.actor,
-      required this.menuTitle,
-      required this.years,
       required this.url});
 
   factory VideoModel.fromJson(Map<String, dynamic> map) {
@@ -41,16 +34,16 @@ class VideoModel {
         title: map['title'] ?? "",
         id: map['id'],
         desc: map['desc'] ?? "",
-        rate: map['rate'] ?? "",
-        years: map['years'] ?? "",
-        actor: map['actor'] ?? "",
-        menuTitle: map['menu_title'] ?? "",
-        categoryId: map['category_id'] ?? "",
-        author: map['author'] ?? "",
         themeUrl: map['theme_url'] ?? "",
-        types: map['types'] ?? "",
         url: map['url']);
     model.urls = temp;
+    model.types = map['types'] ?? "";
+    model.rate = map['rate'] ?? "";
+    model.years = map['years'] ?? "";
+    model.actor = map['actor'] ?? "";
+    model.menuTitle = map['menu_title'] ?? "";
+    model.author = map['author'] ?? "";
+    model.categoryId = map['category_id'] ?? "";
     return model;
   }
 

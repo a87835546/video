@@ -125,15 +125,13 @@ class HomeBannerState extends State<HomeBanner>
                               title: e.title,
                               desc: e.desc,
                               id: 0,
-                              categoryId: 0,
-                              author: "",
                               themeUrl: e.videoThemeUrl,
-                              types: e.types,
-                              rate: e.rate,
-                              actor: e.actor,
-                              menuTitle: widget.title,
-                              years: e.years,
                               url: e.videoUrl);
+                          vm.types = e.types;
+                          vm.rate = e.rate;
+                          vm.actor = e.actor;
+                          vm.menuTitle = e.menuTitle;
+                          vm.years = e.years;
                           return HomeBannerItemWidget(
                               model: e,
                               isFavor: e.isFavorite,

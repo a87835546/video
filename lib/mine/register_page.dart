@@ -147,10 +147,13 @@ class RegisterPageState extends State<RegisterPage> {
                     margin: getMargin(top: 16),
                     onTap: () async {
                       log("register user");
-                      UserModel model = await register(
+                      UserModel? model = await register(
                           usernameOneController.value.text,
                           passwordController.value.text,
                           _selectedDate);
+                      if (model != null && mounted) {
+                        Navigator.pop(context);
+                      }
                     },
                   ),
                   Padding(

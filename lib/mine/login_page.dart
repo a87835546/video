@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:video/app_singleton.dart';
 import 'package:video/core/app_export.dart';
 import 'package:video/mine/mine_request.dart';
+import 'package:video/mine/register_page.dart';
 import 'package:video/mine/user_model.dart';
 import 'package:video/widgets/app_bar/appbar_image_1.dart';
 import 'package:video/widgets/app_bar/appbar_subtitle_1.dart';
@@ -13,6 +14,7 @@ import 'package:video/widgets/custom_elevated_button.dart';
 import 'package:video/widgets/custom_outlined_button.dart';
 import 'package:video/widgets/custom_text_form_field.dart';
 
+import '../utils/navigation.dart';
 import 'mine_tmp.dart';
 
 // ignore_for_file: must_be_immutable
@@ -127,20 +129,30 @@ class LoginPageState extends State<LoginPage> {
                 },
               ),
               Spacer(),
-              Padding(
-                  padding: getPadding(bottom: 65),
-                  child: RichText(
-                      text: TextSpan(children: [
-                        TextSpan(
-                            text: "Dont have an account?",
-                            style:
-                                CustomTextStyles.bodyMediumOnPrimaryContainer),
-                        TextSpan(text: " "),
-                        TextSpan(
-                            text: "Sign Up",
-                            style: CustomTextStyles.bodyMediumLightblueA700)
-                      ]),
-                      textAlign: TextAlign.left))
+              GestureDetector(
+                onTap: () {
+                  Navigation.navigateTo(
+                    context: context,
+                    screen: RegisterPage(),
+                    style: NavigationRouteStyle.cupertino,
+                  );
+                },
+                behavior: HitTestBehavior.translucent,
+                child: Padding(
+                    padding: getPadding(bottom: 65),
+                    child: RichText(
+                        text: TextSpan(children: [
+                          TextSpan(
+                              text: "Dont have an account?",
+                              style: CustomTextStyles
+                                  .bodyMediumOnPrimaryContainer),
+                          TextSpan(text: " "),
+                          TextSpan(
+                              text: "Sign Up",
+                              style: CustomTextStyles.bodyMediumLightblueA700)
+                        ]),
+                        textAlign: TextAlign.left)),
+              )
             ],
           ),
         ),

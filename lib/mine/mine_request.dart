@@ -35,7 +35,7 @@ Future<UserModel?> login(String username, password) async {
   }
 }
 
-Future<UserModel> register(String username, password, birthday) async {
+Future<UserModel?> register(String username, password, birthday) async {
   EasyLoading.showProgress(1);
   var result = await HttpManager.post(url: "user/register", params: {
     "username": username,
@@ -48,14 +48,17 @@ Future<UserModel> register(String username, password, birthday) async {
       EasyLoading.dismiss();
       Map<String, dynamic> data = result["data"];
       UserModel userModel = UserModel.fromJson(data);
+      AppSingleton.getInstance().userModel = userModel;
+      SharedPreferences _prefs = await SharedPreferences.getInstance();
+      bool val = await _prefs.setString("userinfo", jsonEncode(data));
       return Future.value(userModel);
     } else {
       EasyLoading.showError(result["message"] ?? "Delete Account Error");
-      return Future.value();
+      return Future.value(null);
     }
   } catch (err) {
     log("parser delete account fail ${err.toString()}");
-    return Future.value();
+    return Future.value(null);
   } finally {
     EasyLoading.dismiss();
   }
