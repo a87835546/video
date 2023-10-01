@@ -14,6 +14,7 @@ import 'package:video/widgets/custom_elevated_button.dart';
 import 'package:video/widgets/custom_outlined_button.dart';
 import 'package:video/widgets/custom_text_form_field.dart';
 
+import '../generated/l10n.dart';
 import '../utils/navigation.dart';
 import 'mine_tmp.dart';
 
@@ -46,7 +47,7 @@ class LoginPageState extends State<LoginPage> {
             //       Navigator.pop(context);
             //     }),
             centerTitle: true,
-            title: AppbarSubtitle1(text: "登录")),
+            title: AppbarSubtitle1(text: S.of(context).login)),
         body: Container(
           width: double.maxFinite,
           padding: getPadding(left: 24, top: 23, right: 24, bottom: 23),
@@ -71,9 +72,10 @@ class LoginPageState extends State<LoginPage> {
               CustomTextFormField(
                   controller: lockController,
                   margin: getMargin(top: 16),
-                  hintText: "请输入密码",
+                  hintText: S.of(context).inputPwd,
                   hintStyle: theme.textTheme.bodyMedium!,
                   textInputAction: TextInputAction.done,
+                  obscureText: true,
                   prefix: Container(
                       margin:
                           getMargin(left: 16, top: 14, right: 12, bottom: 14),
@@ -84,11 +86,11 @@ class LoginPageState extends State<LoginPage> {
                   alignment: Alignment.centerRight,
                   child: Padding(
                       padding: getPadding(top: 16, right: 28),
-                      child: Text("忘记面膜?",
+                      child: Text(S.of(context).forgetPwd,
                           style: CustomTextStyles
                               .bodyMediumOnPrimaryContainer_1))),
               CustomElevatedButton(
-                text: "登录",
+                text: S.of(context).login,
                 margin: getMargin(top: 14),
                 onTap: () async {
                   log("login page click login");
@@ -143,12 +145,12 @@ class LoginPageState extends State<LoginPage> {
                     child: RichText(
                         text: TextSpan(children: [
                           TextSpan(
-                              text: "Dont have an account?",
+                              text: S.of(context).noAccount,
                               style: CustomTextStyles
                                   .bodyMediumOnPrimaryContainer),
                           TextSpan(text: " "),
                           TextSpan(
-                              text: "Sign Up",
+                              text: S.of(context).signUp,
                               style: CustomTextStyles.bodyMediumLightblueA700)
                         ]),
                         textAlign: TextAlign.left)),

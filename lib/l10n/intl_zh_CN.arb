@@ -324,5 +324,53 @@
     "description": "确定退出登录?",
     "type": "text",
     "placeholders": {}
+  },
+  "login": "登录",
+  "@login": {
+    "description": "登录",
+    "type": "text",
+    "placeholders": {}
+  },
+  "forgetPwd": "忘记密码?",
+  "@forgetPwd": {
+    "description": "忘记密码?",
+    "type": "text",
+    "placeholders": {}
+  },
+  "inputPwd": "请输入密码?",
+  "@inputPwd": {
+    "description": "请输入密码?",
+    "type": "text",
+    "placeholders": {}
+  },
+  "noAccount": "没有账号吗?",
+  "@noAccount": {
+    "description": "没有账号吗?",
+    "type": "text",
+    "placeholders": {}
+  },
+  "signUp": "创建账号",
+  "@signUp": {
+    "description": "创建账号",
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "注册",
+  "@register": {
+    "description": "注册",
+    "type": "text",
+    "placeholders": {}
+  },
+  "createAccount": "创建一个新账号",
+  "@createAccount": {
+    "description": "创建一个新账号",
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmInputPwd": "再次输入密码",
+  "@confirmInputPwd": {
+    "description": "再次输入密码",
+    "type": "text",
+    "placeholders": {}
   }
 }

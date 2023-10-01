@@ -38,10 +38,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "comedyFilms": MessageLookupByLibrary.simpleMessage("Comedy Films"),
         "community": MessageLookupByLibrary.simpleMessage("COMMUNITY"),
         "communityPage": MessageLookupByLibrary.simpleMessage("Community Page"),
+        "confirmInputPwd":
+            MessageLookupByLibrary.simpleMessage("Please Input Password Again"),
         "contractNumber":
             MessageLookupByLibrary.simpleMessage("Contract Number"),
+        "createAccount":
+            MessageLookupByLibrary.simpleMessage("Create An New Account"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
+        "forgetPwd": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "general": MessageLookupByLibrary.simpleMessage("General"),
         "healthy": MessageLookupByLibrary.simpleMessage("HEALTHY"),
@@ -52,8 +57,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "historyListNoData":
             MessageLookupByLibrary.simpleMessage("No Data Of Watch List"),
         "home": MessageLookupByLibrary.simpleMessage("HOME"),
+        "inputPwd":
+            MessageLookupByLibrary.simpleMessage("Please Input Password?"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
+        "login": MessageLookupByLibrary.simpleMessage("Log In"),
         "logout": MessageLookupByLibrary.simpleMessage("Log Out"),
         "logoutConfirm":
             MessageLookupByLibrary.simpleMessage("Logout Confirm ?"),
@@ -67,6 +75,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "movie": MessageLookupByLibrary.simpleMessage("Movie"),
         "movieBillboard":
             MessageLookupByLibrary.simpleMessage("Movies Billboard"),
+        "noAccount":
+            MessageLookupByLibrary.simpleMessage("Dont have an account?"),
         "noData": MessageLookupByLibrary.simpleMessage("No Data"),
         "otherFilms": MessageLookupByLibrary.simpleMessage(" Other Films"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
@@ -76,12 +86,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "popularStarBillboard":
             MessageLookupByLibrary.simpleMessage("Popular Star Billboard"),
         "pron": MessageLookupByLibrary.simpleMessage("Pron"),
+        "register": MessageLookupByLibrary.simpleMessage("Register"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "searchPage": MessageLookupByLibrary.simpleMessage("search Page"),
         "securitySetting":
             MessageLookupByLibrary.simpleMessage("Security Settings"),
         "series": MessageLookupByLibrary.simpleMessage("Series"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "title": MessageLookupByLibrary.simpleMessage("国际化示例App"),
         "variety": MessageLookupByLibrary.simpleMessage("Variety")
       };

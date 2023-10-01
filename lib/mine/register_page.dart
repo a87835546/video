@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:video/core/app_export.dart';
 import 'package:video/mine/mine_request.dart';
 import 'package:video/mine/user_model.dart';
+import 'package:video/utils/toast.dart';
 import 'package:video/widgets/app_bar/appbar_image_1.dart';
 import 'package:video/widgets/app_bar/appbar_subtitle_1.dart';
 import 'package:video/widgets/app_bar/custom_app_bar.dart';
@@ -11,6 +12,7 @@ import 'package:video/widgets/custom_elevated_button.dart';
 import 'package:video/widgets/custom_outlined_button.dart';
 
 import '../../widgets/custom_text_form_field.dart';
+import '../generated/l10n.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -46,7 +48,7 @@ class RegisterPageState extends State<RegisterPage> {
                   Navigator.pop(context);
                 }),
             centerTitle: true,
-            title: AppbarSubtitle1(text: "注册")),
+            title: AppbarSubtitle1(text: S.of(context).register)),
         body: Stack(
           children: [
             Container(
@@ -57,8 +59,8 @@ class RegisterPageState extends State<RegisterPage> {
                 children: [
                   Align(
                       alignment: Alignment.centerLeft,
-                      child:
-                          Text("创建一个新帐号", style: theme.textTheme.titleLarge)),
+                      child: Text(S.of(context).createAccount,
+                          style: theme.textTheme.titleLarge)),
                   CustomTextFormField(
                       controller: usernameOneController,
                       margin: getMargin(top: 22),
@@ -75,9 +77,10 @@ class RegisterPageState extends State<RegisterPage> {
                   CustomTextFormField(
                       controller: passwordController,
                       margin: getMargin(top: 16),
-                      hintText: "请输入密码",
+                      hintText: S.of(context).inputPwd,
                       hintStyle:
                           CustomTextStyles.titleSmallPlusJakartaSansGray600,
+                      obscureText: true,
                       prefix: Container(
                           margin: getMargin(
                               left: 16, top: 14, right: 12, bottom: 14),
@@ -88,10 +91,11 @@ class RegisterPageState extends State<RegisterPage> {
                   CustomTextFormField(
                       controller: confirmPasswordController,
                       margin: getMargin(top: 16),
-                      hintText: "请再次输入密码",
+                      hintText: S.of(context).confirmInputPwd,
                       hintStyle:
                           CustomTextStyles.titleSmallPlusJakartaSansGray600,
                       textInputAction: TextInputAction.done,
+                      obscureText: true,
                       prefix: Container(
                           margin: getMargin(
                               left: 16, top: 14, right: 12, bottom: 14),
@@ -143,16 +147,21 @@ class RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   CustomElevatedButton(
-                    text: "注册",
+                    text: S.of(context).register,
                     margin: getMargin(top: 16),
                     onTap: () async {
                       log("register user");
-                      UserModel? model = await register(
-                          usernameOneController.value.text,
-                          passwordController.value.text,
-                          _selectedDate);
-                      if (model != null && mounted) {
-                        Navigator.pop(context);
+                      if (passwordController.value.text !=
+                          confirmPasswordController.value.text) {
+                        showErrorText("password is different");
+                      } else {
+                        UserModel? model = await register(
+                            usernameOneController.value.text,
+                            passwordController.value.text,
+                            _selectedDate);
+                        if (model != null && mounted) {
+                          Navigator.pop(context);
+                        }
                       }
                     },
                   ),

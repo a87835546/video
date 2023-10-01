@@ -589,6 +589,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Log In`
+  String get login {
+    return Intl.message(
+      'Log In',
+      name: 'login',
+      desc: '登录',
+      args: [],
+    );
+  }
+
+  /// `Forgot Password?`
+  String get forgetPwd {
+    return Intl.message(
+      'Forgot Password?',
+      name: 'forgetPwd',
+      desc: '忘记密码?',
+      args: [],
+    );
+  }
+
+  /// `Please Input Password?`
+  String get inputPwd {
+    return Intl.message(
+      'Please Input Password?',
+      name: 'inputPwd',
+      desc: '请输入密码?',
+      args: [],
+    );
+  }
+
+  /// `Dont have an account?`
+  String get noAccount {
+    return Intl.message(
+      'Dont have an account?',
+      name: 'noAccount',
+      desc: '没有账号吗?',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get signUp {
+    return Intl.message(
+      'Sign Up',
+      name: 'signUp',
+      desc: '创建账号',
+      args: [],
+    );
+  }
+
+  /// `Register`
+  String get register {
+    return Intl.message(
+      'Register',
+      name: 'register',
+      desc: '注册',
+      args: [],
+    );
+  }
+
+  /// `Create An New Account`
+  String get createAccount {
+    return Intl.message(
+      'Create An New Account',
+      name: 'createAccount',
+      desc: '创建一个新账号',
+      args: [],
+    );
+  }
+
+  /// `Please Input Password Again`
+  String get confirmInputPwd {
+    return Intl.message(
+      'Please Input Password Again',
+      name: 'confirmInputPwd',
+      desc: '再次输入密码',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
