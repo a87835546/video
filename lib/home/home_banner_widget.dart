@@ -11,6 +11,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video/home/home_info_page.dart';
 import 'package:video/home/home_player_in_web.dart';
 import 'package:video/home/video_model.dart';
+import 'package:video/utils/platform_utils.dart';
+import 'package:video_player/video_player.dart';
 
 import '../core/utils/image_constant.dart';
 import '../generated/l10n.dart';
@@ -22,7 +24,7 @@ import 'home_model.dart';
 import 'home_player_hls.dart';
 import 'home_popular_star_widget.dart';
 import 'home_request.dart';
-import 'package:universal_html/html.dart' as html;
+// import 'package:universal_html/html.dart' as html;
 
 class HomeBanner extends StatefulWidget {
   final int type;
@@ -46,11 +48,11 @@ class HomeBannerState extends State<HomeBanner>
   bool pull = false;
   @override
   void initState() {
-    super.initState();
     Future.delayed(Duration.zero, () {
       getDefaultData();
       getData();
     });
+    super.initState();
   }
 
   void getDefaultData() async {
@@ -179,23 +181,23 @@ class HomeBannerState extends State<HomeBanner>
                           clickItem: (data, index) {
                             log("click index:$index  item:$data  is web:$kIsWeb");
 
-                            if (kIsWeb) {
-                              Navigation.navigateTo(
-                                context: context,
-                                screen: VideoApp(
-                                  model: e.list[index],
-                                ),
-                                style: NavigationRouteStyle.material,
-                              );
-                            } else {
-                              Navigation.navigateTo(
-                                context: context,
-                                screen: HomeInfoPage(
-                                  model: e.list[index],
-                                ),
-                                style: NavigationRouteStyle.material,
-                              );
-                            }
+                            // if (kIsWeb) {
+                            //   Navigation.navigateTo(
+                            //     context: context,
+                            //     screen: VideoApp(
+                            //       model: e.list[index],
+                            //     ),
+                            //     style: NavigationRouteStyle.material,
+                            //   );
+                            // } else {
+                            Navigation.navigateTo(
+                              context: context,
+                              screen: HomeInfoPage(
+                                model: e.list[index],
+                              ),
+                              style: NavigationRouteStyle.material,
+                            );
+                            // }
 
                             // Navigation.navigateTo(
                             //   context: context,

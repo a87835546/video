@@ -59,7 +59,7 @@ Future<HomeModel?> getVideos(int id, bool isPull) async {
       return Future.value(null);
     }
   } catch (err) {
-    log("parser get video list fail ${err.toString()}");
+    log("parser get videos list fail ${err.toString()}");
     return Future.value(null);
   } finally {
     EasyLoading.dismiss();
@@ -81,7 +81,7 @@ Future<VideoModel?> getVideosById(num id) async {
       return Future.value(null);
     }
   } catch (err) {
-    log("parser get video list fail ${err.toString()}");
+    log("parser get videos by id list fail ${err.toString()}");
     return Future.value(null);
   } finally {
     EasyLoading.dismiss();
@@ -108,7 +108,7 @@ Future<List<VideoModel>> getVideosByName(String id) async {
       return Future.value([]);
     }
   } catch (err) {
-    log("parser get video list fail ${err.toString()}");
+    log("parser get videos by name list fail ${err.toString()}");
     return Future.value([]);
   } finally {
     EasyLoading.dismiss();

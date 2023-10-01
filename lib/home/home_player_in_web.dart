@@ -5,7 +5,6 @@ import 'package:video/home/video_model.dart';
 import 'package:video/home/widgets/moviecard4_item_widget.dart';
 import 'package:video/home/widgets/video_info_desc_widget.dart';
 import 'package:video_player/video_player.dart';
-import 'package:vimeo_video_player/vimeo_video_player.dart';
 
 import '../core/utils/image_constant.dart';
 import '../core/utils/size_utils.dart';
@@ -93,17 +92,7 @@ class HomePlayerInWebState extends State<HomePlayerInWeb> {
       body: Column(
         children: <Widget>[
           Expanded(
-            child: Center(
-                child: VimeoVideoPlayer(
-              vimeoPlayerModel: VimeoPlayerModel(
-                  url: widget.model.url,
-                  onProgress: (v) {
-                    log("loading --->>> $v");
-                  },
-                  onFinished: () {
-                    log("finished");
-                  }),
-            )),
+            child: Center(child: Container()),
           ),
           TextButton(
             onPressed: () {

@@ -9,7 +9,8 @@ import '../../utils/video_payer_utils.dart';
 
 // ignore: must_be_immutable
 class VideoPlayerBottom extends StatefulWidget {
-  VideoPlayerBottom({Key? key}) : super(key: key);
+  final Function? clickPause;
+  VideoPlayerBottom({Key? key, required this.clickPause}) : super(key: key);
   late Function(bool) opacityCallback;
   @override
   _VideoPlayerBottomState createState() => _VideoPlayerBottomState();
@@ -72,7 +73,13 @@ class _VideoPlayerBottomState extends State<VideoPlayerBottom> {
           ),
           child: Row(
             children: [
-              const VideoPlayerButton(),
+              VideoPlayerButton(
+                click: () {
+                  if (widget.clickPause != null) {
+                    widget.clickPause!();
+                  }
+                },
+              ),
               const Expanded(
                 child: VideoPlayerSlider(),
               ),
@@ -107,7 +114,8 @@ class _VideoPlayerBottomState extends State<VideoPlayerBottom> {
 }
 
 class VideoPlayerButton extends StatefulWidget {
-  const VideoPlayerButton({Key? key}) : super(key: key);
+  final Function? click;
+  const VideoPlayerButton({Key? key, required this.click}) : super(key: key);
   @override
   _VideoPlayerButtonState createState() => _VideoPlayerButtonState();
 }
@@ -152,7 +160,12 @@ class _VideoPlayerButtonState extends State<VideoPlayerButton>
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: IconButton(
         padding: EdgeInsets.zero,
-        onPressed: () => VideoPlayerUtils.playerHandle(VideoPlayerUtils.url),
+        onPressed: () {
+          VideoPlayerUtils.playerHandle(VideoPlayerUtils.url);
+          if (widget.click != null) {
+            widget.click!();
+          }
+        },
         icon: AnimatedIcon(
           icon: AnimatedIcons.play_pause,
           progress: _animationController,

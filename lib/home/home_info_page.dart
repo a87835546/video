@@ -1,12 +1,14 @@
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:video/home/video_model.dart';
 import 'package:video/home/widgets/moviecard4_item_widget.dart';
 import 'package:video/home/widgets/video_info_desc_widget.dart';
 import 'package:video/widgets/palyer/video_player_bottom.dart';
 import 'package:video/widgets/palyer/video_player_top.dart';
+import 'package:video_player/video_player.dart';
 
 import '../core/utils/image_constant.dart';
 import '../core/utils/size_utils.dart';
@@ -40,6 +42,7 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
   VideoPlayerBottom? _bottom;
   final bool _isFullScreen = false;
   bool show = false;
+  late VideoPlayerController _controller;
 
   // 如果是连续剧，
   VideoModel? subList;
@@ -47,21 +50,41 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    Future.delayed(Duration.zero, () {
-      getData();
-      // 播放视频
-      VideoPlayerUtils.playerHandle(widget.model.url);
-      // 播放新视频，初始化监听
-      VideoPlayerUtils.initializedListener(
-          key: this,
-          listener: (initialize, widget) {
-            if (initialize) {
-              _playerUI = widget;
-              if (!mounted) return;
-              setState(() {});
-            }
+    if (kIsWeb) {
+      try {
+        Uri? uri = Uri.tryParse(widget.model.url);
+        _controller = VideoPlayerController.networkUrl(uri!)
+          ..initialize().then((_) {
+            // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+            setState(() {
+              _controller.play();
+              _playerUI = VideoPlayer(_controller);
+              VideoPlayerUtils.playerHandle(widget.model.url);
+            });
           });
+        _controller.setVolume(1.0);
+      } catch (e) {
+        log("init err -->>> $e");
+      }
+    } else {
+      Future.delayed(Duration.zero, () {
+        // 播放视频
+        VideoPlayerUtils.playerHandle(widget.model.url);
+        // 播放新视频，初始化监听
+        VideoPlayerUtils.initializedListener(
+            key: this,
+            listener: (initialize, widget) {
+              if (initialize) {
+                _playerUI = widget;
+                if (!mounted) return;
+                setState(() {});
+              }
+            });
+      });
+    }
+
+    Future.delayed(const Duration(seconds: 0), () {
+      getData();
       _top = VideoPlayerTop(
           clickBack: () {
             VideoPlayerUtils.dispose();
@@ -73,7 +96,17 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
           log("click lock icon value");
         },
       );
-      _bottom = VideoPlayerBottom();
+      _bottom = VideoPlayerBottom(
+        clickPause: () {
+          if (kIsWeb) {
+            setState(() {
+              _controller.value.isPlaying
+                  ? _controller.pause()
+                  : _controller.play();
+            });
+          }
+        },
+      );
       watch();
     });
     super.initState();
@@ -100,6 +133,7 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
   void dispose() {
     // TODO: implement dispose
     VideoPlayerUtils.removeInitializedListener(this);
+    _controller.dispose();
     super.dispose();
   }
 
