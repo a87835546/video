@@ -48,7 +48,6 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
   @override
   void initState() {
     // TODO: implement initState
-    super.initState();
     Future.delayed(Duration.zero, () {
       getData();
       // 播放视频
@@ -77,6 +76,7 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
       _bottom = VideoPlayerBottom();
       watch();
     });
+    super.initState();
   }
 
   void watch() async {
@@ -193,32 +193,32 @@ class _HomeInfoPageState extends State<HomeInfoPage> {
                         children: [
                           Text("Trailers",
                               style: CustomTextStyles.titleMediumPrimary),
-                          Container(
-                            height: getVerticalSize(183),
-                            width: getHorizontalSize(327),
-                            margin: getMargin(top: 6, bottom: 6),
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                CustomImageView(
-                                    imagePath: ImageConstant.imgPlayertrailer7,
-                                    height: getVerticalSize(183),
-                                    width: getHorizontalSize(327),
-                                    radius: BorderRadius.circular(
-                                        getHorizontalSize(4)),
-                                    alignment: Alignment.center),
-                                CustomIconButton(
-                                    height: getSize(48),
-                                    width: getSize(48),
-                                    padding: getPadding(all: 14),
-                                    decoration:
-                                        IconButtonStyleHelper.fillPrimary,
-                                    alignment: Alignment.center,
-                                    child: CustomImageView(
-                                        svgPath: ImageConstant.imgEye))
-                              ],
-                            ),
-                          ),
+                          // Container(
+                          //   height: getVerticalSize(183),
+                          //   width: getHorizontalSize(327),
+                          //   margin: getMargin(top: 6, bottom: 6),
+                          //   child: Stack(
+                          //     alignment: Alignment.center,
+                          //     children: [
+                          //       CustomImageView(
+                          //           imagePath: ImageConstant.imgPlayertrailer7,
+                          //           height: getVerticalSize(183),
+                          //           width: getHorizontalSize(327),
+                          //           radius: BorderRadius.circular(
+                          //               getHorizontalSize(4)),
+                          //           alignment: Alignment.center),
+                          //       CustomIconButton(
+                          //           height: getSize(48),
+                          //           width: getSize(48),
+                          //           padding: getPadding(all: 14),
+                          //           decoration:
+                          //               IconButtonStyleHelper.fillPrimary,
+                          //           alignment: Alignment.center,
+                          //           child: CustomImageView(
+                          //               svgPath: ImageConstant.imgEye))
+                          //     ],
+                          //   ),
+                          // ),
                           Container(
                             alignment: Alignment.center,
                             child: Padding(

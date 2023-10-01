@@ -25,6 +25,7 @@ class MovieCard4ItemWidget extends StatelessWidget {
                 children: [
                   CustomImageView(
                     imagePath: ImageConstant.imgRectangle54042,
+                    url: model.themeUrl,
                     height: getVerticalSize(80),
                     width: getHorizontalSize(142),
                     radius: BorderRadius.circular(
