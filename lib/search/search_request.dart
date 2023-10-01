@@ -29,3 +29,27 @@ Future<List<VideoModel>> searchVideos(String title) async {
     EasyLoading.dismiss();
   }
 }
+
+Future<List<VideoModel>> hotVideos() async {
+  EasyLoading.showProgress(1);
+  var result = await HttpManager.get(url: "watch/hot");
+  try {
+    if (result["code"] == 200) {
+      EasyLoading.dismiss();
+      List<VideoModel> list = [];
+      List<dynamic> data = result["data"];
+      data.asMap().forEach((key, value) {
+        list.add(VideoModel.fromJson(value));
+      });
+      return Future.value(list);
+    } else {
+      EasyLoading.showError(result["message"] ?? "Delete Account Error");
+      return Future.value([]);
+    }
+  } catch (err) {
+    log("parser delete account fail ${err.toString()}");
+    return Future.value([]);
+  } finally {
+    EasyLoading.dismiss();
+  }
+}

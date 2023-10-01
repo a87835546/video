@@ -669,6 +669,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Watched Record`
+  String get watchHistory {
+    return Intl.message(
+      'Watched Record',
+      name: 'watchHistory',
+      desc: '影单',
+      args: [],
+    );
+  }
+
+  /// `Continue Watch`
+  String get continueWatch {
+    return Intl.message(
+      'Continue Watch',
+      name: 'continueWatch',
+      desc: '继续观看',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

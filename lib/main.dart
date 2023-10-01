@@ -66,7 +66,11 @@ void main() async {
 }
 
 class ChangeLanguage with ChangeNotifier, DiagnosticableTreeMixin {
-  Locale _locale = const Locale("en", "US");
+  Locale _locale = Locale(
+      AppSingleton.getInstance().info?.language ?? "zh",
+      (AppSingleton.getInstance().info?.language ?? "zh") == "zh"
+          ? "CN"
+          : "US");
 
   Locale get locale => _locale;
 
@@ -106,10 +110,13 @@ class MyApp extends StatelessWidget {
             .where((element) => element.languageCode == locale?.languageCode);
         if (result.isNotEmpty) {
           AppSingleton.singleton?.info?.locale = locale;
+          log("isNotEmpty 1 $locale");
           return locale;
         }
         AppSingleton.singleton?.info?.locale =
             context.watch<ChangeLanguage>().locale;
+        log("isNotEmpty 2");
+
         return context.watch<ChangeLanguage>().locale;
       },
       localeListResolutionCallback: (locale, sup) {

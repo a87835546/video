@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:video/core/app_export.dart';
+import 'package:video/home/video_model.dart';
 
 // ignore: must_be_immutable
-class UsercardItemWidget extends StatelessWidget {
-  const UsercardItemWidget({Key? key}) : super(key: key);
+class UserCardItemWidget extends StatelessWidget {
+  final VideoModel model;
+  const UserCardItemWidget({Key? key, required this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class UsercardItemWidget extends StatelessWidget {
                   top: 10,
                 ),
                 child: Text(
-                  "1232",
+                  model.title,
                   style: CustomTextStyles.bodyMediumOnPrimaryContainer_1,
                 ),
               ),

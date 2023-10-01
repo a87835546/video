@@ -1,19 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
-import 'package:video/home/play_info_page.dart';
-import 'package:video/mine/logout_page.dart';
-import 'package:video/mine/register_page.dart';
 
 import '../generated/l10n.dart';
-import '../home/video_info_page.dart';
 import '../setting/gallery/android_settings_screen.dart';
 import '../setting/gallery/cross_platform_settings_screen.dart';
 import '../setting/gallery/ios_developer_screen.dart';
 import '../setting/gallery/web_chrome_settings.dart';
 import '../utils/navigation.dart';
 import 'changge_language.dart';
-import 'login_page.dart';
 
 class MinePage extends StatefulWidget {
   const MinePage({super.key});
@@ -30,7 +25,7 @@ class _MinePageState extends State<MinePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.current.minePage),
+        title: Text(S.current.setting),
       ),
       body: Container(
         child: SettingsList(
@@ -74,71 +69,13 @@ class _MinePageState extends State<MinePage> {
                     );
                   },
                 ),
-                SettingsTile.navigation(
-                  title: Text('register page'),
-                  leading: Icon(CupertinoIcons.wrench),
-                  onPressed: (context) {
-                    Navigation.navigateTo(
-                      context: context,
-                      screen: RegisterPage(),
-                      style: NavigationRouteStyle.cupertino,
-                    );
-                  },
-                ),
-                SettingsTile.navigation(
-                  title: Text('logout page'),
-                  leading: Icon(CupertinoIcons.wrench),
-                  onPressed: (context) {
-                    Navigation.navigateTo(
-                      context: context,
-                      screen: LogoutPage(),
-                      style: NavigationRouteStyle.cupertino,
-                    );
-                  },
-                ),
-                SettingsTile.navigation(
-                  title: Text('Login page'),
-                  leading: Icon(CupertinoIcons.wrench),
-                  onPressed: (context) {
-                    Navigation.navigateTo(
-                      context: context,
-                      screen: LoginPage(),
-                      style: NavigationRouteStyle.cupertino,
-                    );
-                  },
-                ),
-                SettingsTile.navigation(
-                  title: Text('Player info page'),
-                  leading: Icon(CupertinoIcons.wrench),
-                  onPressed: (context) {
-                    Navigation.navigateTo(
-                      context: context,
-                      screen: PlayerInfoPage(),
-                      style: NavigationRouteStyle.cupertino,
-                    );
-                  },
-                ),
-                SettingsTile.navigation(
-                  title: Text('Video info page'),
-                  leading: Icon(CupertinoIcons.wrench),
-                  onPressed: (context) {
-                    Navigation.navigateTo(
-                      context: context,
-                      screen: VideoInfoPage(),
-                      style: NavigationRouteStyle.cupertino,
-                    );
-                  },
-                ),
-
                 // SettingsTile.navigation(
-                //   title: Text('web Player info List page'),
+                //   title: Text('register page'),
                 //   leading: Icon(CupertinoIcons.wrench),
                 //   onPressed: (context) {
                 //     Navigation.navigateTo(
                 //       context: context,
-                //       screen: HomePlayerInWeb(
-                //          model: null,
-                //       ),
+                //       screen: RegisterPage(),
                 //       style: NavigationRouteStyle.cupertino,
                 //     );
                 //   },

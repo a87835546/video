@@ -40,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "communityPage": MessageLookupByLibrary.simpleMessage("Community Page"),
         "confirmInputPwd":
             MessageLookupByLibrary.simpleMessage("Please Input Password Again"),
+        "continueWatch": MessageLookupByLibrary.simpleMessage("Continue Watch"),
         "contractNumber":
             MessageLookupByLibrary.simpleMessage("Contract Number"),
         "createAccount":
@@ -95,6 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "title": MessageLookupByLibrary.simpleMessage("国际化示例App"),
-        "variety": MessageLookupByLibrary.simpleMessage("Variety")
+        "variety": MessageLookupByLibrary.simpleMessage("Variety"),
+        "watchHistory": MessageLookupByLibrary.simpleMessage("Watched Record")
       };
 }

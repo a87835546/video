@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "community": MessageLookupByLibrary.simpleMessage("社区"),
         "communityPage": MessageLookupByLibrary.simpleMessage("宠物社交"),
         "confirmInputPwd": MessageLookupByLibrary.simpleMessage("再次输入密码"),
+        "continueWatch": MessageLookupByLibrary.simpleMessage("继续观看"),
         "contractNumber": MessageLookupByLibrary.simpleMessage("联系方式r"),
         "createAccount": MessageLookupByLibrary.simpleMessage("创建一个新账号"),
         "email": MessageLookupByLibrary.simpleMessage("电子邮箱"),
@@ -84,6 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "setting": MessageLookupByLibrary.simpleMessage("设置"),
         "signUp": MessageLookupByLibrary.simpleMessage("创建账号"),
         "title": MessageLookupByLibrary.simpleMessage("国际化示例App"),
-        "variety": MessageLookupByLibrary.simpleMessage("综艺")
+        "variety": MessageLookupByLibrary.simpleMessage("综艺"),
+        "watchHistory": MessageLookupByLibrary.simpleMessage("影单")
       };
 }

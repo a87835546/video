@@ -24,9 +24,18 @@ class LightSearchDefaultPage extends StatefulWidget {
 class LightSearchDefaultState extends State<LightSearchDefaultPage> {
   TextEditingController searchController = TextEditingController();
   List<VideoModel> list = [];
+  List<VideoModel> hotList = [];
   @override
   void initState() {
+    getData();
     super.initState();
+  }
+
+  void getData() async {
+    List<VideoModel> _list = await hotVideos();
+    setState(() {
+      hotList = _list;
+    });
   }
 
   void search() async {
@@ -134,92 +143,8 @@ class LightSearchDefaultState extends State<LightSearchDefaultPage> {
                                   ),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            CustomImageView(
-                                              imagePath: ImageConstant
-                                                  .imgRectangle5404,
-                                              height: getVerticalSize(160),
-                                              width: getHorizontalSize(284),
-                                              radius: BorderRadius.circular(
-                                                getHorizontalSize(4),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: getPadding(
-                                                top: 10,
-                                              ),
-                                              child: Text(
-                                                "Dune",
-                                                style:
-                                                    theme.textTheme.bodyLarge,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: getPadding(
-                                                top: 4,
-                                              ),
-                                              child: Row(
-                                                children: [
-                                                  CustomImageView(
-                                                    svgPath:
-                                                        ImageConstant.imgStar,
-                                                    height: getSize(16),
-                                                    width: getSize(16),
-                                                  ),
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      left: 6,
-                                                    ),
-                                                    child: Text(
-                                                      "8.9",
-                                                      style: theme
-                                                          .textTheme.titleSmall,
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      left: 16,
-                                                    ),
-                                                    child: Text(
-                                                      "2021",
-                                                      style: theme
-                                                          .textTheme.bodyMedium,
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      left: 17,
-                                                    ),
-                                                    child: Text(
-                                                      "2h 35m",
-                                                      style: theme
-                                                          .textTheme.bodyMedium,
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      left: 17,
-                                                    ),
-                                                    child: Text(
-                                                      "Action",
-                                                      style: theme
-                                                          .textTheme.bodyMedium,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Expanded(
+                                    children: hotList.map((e) {
+                                      return Expanded(
                                         child: Padding(
                                           padding: getPadding(
                                             left: 10,
@@ -233,6 +158,7 @@ class LightSearchDefaultState extends State<LightSearchDefaultPage> {
                                               CustomImageView(
                                                 imagePath: ImageConstant
                                                     .imgRectangle5404160x284,
+                                                url: e.themeUrl,
                                                 height: getVerticalSize(160),
                                                 width: getHorizontalSize(284),
                                                 radius: BorderRadius.circular(
@@ -244,7 +170,7 @@ class LightSearchDefaultState extends State<LightSearchDefaultPage> {
                                                   top: 11,
                                                 ),
                                                 child: Text(
-                                                  "Shang-Chi and the Legend of the T..",
+                                                  e.title,
                                                   style:
                                                       theme.textTheme.bodyLarge,
                                                 ),
@@ -266,7 +192,7 @@ class LightSearchDefaultState extends State<LightSearchDefaultPage> {
                                                         left: 6,
                                                       ),
                                                       child: Text(
-                                                        "8.4",
+                                                        e.rate,
                                                         style: theme.textTheme
                                                             .titleSmall,
                                                       ),
@@ -276,39 +202,39 @@ class LightSearchDefaultState extends State<LightSearchDefaultPage> {
                                                         left: 16,
                                                       ),
                                                       child: Text(
-                                                        "2016",
+                                                        "${e.years}",
                                                         style: theme.textTheme
                                                             .bodyMedium,
                                                       ),
                                                     ),
-                                                    Padding(
-                                                      padding: getPadding(
-                                                        left: 16,
-                                                      ),
-                                                      child: Text(
-                                                        "1h 54m",
-                                                        style: theme.textTheme
-                                                            .bodyMedium,
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding: getPadding(
-                                                        left: 16,
-                                                      ),
-                                                      child: Text(
-                                                        "Sci-Fi",
-                                                        style: theme.textTheme
-                                                            .bodyMedium,
-                                                      ),
-                                                    ),
+                                                    // Padding(
+                                                    //   padding: getPadding(
+                                                    //     left: 16,
+                                                    //   ),
+                                                    //   child: Text(
+                                                    //     "1h 54m",
+                                                    //     style: theme.textTheme
+                                                    //         .bodyMedium,
+                                                    //   ),
+                                                    // ),
+                                                    // Padding(
+                                                    //   padding: getPadding(
+                                                    //     left: 16,
+                                                    //   ),
+                                                    //   child: Text(
+                                                    //     "Sci-Fi",
+                                                    //     style: theme.textTheme
+                                                    //         .bodyMedium,
+                                                    //   ),
+                                                    // ),
                                                   ],
                                                 ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      );
+                                    }).toList(),
                                   ),
                                 ),
                               ),
@@ -348,9 +274,9 @@ class LightSearchDefaultState extends State<LightSearchDefaultPage> {
                               width: getHorizontalSize(10),
                             );
                           },
-                          itemCount: 4,
+                          itemCount: list.length,
                           itemBuilder: (context, index) {
-                            return const UsercardItemWidget();
+                            return UserCardItemWidget(model: list[index]);
                           },
                         ),
                       ),

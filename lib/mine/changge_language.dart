@@ -57,8 +57,7 @@ class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
               });
               SharedPreferences sharedPreferences =
                   await SharedPreferences.getInstance();
-              await sharedPreferences.setString("info",
-                  jsonEncode(AppSingleton.getInstance().info?.toJson()));
+              bool val = await sharedPreferences.setString("lang", "en-US");
             },
           ),
           RadioListTile<Language>(
@@ -76,8 +75,7 @@ class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
               });
               SharedPreferences sharedPreferences =
                   await SharedPreferences.getInstance();
-              bool val = await sharedPreferences.setString("info",
-                  jsonEncode(AppSingleton.getInstance().info?.toJson()));
+              bool val = await sharedPreferences.setString("lang", "zh-CN");
               log("success --->>> $val  value--->>> ${(AppSingleton.getInstance().info)}");
             },
           ),

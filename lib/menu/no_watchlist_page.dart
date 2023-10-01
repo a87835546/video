@@ -135,7 +135,7 @@ class NoWatchlistPageState extends State<NoWatchlistPage> {
                               top: 14,
                             ),
                             child: Text(
-                              "影单",
+                              S.of(context).history,
                               style: theme.textTheme.titleLarge,
                             ),
                           ),
@@ -145,7 +145,7 @@ class NoWatchlistPageState extends State<NoWatchlistPage> {
                             top: 31,
                           ),
                           child: Text(
-                            "继续观看",
+                            S.of(context).continueWatch,
                             style:
                                 CustomTextStyles.titleMediumOnPrimaryContainer,
                           ),

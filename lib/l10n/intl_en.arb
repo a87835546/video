@@ -372,5 +372,17 @@
     "description": "再次输入密码",
     "type": "text",
     "placeholders": {}
+  },
+  "watchHistory": "Watched Record",
+  "@watchHistory": {
+    "description": "影单",
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueWatch": "Continue Watch",
+  "@continueWatch": {
+    "description": "继续观看",
+    "type": "text",
+    "placeholders": {}
   }
 }
