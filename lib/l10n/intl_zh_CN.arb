@@ -216,7 +216,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "contractNumber": "联系方式r",
+  "contractNumber": "联系方式",
   "@contractNumber": {
     "description": "联系方式",
     "type": "text",

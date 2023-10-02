@@ -44,7 +44,9 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                 _bottom!.opacityCallback(!TempValue.isLocked);
               },
             );
-            _bottom ??= VideoPlayerBottom();
+            _bottom ??= VideoPlayerBottom(
+              clickPause: null,
+            );
             _playerUI = widget;
             if (!mounted) return;
             setState(() {});

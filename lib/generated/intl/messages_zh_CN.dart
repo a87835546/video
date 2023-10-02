@@ -39,7 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "communityPage": MessageLookupByLibrary.simpleMessage("宠物社交"),
         "confirmInputPwd": MessageLookupByLibrary.simpleMessage("再次输入密码"),
         "continueWatch": MessageLookupByLibrary.simpleMessage("继续观看"),
-        "contractNumber": MessageLookupByLibrary.simpleMessage("联系方式r"),
+        "contractNumber": MessageLookupByLibrary.simpleMessage("联系方式"),
         "createAccount": MessageLookupByLibrary.simpleMessage("创建一个新账号"),
         "email": MessageLookupByLibrary.simpleMessage("电子邮箱"),
         "firstName": MessageLookupByLibrary.simpleMessage("姓氏"),
