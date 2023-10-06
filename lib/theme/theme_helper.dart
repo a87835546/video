@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../core/app_export.dart';
 
@@ -7,13 +6,15 @@ String _appTheme = "primary";
 /// Helper class for managing themes and colors.
 class ThemeHelper {
   // A map of custom color themes supported by the app
-  Map<String, PrimaryColors> _supportedCustomColor = {
-    'primary': PrimaryColors()
+  final Map<String, PrimaryColors> _supportedCustomColor = {
+    'primary': PrimaryColors(),
+    'dark': DarkColors()
   };
 
 // A map of color schemes supported by the app
-  Map<String, ColorScheme> _supportedColorScheme = {
-    'primary': ColorSchemes.primaryColorScheme
+  final Map<String, ColorScheme> _supportedColorScheme = {
+    'primary': ColorSchemes.primaryColorScheme,
+    'dark': ColorSchemes.darkColorScheme
   };
 
   /// Changes the app theme to [_newTheme].
@@ -65,7 +66,7 @@ class ThemeHelper {
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          backgroundColor: Color(0XFFFFFFFF),
+          backgroundColor: const Color(0XFFFFFFFF),
           shape: RoundedRectangleBorder(
             side: BorderSide(
               color: appTheme.black900.withOpacity(0.12),
@@ -177,11 +178,11 @@ class TextThemes {
 
 /// Class containing the supported color schemes.
 class ColorSchemes {
-  static final primaryColorScheme = ColorScheme.light(
+  static const primaryColorScheme = ColorScheme.light(
     // Primary colors
     primary: Color(0XFFFFFFFF),
     primaryContainer: Color(0XFFD43E35),
-    secondary: Color(0XFFD43E35),
+    secondary: Colors.black26,
     secondaryContainer: Color(0XFF151515),
     tertiary: Color(0XFFD43E35),
     tertiaryContainer: Color(0XFF151515),
@@ -224,6 +225,53 @@ class ColorSchemes {
     onSurface: Color(0XFF0A0A0A),
     onSurfaceVariant: Color(0XFF0BAF56),
   );
+  static const darkColorScheme = ColorScheme.dark(
+    // Primary colors
+    primary: Color(0XFA1A1A1A),
+    primaryContainer: Color(0XFFD43E35),
+    secondary: Color(0XFF1F1F1F),
+    secondaryContainer: Color(0XFF151515),
+    tertiary: Color(0XFFD43E35),
+    tertiaryContainer: Color(0XFF151515),
+
+    // Background colors
+    background: Color(0XFFD43E35),
+
+    // Surface colors
+    surface: Color(0XFFD43E35),
+    surfaceTint: Color(0X3331374E),
+    surfaceVariant: Color(0XFF151515),
+
+    // Error colors
+    error: Color(0X3331374E),
+    errorContainer: Color(0XFFFFBB38),
+    onError: Color(0X1EFFFFFF),
+    onErrorContainer: Color(0XFF202123),
+
+    // On colors(text colors)
+    onBackground: Color(0XFF0A0A0A),
+    onInverseSurface: Color(0X1EFFFFFF),
+    onPrimary: Color(0X3331374E),
+    onPrimaryContainer: Color(0XFFFAFAFA),
+    onSecondary: Color(0XFF0A0A0A),
+    onSecondaryContainer: Color(0XFF0BAF56),
+    onTertiary: Color(0XFF0A0A0A),
+    onTertiaryContainer: Color(0XFF0BAF56),
+
+    // Other colors
+    outline: Color(0X3331374E),
+    outlineVariant: Color(0XFFD43E35),
+    scrim: Color(0XFFD43E35),
+    shadow: Color(0X3331374E),
+
+    // Inverse colors
+    inversePrimary: Color(0XFFD43E35),
+    inverseSurface: Color(0X3331374E),
+
+    // Pending colors
+    onSurface: Color(0XFF0A0A0A),
+    onSurfaceVariant: Color(0XFF0BAF56),
+  );
 }
 
 /// Class containing custom colors for a primary theme.
@@ -241,7 +289,7 @@ class PrimaryColors {
   Color get gray300 => Color(0XFFE0E0E0);
   Color get gray400 => Color(0XFFC2C2C2);
   Color get gray500 => Color(0XFF9E9E9E);
-  Color get gray600 => Color(0XFF757575);
+  Color get gray600 => const Color(0XFF757575);
   Color get gray60001 => Color(0XFF737373);
   Color get gray700 => Color(0XFF646464);
   Color get gray70001 => Color(0XFF616161);
@@ -254,6 +302,45 @@ class PrimaryColors {
   // LightBlue
   Color get lightBlueA700 => Color(0XFF0081FA);
   Color get lightBlueA70001 => Color(0XFF048BF8);
+
+  //
+  Color get headerColor => Color(0XFF048BF8);
+  Color get headerSelectedColor => Color(0XFF000000);
+  Color get headerUnselectedColor => Color(0XFF048BF8);
+}
+
+class DarkColors extends PrimaryColors {
+  // Black
+  Color get black900 => Color(0XFF000000);
+
+  // BlueGray
+  Color get blueGray400 => Color(0XFF888888);
+
+  // Gray
+  Color get gray100 => Color(0XFFF6F6F6);
+  Color get gray10001 => Color(0XFFF7F7F7);
+  Color get gray10002 => Color(0XFFF5F5F5);
+  Color get gray300 => Color(0XFFE0E0E0);
+  Color get gray400 => Color(0XFFC2C2C2);
+  Color get gray500 => Color(0XFF9E9E9E);
+  Color get gray600 => Color(0XF0FAFAFA);
+  Color get gray60001 => Color(0XFF737373);
+  Color get gray700 => Color(0XFF646464);
+  Color get gray70001 => Color(0XFF616161);
+  Color get gray800 => Color(0XFF404040);
+  Color get gray900 => Color(0XFF202020);
+
+  // Green
+  Color get greenA200 => Color(0XFF73D6A1);
+
+  // LightBlue
+  Color get lightBlueA700 => Color(0XFF0081FA);
+  Color get lightBlueA70001 => Color(0XFF048BF8);
+
+  //
+  Color get headerColor => Colors.black38;
+  Color get headerSelectedColor => Colors.white;
+  Color get headerUnselectedColor => Colors.white38;
 }
 
 PrimaryColors get appTheme => ThemeHelper().themeColor();

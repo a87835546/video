@@ -16,6 +16,7 @@ import 'package:video_player/video_player.dart';
 
 import '../core/utils/image_constant.dart';
 import '../generated/l10n.dart';
+import '../theme/theme_helper.dart';
 import '../utils/navigation.dart';
 import '../widgets/home_rate_widget.dart';
 import 'home_banner_model.dart';
@@ -105,7 +106,7 @@ class HomeBannerState extends State<HomeBanner>
           _refreshController.refreshCompleted();
         },
         child: Container(
-          color: const Color(0xfff6f6f6),
+          color: theme.colorScheme.primary,
           child: SingleChildScrollView(
             child: Column(
               // physics: NeverScrollableScrollPhysics(),

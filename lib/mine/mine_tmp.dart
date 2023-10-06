@@ -57,3 +57,21 @@ class ReloadModel with ChangeNotifier, DiagnosticableTreeMixin {
     properties.add(IntProperty('count', count));
   }
 }
+
+class SwitchThemeModel with ChangeNotifier, DiagnosticableTreeMixin {
+  int _count = 0;
+  bool _refresh = false;
+  bool get refresh => _refresh;
+  int get count => _count;
+  reload(bool val) {
+    _refresh = val;
+    log("refresh value $val");
+    notifyListeners();
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(IntProperty('count', count));
+  }
+}

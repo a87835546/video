@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:video/core/app_export.dart';
 
 import '../generated/l10n.dart';
 import '../setting/gallery/android_settings_screen.dart';
@@ -53,6 +54,10 @@ class _MinePageState extends State<MinePage> {
                     onToggle: (v) {
                       setState(() {
                         model = v;
+                        ThemeHelper().changeTheme("dark");
+                        // v == false
+                        //     ? ThemeHelper().changeTheme("dark")
+                        //     : ThemeHelper().changeTheme("primary");
                       });
                     },
                     title: Text("Auto Theme")),

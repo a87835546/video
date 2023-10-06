@@ -7,6 +7,8 @@ import 'package:video/home/home_request.dart';
 
 import '../app_singleton.dart';
 import '../generated/l10n.dart';
+import '../theme/custom_text_style.dart';
+import '../theme/theme_helper.dart';
 import 'home_banner_widget.dart';
 import 'home_model.dart';
 
@@ -119,6 +121,7 @@ class _HomePageState extends State<HomePage>
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
+        backgroundColor: theme.colorScheme.primary,
         appBar: AppBar(
             title: SizedBox(
           width: MediaQuery.of(context).size.width,
@@ -133,11 +136,12 @@ class _HomePageState extends State<HomePage>
                 // 多个标签时滚动加载
                 isScrollable: true,
                 // 标签指示器的颜色
-                indicatorColor: Theme.of(context).primaryColor,
+                indicatorColor: ThemeHelper().themeColor().headerSelectedColor,
                 // 标签的颜色
-                labelColor: Theme.of(context).primaryColor,
+                labelColor: ThemeHelper().themeColor().headerSelectedColor,
                 // 未选中标签的颜色
-                unselectedLabelColor: Theme.of(context).primaryColorDark,
+                unselectedLabelColor:
+                    ThemeHelper().themeColor().headerUnselectedColor,
                 // 指示器的大小
                 indicatorSize: TabBarIndicatorSize.label,
                 // 指示器的权重，即线条高度

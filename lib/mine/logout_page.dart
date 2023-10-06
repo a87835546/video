@@ -19,6 +19,8 @@ import 'mine_tmp.dart';
 
 // ignore_for_file: must_be_immutable
 class LogoutPage extends StatefulWidget {
+  const LogoutPage({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return LogoutPageState();
@@ -38,8 +40,8 @@ class LogoutPageState extends State<LogoutPage> {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: theme.colorScheme.primary,
         resizeToAvoidBottomInset: false,
+        backgroundColor: theme.colorScheme.primary,
         appBar: CustomAppBar(
           centerTitle: true,
           title: AppbarSubtitle1(

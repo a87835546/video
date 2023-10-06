@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../core/app_export.dart';
 
 /// A collection of pre-defined text styles for customizing text appearance,
@@ -43,6 +44,11 @@ class CustomTextStyles {
   static get bodyMediumGray500 => theme.textTheme.bodyMedium!.copyWith(
         color: appTheme.gray500,
       );
+  static get bodyMediumGray600 => theme.textTheme.bodyMedium!.copyWith(
+        fontSize: getFontSize(14),
+        fontWeight: FontWeight.w400,
+        color: appTheme.gray600,
+      );
   static get bodyMediumGray60001 => theme.textTheme.bodyMedium!.copyWith(
         color: appTheme.gray60001,
       );
@@ -65,6 +71,8 @@ class CustomTextStyles {
   static get bodyMediumOnPrimaryContainer_1 =>
       theme.textTheme.bodyMedium!.copyWith(
         color: theme.colorScheme.onPrimaryContainer,
+        fontSize: getFontSize(14),
+        fontWeight: FontWeight.w300,
       );
   static get bodyMediumPlusJakartaSans =>
       theme.textTheme.bodyMedium!.plusJakartaSans;
@@ -125,6 +133,7 @@ class CustomTextStyles {
   static get titleMediumOnPrimaryContainer =>
       theme.textTheme.titleMedium!.copyWith(
         color: theme.colorScheme.onPrimaryContainer,
+        fontSize: 18,
       );
   static get titleMediumPrimary => theme.textTheme.titleMedium!.copyWith(
         color: theme.colorScheme.primary,
